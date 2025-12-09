@@ -1,220 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeshRFID – RFID stock control for small to enterprise sized retailers</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #000;
-      line-height: 1.5;
-    }
-    header, section {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
-    }
-    nav a {
-      color: #000;
-      text-decoration: none;
-      font-size: 14px;
-      margin-left: 15px;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    nav strong {
-      font-size: 18px;   /* logo slightly larger than nav links */
-    }
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 24px;
-      margin-top: 40px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 16px;
-      max-width: 600px;
-    }
-    .cta-buttons {
-      margin: 20px 0;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 4px;
-      margin-right: 10px;
-      text-decoration: none;
-      font-size: 15px;
-      text-align: center;
-    }
-    .btn-primary {
-      background: #000;
-      color: #fff;
-    }
-    .btn-outline {
-      border: 1px solid #000;
-      color: #000;
-      background: #fff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeshRFID – RFID stock control made simple</title>
+<style>
+  body {
+    margin:0; font-family:Arial, sans-serif; background:#fff; color:#000; line-height:1.5;
+  }
+  header, section {
+    max-width:900px; margin:auto; padding:20px;
+  }
+  nav {
+    display:flex; justify-content:space-between; align-items:center; padding:20px 0;
+  }
+  nav a {
+    margin-left:15px; font-size:14px; text-decoration:none; color:#000;
+  }
+  nav a:hover { text-decoration:underline; }
+
+  nav strong {
+    font-size:22px; font-weight:bold;
+  }
+
+  h1 {
+    font-size:34px; font-weight:bold; margin-bottom:10px; max-width:700px;
+  }
+  h2 {
+    font-size:24px; margin-top:40px; margin-bottom:10px;
+  }
+  p { font-size:16px; }
+
+  .cta-buttons { margin:20px 0; }
+
+  .btn {
+    padding:12px 18px; border-radius:4px; text-decoration:none; font-size:15px;
+    display:inline-block; text-align:center;
+  }
+  .btn-primary { background:#000; color:#fff; }
+  .btn-outline { border:1px solid #000; color:#000; }
+
+  .pricing {
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(1,1fr);
+    gap:20px;
+  }
+  .price-card {
+    border:1px solid #ddd;
+    border-radius:4px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .price-main { font-weight:bold; margin-bottom:4px; }
+  .price-secondary { font-size:14px; color:#555; margin-bottom:8px; }
+  .price-notes { font-size:13px; color:#666; margin-top:6px; }
+
+  .price-card .btn {
+    margin-top:auto;
+    margin-left:auto;
+    margin-right:auto;
+    width:80%;
+  }
+
+  form input, form textarea {
+    width:100%; padding:10px; margin:6px 0;
+    border:1px solid #ccc; border-radius:4px; font-size:15px;
+  }
+  form button {
+    padding:10px 16px; background:#000; color:#fff; border:none; border-radius:4px;
+  }
+  footer {
+    text-align:center; padding:30px 0; font-size:14px; color:#666;
+  }
+
+  @media(min-width:800px){
     .pricing {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 20px;
+      grid-template-columns:repeat(4,1fr);
     }
-    .price-card {
-      border: 1px solid #ddd;
-      padding: 20px;
-      border-radius: 4px;
-    }
-    .price-card h3 {
-      margin-top: 0;
-    }
-    .price-main {
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-    .price-secondary {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 8px;
-    }
-    .price-notes {
-      font-size: 13px;
-      color: #666;
-      margin-top: 6px;
-    }
-    /* centre buttons inside pricing cards */
-    .price-card .btn {
-      display: block;
-      margin: 10px auto 0 auto;
-    }
-    form input, form textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 15px;
-    }
-    form button {
-      padding: 10px 16px;
-      background: #000;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      font-size: 14px;
-      color: #666;
-    }
-    @media (min-width: 800px) {
-      .pricing {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <div><strong>MeshRFID</strong></div>
-      <div>
-        <a href="#pricing">Pricing</a>
-        <a href="contact.html">Contact</a>
-        <a href="login.html">Login</a>
-      </div>
-    </nav>
-
-    <h1>RFID stock control for small retailers</h1>
-    <p>Know exactly what you have, how much it’s worth and where it is. Stop losing stock and run your store efficiently – using the phone you already have.</p>
-
-    <div class="cta-buttons">
-      <a href="signup.html" class="btn btn-primary">Get started free</a>
-      <a href="#contact" class="btn btn-outline">Book a demo</a>
+<header>
+  <nav>
+    <strong>MeshRFID</strong>
+    <div>
+      <a href="#pricing">Pricing</a>
+      <a href="contact.html">Contact</a>
+      <a href="login.html">Login</a>
     </div>
-  </header>
+  </nav>
 
-  <section id="pricing">
-    <h2>Pricing</h2>
-    <p>Simple pricing, no contracts. Cancel anytime.</p>
+  <h1>RFID stock control made simple</h1>
+  <p>Know exactly what you have, where it is, and what it’s worth – in real time.</p>
 
-    <div class="pricing">
-      <div class="price-card">
+  <div class="cta-buttons">
+    <a href="signup.html" class="btn btn-primary">Get started free</a>
+    <a href="#contact" class="btn btn-outline">Book a demo</a>
+  </div>
+</header>
+
+<section id="pricing">
+  <h2>Pricing</h2>
+  <p>Simple pricing. No contracts. Cancel anytime.</p>
+
+  <div class="pricing">
+
+    <div class="price-card">
+      <div>
         <h3>Starter</h3>
         <p class="price-main">£0 / month</p>
-        <p class="price-secondary">Free forever</p>
-        <p>Phone NFC<br>Up to 500 items<br>Single user</p>
-        <a href="signup.html" class="btn btn-outline">Start free</a>
+        <p>Free forever<br>Phone NFC<br>Up to 500 items<br>Single user</p>
       </div>
+      <a href="signup.html" class="btn btn-outline">Start free</a>
+    </div>
 
-      <div class="price-card">
+    <div class="price-card">
+      <div>
         <h3>Standard</h3>
         <p class="price-main">£99 / month per shop</p>
         <p class="price-secondary">or £79 / month billed annually (£948 / year)</p>
         <p>Full stock control<br>Reports<br>UHF handheld support</p>
         <p class="price-notes">No setup fees. Cancel anytime.</p>
-        <a href="signup.html" class="btn btn-primary">
-          Choose Standard
-        </a>
       </div>
+      <a href="signup.html" class="btn btn-primary">Choose Standard</a>
+    </div>
 
-      <div class="price-card">
+    <div class="price-card">
+      <div>
         <h3>Professional</h3>
         <p class="price-main">£250 / month per shop</p>
         <p class="price-secondary">or £199 / month billed annually (£2,388 / year)</p>
         <p>Multi-shop retail<br>Central dashboards</p>
         <p class="price-notes">No setup fees. Cancel anytime.</p>
-        <a href="contact.html" class="btn btn-outline">
-          Talk to us
-        </a>
       </div>
+      <a href="contact.html" class="btn btn-outline">Talk to us</a>
+    </div>
 
-      <div class="price-card">
+    <div class="price-card">
+      <div>
         <h3>Enterprise</h3>
         <p class="price-main">Custom pricing</p>
-        <p class="price-secondary">Retail sites and warehouses</p>
         <p>Warehouses<br>Antennas<br>Integrations</p>
-        <a href="contact.html" class="btn btn-outline">
-          Talk to us
-        </a>
       </div>
+      <a href="contact.html" class="btn btn-outline">Talk to us</a>
     </div>
-  </section>
 
-  <section id="contact">
-    <h2>Book a demo</h2>
-    <p>Tell us a little about your store and we’ll be in touch.</p>
+  </div>
+</section>
 
-    <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
-      <input type="text" name="Name" placeholder="Your name" required>
-      <input type="email" name="Email" placeholder="Your email" required>
-      <input type="text" name="Company" placeholder="Store name">
-      <textarea name="Message" placeholder="Tell us about your needs" rows="4"></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </section>
+<section id="contact">
+  <h2>Book a demo</h2>
+  <p>Tell us a little about your store and we’ll be in touch.</p>
 
-  <footer>
-    © MeshRFID 2025. All rights reserved.
-  </footer>
+  <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Your name" required>
+    <input type="email" name="Email" placeholder="Your email" required>
+    <input type="text" name="Company" placeholder="Store name">
+    <textarea name="Message" placeholder="Tell us about your needs" rows="4"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer>
+  © MeshRFID 2025.
+</footer>
 
 </body>
 </html>
