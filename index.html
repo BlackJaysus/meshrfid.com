@@ -11,10 +11,8 @@
       background:#fff;
       color:#000;
       line-height:1.5;
-      padding-top:70px; /* space for fixed header */
+      padding-top:70px;
     }
-
-    /* Header / nav */
     nav {
       position:fixed;
       top:0; left:0; right:0;
@@ -28,7 +26,6 @@
       z-index:999;
       box-shadow:0 1px 4px rgba(0,0,0,0.06);
     }
-    .nav-left {}
     .logo {
       text-decoration:none;
       color:#000;
@@ -53,7 +50,6 @@
       font-size:26px;
       cursor:pointer;
     }
-
     header, section {
       max-width:900px;
       margin:auto;
@@ -70,7 +66,6 @@
       margin-bottom:10px;
     }
     p { font-size:16px; }
-
     .btn {
       padding:12px 18px;
       border-radius:4px;
@@ -79,16 +74,8 @@
       display:inline-block;
       text-align:center;
     }
-    .btn-primary {
-      background:#000;
-      color:#fff;
-    }
-    .btn-outline {
-      border:1px solid #000;
-      color:#000;
-      background:#fff;
-    }
-
+    .btn-primary { background:#000; color:#fff; }
+    .btn-outline { border:1px solid #000; color:#000; background:#fff; }
     .pricing {
       margin-top:20px;
       display:grid;
@@ -107,7 +94,11 @@
       width:80%;
       margin:10px auto 0;
     }
-
+    .price-meta {
+      font-size:13px;
+      color:#555;
+      margin-top:6px;
+    }
     input, textarea {
       width:100%;
       box-sizing:border-box;
@@ -117,18 +108,15 @@
       border-radius:4px;
       font-size:15px;
     }
-
     footer {
       text-align:center;
       padding:30px 0;
       font-size:13px;
       color:#666;
     }
-
     @media(min-width:800px){
       .pricing { grid-template-columns:repeat(4,1fr); }
     }
-
     @media(max-width:640px){
       .nav-toggle { display:block; }
       .nav-links {
@@ -148,12 +136,12 @@
 <body>
 
 <nav>
-  <div class="nav-left">
-    <a href="index.html" class="logo">MeshRFID</a>
-  </div>
+  <a href="index.html" class="logo">MeshRFID</a>
   <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
   <div class="nav-links">
     <a href="index.html#pricing">Pricing</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="case-studies.html">Case studies</a>
     <a href="contact.html">Contact</a>
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>
@@ -163,8 +151,7 @@
 
 <header>
   <h1>Stop losing stock. Start gaining control.</h1>
-  <p>From sole traders to global retail and warehouse networks — one platform that scales with you. 
-    Real-time visibility across stores, warehouses and logistics, with flexible RFID from mobile scanning to full automation - delivering low cost and high return from day one</p>
+  <p>From sole traders to global retail and warehouse networks – one platform that scales with you. Real-time operational and financial visibility across stores, warehouses and logistics, delivering low cost and high return from day one.</p>
 
   <div>
     <a href="signup.html" class="btn btn-primary">Get started free</a>
@@ -181,6 +168,10 @@
       <div>
         <h3>Starter</h3>
         <p><strong>£0 / month</strong><br>Up to 500 items<br>Phone NFC<br>Single user</p>
+        <p class="price-meta">
+          Annual cost: £0<br>
+          Typical ROI: from month 1 through reduced shrink and better visibility.
+        </p>
       </div>
       <a href="signup.html" class="btn btn-outline">Start free</a>
     </div>
@@ -188,25 +179,36 @@
     <div class="price-card">
       <div>
         <h3>Standard</h3>
-        <p><strong>£99 / month per shop</strong><br>or £79 billed annually<br>Full stock control<br>Reports<br>UHF handheld</p>
+        <p><strong>£99 / month per site</strong><br>or £79 / month billed annually<br>Full stock control<br>Reports<br>UHF handheld support</p>
+        <p class="price-meta">
+          Annual cost from: £948<br>
+          Typical shrink reduction: 10–20% with measurable month-one impact.
+        </p>
       </div>
-      <!-- replace URL with real Stripe Checkout link -->
+      <!-- replace with real Stripe Checkout link -->
       <a href="https://buy.stripe.com/test_standard" class="btn btn-primary">Choose Standard</a>
     </div>
 
     <div class="price-card">
       <div>
         <h3>Professional</h3>
-        <p><strong>£250 / month per shop</strong><br>or £199 billed annually<br>Multiple shops<br>Central dashboards</p>
+        <p><strong>£250 / month per site</strong><br>or £199 / month billed annually<br>Multi-site retail<br>Central dashboards</p>
+        <p class="price-meta">
+          Annual cost from: £2,388<br>
+          Typical shrink reduction: 15–30% plus labour savings on counts and audits.
+        </p>
       </div>
-      <!-- replace URL with real Stripe Checkout link -->
+      <!-- replace with real Stripe Checkout link -->
       <a href="https://buy.stripe.com/test_professional" class="btn btn-primary">Choose Professional</a>
     </div>
 
     <div class="price-card">
       <div>
         <h3>Enterprise</h3>
-        <p><strong>Custom pricing</strong><br>Warehouses<br>Antennas<br>Integrations</p>
+        <p><strong>Custom pricing</strong><br>Warehouses and 3PLs<br>Fixed readers and portals<br>ERP / WMS integrations</p>
+        <p class="price-meta">
+          ROI and savings modelled per deployment – focused on shrink, mis-ships and labour.
+        </p>
       </div>
       <a href="contact.html" class="btn btn-outline">Talk to us</a>
     </div>
@@ -218,8 +220,8 @@
   <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
     <input type="text" name="Name" placeholder="Your name" required>
     <input type="email" name="Email" placeholder="Your email" required>
-    <input type="text" name="Company" placeholder="Store name">
-    <textarea name="Message" placeholder="What do you need?" rows="4"></textarea>
+    <input type="text" name="Company" placeholder="Company / store name">
+    <textarea name="Message" placeholder="What do you need to understand or improve?" rows="4"></textarea>
     <button class="btn btn-primary" type="submit">Send</button>
   </form>
 </section>
