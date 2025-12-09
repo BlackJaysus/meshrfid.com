@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>MeshRFID – Contact</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact MeshRFID to discuss RFID inventory visibility for your retail, warehouse or 3PL operation.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <meta property="og:title" content="MeshRFID – Contact">
+  <meta property="og:description" content="Book a call or demo to see RFID inventory visibility in action.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meshrfid.com/contact.html">
+  <meta property="og:site_name" content="MeshRFID">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     body {
       margin:0;
@@ -117,23 +137,56 @@
   <h1>Contact us</h1>
   <p>Email <a href="mailto:info@meshrfid.com">info@meshrfid.com</a> or use the form below.</p>
 
-  <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your name" required>
-    <input type="email" name="Email" placeholder="Your email" required>
-    <input type="text" name="Company" placeholder="Company / store / 3PL name">
-    <textarea name="Message" placeholder="What problem are you trying to solve?" rows="4"></textarea>
+  <form id="contact-form">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <input type="text" name="company" placeholder="Company / store / 3PL name">
+    <textarea name="message" placeholder="What problem are you trying to solve?" rows="4"></textarea>
     <button type="submit">Send</button>
   </form>
 </main>
 
 <footer>© MeshRFID 2025.</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks  = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('show');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  }
+
+  const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const payload = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || '',
+        sites: null,
+        message: formData.get('message') || '',
+        source: 'contact'
+      };
+      const { error } = await supabaseClient.from('leads').insert([payload]);
+      if (error) {
+        alert('Something went wrong. Please email info@meshrfid.com.');
+      } else {
+        alert('Thanks – we’ve received your message.');
+        contactForm.reset();
+      }
     });
   }
 </script>
