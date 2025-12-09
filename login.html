@@ -1,55 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeshRFID – Login</title>
-  <style>
-    body { margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; }
-    header, section { max-width: 500px; margin:auto; padding:20px; }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; max-width:900px; margin:auto; }
-    nav a { color:#000; text-decoration:none; font-size:14px; margin-left:15px; }
-    nav a:hover { text-decoration:underline; }
-    h1 { font-size:28px; margin-bottom:10px; }
-    p { font-size:16px; }
-    input {
-      width:100%; padding:10px; margin:6px 0;
-      border:1px solid #ccc; border-radius:4px; font-size:15px;
-    }
-    button {
-      padding:10px 16px; background:#000; color:#fff;
-      border:none; border-radius:4px; cursor:pointer; margin-top:8px;
-    }
-    a.small-link { font-size:14px; }
-    footer { text-align:center; padding:30px 0; font-size:14px; color:#666; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeshRFID – Login</title>
+<style>
+  body {
+    margin:0; font-family:Arial,sans-serif; background:#fff; color:#000; line-height:1.5;
+    padding-top:70px;
+  }
+  nav {
+    position:fixed; top:0; left:0; right:0; height:60px; background:#fff;
+    border-bottom:1px solid #eee; display:flex; justify-content:space-between;
+    align-items:center; padding:0 20px; z-index:999; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  nav a { margin-left:15px; font-size:14px; text-decoration:none; color:#000; }
+  nav a:hover { text-decoration:underline; }
+  nav strong { font-size:22px; font-weight:bold; }
+
+  main {
+    max-width:400px; margin:auto; padding:20px;
+  }
+  h1 { font-size:28px; margin-bottom:10px; }
+  input {
+    width:100%; padding:10px; margin:6px 0; border:1px solid #ccc; border-radius:4px;
+  }
+  button {
+    width:100%; padding:12px; background:#000; color:#fff; border:none;
+    border-radius:4px; margin-top:10px;
+  }
+  footer { text-align:center; padding:30px 0; font-size:13px; color:#666; }
+</style>
 </head>
+
 <body>
-  <nav>
-    <div><strong>MeshRFID</strong></div>
-    <div>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="contact.html">Contact</a>
-      <a href="login.html">Login</a>
-    </div>
-  </nav>
+<nav>
+  <strong>MeshRFID</strong>
+  <div>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
 
-  <header>
-    <h1>Login</h1>
-    <p>Existing customers can sign in here. (Hook this page to your real app later.)</p>
-  </header>
+<main>
+  <h1>Login</h1>
+  <form>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Sign in</button>
+  </form>
+  <p style="font-size:14px; margin-top:10px;">
+    New here? <a href="signup.html">Sign up free</a>
+  </p>
+</main>
 
-  <section>
-    <form>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit">Sign in</button>
-    </form>
-    <p><a href="signup.html" class="small-link">Need an account? Get started free.</a></p>
-  </section>
-
-  <footer>
-    © MeshRFID 2025. All rights reserved.
-  </footer>
+<footer>© MeshRFID 2025.</footer>
 </body>
 </html>
