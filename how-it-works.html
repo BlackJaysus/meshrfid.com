@@ -2,8 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MeshRFID – How it works</title>
+  <title>How MeshRFID works – RFID inventory for retail and warehouses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="See how MeshRFID connects RFID tags, handhelds and fixed readers into one real-time view of stock, value and locations for finance and operations teams.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <meta property="og:title" content="How MeshRFID works">
+  <meta property="og:description" content="From tagging to real-time control – one RFID platform for stores, warehouses and 3PLs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meshrfid.com/how-it-works.html">
+  <meta property="og:site_name" content="MeshRFID">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     body {
       margin:0;
@@ -180,6 +200,11 @@
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('show');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
     });
   }
 </script>
