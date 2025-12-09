@@ -2,8 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MeshRFID – RFID stock control made simple</title>
+  <title>MeshRFID – RFID inventory visibility for retail and warehouses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MeshRFID gives finance and operations teams real-time visibility of stock, value and locations across stores, warehouses and 3PLs – with low cost and high return from day one.">
+
+  <!-- Favicon / icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MeshRFID – RFID inventory visibility for retail and warehouses">
+  <meta property="og:description" content="Real-time control of stock, value and locations for retailers, warehouses and 3PLs – one platform that scales from sole traders to global networks.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meshrfid.com">
+  <meta property="og:site_name" content="MeshRFID">
+
+  <!-- Google Analytics (replace G-XXXXXXXXXX with your ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     body {
       margin:0;
@@ -76,6 +99,7 @@
     }
     .btn-primary { background:#000; color:#fff; }
     .btn-outline { border:1px solid #000; color:#000; background:#fff; }
+
     .pricing {
       margin-top:20px;
       display:grid;
@@ -89,6 +113,7 @@
       display:flex;
       flex-direction:column;
       justify-content:space-between;
+      position:relative;
     }
     .price-card .btn {
       width:80%;
@@ -99,6 +124,19 @@
       color:#555;
       margin-top:6px;
     }
+    .price-badge {
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:#000;
+      color:#fff;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+      padding:3px 6px;
+      border-radius:3px;
+    }
+
     input, textarea {
       width:100%;
       box-sizing:border-box;
@@ -177,6 +215,7 @@
     </div>
 
     <div class="price-card">
+      <div class="price-badge">Most popular</div>
       <div>
         <h3>Standard</h3>
         <p><strong>£99 / month per site</strong><br>or £79 / month billed annually<br>Full stock control<br>Reports<br>UHF handheld support</p>
@@ -217,23 +256,57 @@
 
 <section id="contact">
   <h2>Book a demo</h2>
-  <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your name" required>
-    <input type="email" name="Email" placeholder="Your email" required>
-    <input type="text" name="Company" placeholder="Company / store name">
-    <textarea name="Message" placeholder="What do you need to understand or improve?" rows="4"></textarea>
+  <form id="home-contact-form">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <input type="text" name="company" placeholder="Company / store name">
+    <textarea name="message" placeholder="What do you need to understand or improve?" rows="4"></textarea>
     <button class="btn btn-primary" type="submit">Send</button>
   </form>
 </section>
 
 <footer>© MeshRFID 2025.</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks  = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('show');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  }
+
+  // Supabase lead capture (home demo form)
+  const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const homeForm = document.getElementById('home-contact-form');
+  if (homeForm) {
+    homeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(homeForm);
+      const payload = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || '',
+        sites: null,
+        message: formData.get('message') || '',
+        source: 'home-demo'
+      };
+      const { error } = await supabaseClient.from('leads').insert([payload]);
+      if (error) {
+        alert('Something went wrong. Please email info@meshrfid.com.');
+      } else {
+        alert('Thanks – we’ve received your request.');
+        homeForm.reset();
+      }
     });
   }
 </script>
