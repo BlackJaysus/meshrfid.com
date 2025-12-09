@@ -2,313 +2,384 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MeshRFID – RFID inventory visibility for retail and warehouses</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MeshRFID gives finance and operations teams real-time visibility of stock, value and locations across stores, warehouses and 3PLs – with low cost and high return from day one.">
+  <title>MeshRFID - Simple RFID for Retail and Warehouses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon / icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="MeshRFID – RFID inventory visibility for retail and warehouses">
-  <meta property="og:description" content="Real-time control of stock, value and locations for retailers, warehouses and 3PLs – one platform that scales from sole traders to global networks.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://meshrfid.com">
-  <meta property="og:site_name" content="MeshRFID">
-
-  <!-- Google Analytics (replace G-XXXXXXXXXX with your ID) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
+  <!-- Favicon: place favicon.ico (and favicon.png) in the repo root -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
 
   <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      margin:0;
-      font-family:Arial,sans-serif;
-      background:#fff;
-      color:#000;
-      line-height:1.5;
-      padding-top:70px;
+      background: #f7f7f7;
+      color: #111;
+      line-height: 1.5;
     }
-    nav {
-      position:fixed;
-      top:0; left:0; right:0;
-      height:60px;
-      background:#fff;
-      border-bottom:1px solid #eee;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:0 20px;
-      z-index:999;
-      box-shadow:0 1px 4px rgba(0,0,0,0.06);
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e2e2;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
     .logo {
-      text-decoration:none;
-      color:#000;
-      font-weight:bold;
-      font-size:20px;
-    }
-    .nav-links {
-      display:flex;
-      gap:15px;
-      align-items:center;
-    }
-    .nav-links a {
-      font-size:14px;
-      text-decoration:none;
-      color:#000;
-    }
-    .nav-links a:hover { text-decoration:underline; }
-    .nav-toggle {
-      display:none;
-      border:none;
-      background:none;
-      font-size:26px;
-      cursor:pointer;
-    }
-    header, section {
-      max-width:900px;
-      margin:auto;
-      padding:20px;
-    }
-    h1 {
-      font-size:34px;
-      margin-bottom:10px;
-      max-width:700px;
-    }
-    h2 {
-      font-size:24px;
-      margin-top:40px;
-      margin-bottom:10px;
-    }
-    p { font-size:16px; }
-    .btn {
-      padding:12px 18px;
-      border-radius:4px;
-      text-decoration:none;
-      font-size:15px;
-      display:inline-block;
-      text-align:center;
-    }
-    .btn-primary { background:#000; color:#fff; }
-    .btn-outline { border:1px solid #000; color:#000; background:#fff; }
-
-    .pricing {
-      margin-top:20px;
-      display:grid;
-      grid-template-columns:repeat(1,1fr);
-      gap:20px;
-    }
-    .price-card {
-      border:1px solid #ddd;
-      border-radius:4px;
-      padding:20px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      position:relative;
-    }
-    .price-card .btn {
-      width:80%;
-      margin:10px auto 0;
-    }
-    .price-meta {
-      font-size:13px;
-      color:#555;
-      margin-top:6px;
-    }
-    .price-badge {
-      position:absolute;
-      top:12px;
-      right:12px;
-      background:#000;
-      color:#fff;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:0.5px;
-      padding:3px 6px;
-      border-radius:3px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
     }
 
-    input, textarea {
-      width:100%;
-      box-sizing:border-box;
-      padding:10px;
-      margin:6px 0;
-      border:1px solid #ccc;
-      border-radius:4px;
-      font-size:15px;
+    nav a {
+      margin-left: 16px;
+      font-size: 0.9rem;
+      opacity: 0.8;
     }
-    footer {
-      text-align:center;
-      padding:30px 0;
-      font-size:13px;
-      color:#666;
+
+    nav a:hover {
+      opacity: 1;
     }
-    @media(min-width:800px){
-      .pricing { grid-template-columns:repeat(4,1fr); }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
     }
-    @media(max-width:640px){
-      .nav-toggle { display:block; }
-      .nav-links {
-        position:absolute;
-        top:60px; left:0; right:0;
-        background:#fff;
-        border-bottom:1px solid #eee;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:10px 20px;
-        display:none;
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
-      .nav-links.show { display:flex; }
+    }
+
+    .hero h1 {
+      font-size: 2.3rem;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      max-width: 520px;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* CTA buttons: no colour by default, black/grey on hover only */
+    .btn-cta,
+    .btn-cta-secondary {
+      border-radius: 999px;
+      padding: 10px 20px;
+      border: 1px solid #111;
+      background: transparent;
+      color: #111;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-cta:hover {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-cta-secondary {
+      border-color: #555;
+      color: #333;
+    }
+
+    .btn-cta-secondary:hover {
+      background: #555;
+      border-color: #555;
+      color: #fff;
+    }
+
+    .hero-metrics {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      display: grid;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .hero-metrics h2 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-metrics-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .hero-metrics-row span.label {
+      opacity: 0.7;
+    }
+
+    .hero-metrics-row span.value {
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin: 48px 0 20px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .plan-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 20px 20px 24px;
+      border: 1px solid #e2e2e2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .plan-badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.7;
+    }
+
+    .plan-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .plan-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .plan-price span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      opacity: 0.7;
+      margin-left: 3px;
+    }
+
+    .plan-annual {
+      font-size: 0.9rem;
+      opacity: 0.75;
+      margin-top: -4px;
+    }
+
+    .plan-meta {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .plan-list {
+      margin-top: 8px;
+      padding-left: 18px;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .plan-cta-wrap {
+      margin-top: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #e2e2e2;
+      padding: 16px 24px;
+      font-size: 0.8rem;
+      text-align: center;
+      background: #ffffff;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-
-<nav>
-  <a href="index.html" class="logo">MeshRFID</a>
-  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-  <div class="nav-links">
-    <a href="index.html#pricing">Pricing</a>
+<header>
+  <div class="logo">MeshRFID</div>
+  <nav>
+    <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="case-studies.html">Case studies</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="login.html">Login</a>
-  </div>
-</nav>
-
-<header>
-  <h1>Stop losing stock. Start gaining control.</h1>
-  <p>From sole traders to global retail and warehouse networks – one platform that scales with you. Real-time operational and financial visibility across stores, warehouses and logistics, delivering low cost and high return from day one.</p>
-
-  <div>
-    <a href="signup.html" class="btn btn-primary">Get started free</a>
-    <a href="#contact" class="btn btn-outline">Book a demo</a>
-  </div>
+  </nav>
 </header>
 
-<section id="pricing">
-  <h2>Pricing</h2>
-  <p>Simple pricing. No contracts. Cancel anytime.</p>
-
-  <div class="pricing">
-    <div class="price-card">
-      <div>
-        <h3>Starter</h3>
-        <p><strong>£0 / month</strong><br>Up to 500 items<br>Phone NFC<br>Single user</p>
-        <p class="price-meta">
-          Annual cost: £0<br>
-          Typical ROI: from month 1 through reduced shrink and better visibility.
-        </p>
+<main class="container">
+  <section class="hero">
+    <div>
+      <h1>Low-cost RFID that actually pays for itself.</h1>
+      <p>
+        MeshRFID gives retailers and warehouses real-time visibility of every item in stock.
+        From sole traders to multi-site operations, one platform that scales with you.
+      </p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-cta">View pricing</a>
+        <a href="how-it-works.html" class="btn-cta-secondary">How it works</a>
       </div>
-      <a href="signup.html" class="btn btn-outline">Start free</a>
     </div>
 
-    <div class="price-card">
-      <div class="price-badge">Most popular</div>
-      <div>
-        <h3>Standard</h3>
-        <p><strong>£99 / month per site</strong><br>or £79 / month billed annually<br>Full stock control<br>Reports<br>UHF handheld support</p>
-        <p class="price-meta">
-          Annual cost from: £948<br>
-          Typical shrink reduction: 10–20% with measurable month-one impact.
-        </p>
+    <aside class="hero-metrics">
+      <h2>Finance snapshot</h2>
+      <div class="hero-metrics-row">
+        <span class="label">Typical stock accuracy uplift</span>
+        <span class="value">+15–30%</span>
       </div>
-      <!-- replace with real Stripe Checkout link -->
-      <a href="https://buy.stripe.com/test_standard" class="btn btn-primary">Choose Standard</a>
-    </div>
-
-    <div class="price-card">
-      <div>
-        <h3>Professional</h3>
-        <p><strong>£250 / month per site</strong><br>or £199 / month billed annually<br>Multi-site retail<br>Central dashboards</p>
-        <p class="price-meta">
-          Annual cost from: £2,388<br>
-          Typical shrink reduction: 15–30% plus labour savings on counts and audits.
-        </p>
+      <div class="hero-metrics-row">
+        <span class="label">Shrink reduction</span>
+        <span class="value">-20–40%</span>
       </div>
-      <!-- replace with real Stripe Checkout link -->
-      <a href="https://buy.stripe.com/test_professional" class="btn btn-primary">Choose Professional</a>
-    </div>
-
-    <div class="price-card">
-      <div>
-        <h3>Enterprise</h3>
-        <p><strong>Custom pricing</strong><br>Warehouses and 3PLs<br>Fixed readers and portals<br>ERP / WMS integrations</p>
-        <p class="price-meta">
-          ROI and savings modelled per deployment – focused on shrink, mis-ships and labour.
-        </p>
+      <div class="hero-metrics-row">
+        <span class="label">ROI on hardware & tags</span>
+        <span class="value">Month 1–3</span>
       </div>
-      <a href="contact.html" class="btn btn-outline">Talk to us</a>
+    </aside>
+  </section>
+
+  <section id="pricing">
+    <h2 class="section-title">Plans for every size of operation</h2>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <article class="plan-card">
+        <div class="plan-badge">Entry</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">£49<span>/month</span></div>
+        <!-- Annual total figure -->
+        <div class="plan-annual">£588/year</div>
+
+        <p class="plan-meta">
+          Ideal for sole traders and single sites getting started with RFID.
+        </p>
+        <ul class="plan-list">
+          <li>Includes 200 active tagged items (Starter units now 200, not 500).</li>
+          <li>Single handheld reader (BYO smartphone optional).</li>
+          <li>Basic dashboards and export for finance.</li>
+        </ul>
+
+        <div class="plan-cta-wrap">
+          <a href="#contact" class="btn-cta">Start with Starter</a>
+        </div>
+      </article>
+
+      <!-- Standard -->
+      <article class="plan-card">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">£149<span>/month</span></div>
+        <!-- Annual total figure -->
+        <div class="plan-annual">£1,788/year</div>
+
+        <p class="plan-meta">
+          Built for growing retailers and warehouse networks that need tighter control.
+        </p>
+        <ul class="plan-list">
+          <li>Cap: up to 5,000 active tagged items included.</li>
+          <li>Buy more capacity in 100-item increments as you grow.</li>
+          <li>Multi-location and basic 3PL support.</li>
+          <li>Operations and finance dashboards with scheduled reports.</li>
+        </ul>
+
+        <div class="plan-cta-wrap">
+          <a href="#contact" class="btn-cta">Talk about Standard</a>
+        </div>
+      </article>
+
+      <!-- Pro (previously Professional) -->
+      <article class="plan-card">
+        <div class="plan-badge">For finance-led ops</div>
+        <div class="plan-name">Pro</div> <!-- renamed from Professional to Pro -->
+
+        <!-- Pro monthly cost set to £249/month -->
+        <div class="plan-price">£249<span>/month</span></div>
+
+        <!-- Annual total figure -->
+        <div class="plan-annual">£2,988/year</div>
+
+        <p class="plan-meta">
+          For finance teams that need granular operational and financial control end to end.
+        </p>
+        <ul class="plan-list">
+          <li>Cap: up to 20,000 active tagged items included.</li>
+          <li>Buy more capacity in 100-item increments (no hard ceiling).</li>
+          <li>3PL, franchise and wholesale views in a single pane of glass.</li>
+          <li>AP/AR-friendly exports and audit-ready history.</li>
+        </ul>
+
+        <div class="plan-cta-wrap">
+          <a href="#contact" class="btn-cta">Book a Pro walkthrough</a>
+        </div>
+      </article>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <h2>Book a demo</h2>
-  <form id="home-contact-form">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Your email" required>
-    <input type="text" name="company" placeholder="Company / store name">
-    <textarea name="message" placeholder="What do you need to understand or improve?" rows="4"></textarea>
-    <button class="btn btn-primary" type="submit">Send</button>
-  </form>
-</section>
+  <section id="contact">
+    <h2 class="section-title">Next step</h2>
+    <p>
+      Send your volume and current process, and we’ll come back with a simple finance-led
+      ROI breakdown and rollout plan.
+    </p>
+    <div class="hero-actions" style="margin-top: 16px;">
+      <a href="mailto:hello@meshrfid.com" class="btn-cta">Email us</a>
+      <a href="case-studies.html" class="btn-cta-secondary">See case studies</a>
+    </div>
+  </section>
+</main>
 
-<footer>© MeshRFID 2025.</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-  const navToggle = document.querySelector('.nav-toggle');
-  const navLinks  = document.querySelector('.nav-links');
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('show');
-    });
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-      });
-    });
-  }
-
-  // Supabase lead capture (home demo form)
-  const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-  const homeForm = document.getElementById('home-contact-form');
-  if (homeForm) {
-    homeForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(homeForm);
-      const payload = {
-        name: formData.get('name') || '',
-        email: formData.get('email') || '',
-        company: formData.get('company') || '',
-        sites: null,
-        message: formData.get('message') || '',
-        source: 'home-demo'
-      };
-      const { error } = await supabaseClient.from('leads').insert([payload]);
-      if (error) {
-        alert('Something went wrong. Please email info@meshrfid.com.');
-      } else {
-        alert('Thanks – we’ve received your request.');
-        homeForm.reset();
-      }
-    });
-  }
-</script>
+<footer>
+  © MeshRFID 2025.
+</footer>
 </body>
 </html>
