@@ -5,7 +5,6 @@
   <title>MeshRFID - Simple RFID for Retail and Warehouses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -15,11 +14,7 @@
       color-scheme: light;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: #f7f7f7;
@@ -27,10 +22,7 @@
       line-height: 1.5;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     header {
       background: #ffffff;
@@ -44,11 +36,12 @@
       z-index: 20;
     }
 
+    /* Old logo style */
     .logo {
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      text-transform: none;
+      letter-spacing: 0.03em;
     }
 
     nav a {
@@ -56,10 +49,7 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
-
-    nav a:hover {
-      opacity: 1;
-    }
+    nav a:hover { opacity: 1; }
 
     .container {
       max-width: 1100px;
@@ -75,9 +65,7 @@
     }
 
     @media (max-width: 800px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
     }
 
     .hero h1 {
@@ -98,7 +86,7 @@
       flex-wrap: wrap;
     }
 
-    /* CTA buttons: neutral by default, dark on hover */
+    /* CTAs: neutral default, dark on hover */
     .btn-cta,
     .btn-cta-secondary {
       border-radius: 999px;
@@ -110,8 +98,8 @@
       font-weight: 500;
       cursor: pointer;
       display: inline-flex;
-      align-items: centre;
-      justify-content: centre;
+      align-items: center;
+      justify-content: center;
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     }
 
@@ -124,7 +112,6 @@
       border-color: #555;
       color: #333;
     }
-
     .btn-cta-secondary:hover {
       background: #555;
       border-color: #555;
@@ -135,7 +122,7 @@
       background: #ffffff;
       border-radius: 18px;
       padding: 20px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       display: grid;
       gap: 12px;
       font-size: 0.85rem;
@@ -153,13 +140,8 @@
       font-size: 0.85rem;
     }
 
-    .hero-metrics-row span.label {
-      opacity: 0.7;
-    }
-
-    .hero-metrics-row span.value {
-      font-weight: 600;
-    }
+    .hero-metrics-row span.label { opacity: 0.7; }
+    .hero-metrics-row span.value { font-weight: 600; }
 
     .section-title {
       font-size: 1.4rem;
@@ -227,9 +209,7 @@
       gap: 4px;
     }
 
-    .plan-cta-wrap {
-      margin-top: 14px;
-    }
+    .plan-cta-wrap { margin-top: 14px; }
 
     footer {
       border-top: 1px solid #e2e2e2;
@@ -243,7 +223,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">MESHRFID</div>
+  <div class="logo">MeshRFID</div>
   <nav>
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -287,13 +267,11 @@
     <h2 class="section-title">Plans for every size of operation</h2>
 
     <div class="pricing-grid">
-      <!-- Starter -->
       <article class="plan-card">
         <div class="plan-badge">Entry</div>
         <div class="plan-name">Starter</div>
         <div class="plan-price">£49<span>/month</span></div>
         <div class="plan-annual">£588/year</div>
-
         <p class="plan-meta">
           Ideal for sole traders and single sites getting started with RFID.
         </p>
@@ -302,19 +280,16 @@
           <li>Single handheld reader (BYO smartphone optional).</li>
           <li>Basic dashboards and export for finance.</li>
         </ul>
-
         <div class="plan-cta-wrap">
           <a href="mailto:hello@meshrfid.com?subject=Starter%20plan" class="btn-cta">Start with Starter</a>
         </div>
       </article>
 
-      <!-- Standard -->
       <article class="plan-card">
         <div class="plan-badge">Most popular</div>
         <div class="plan-name">Standard</div>
         <div class="plan-price">£149<span>/month</span></div>
         <div class="plan-annual">£1,788/year</div>
-
         <p class="plan-meta">
           Built for growing retailers and warehouse networks that need tighter control.
         </p>
@@ -324,19 +299,16 @@
           <li>Multi-location and basic 3PL support.</li>
           <li>Operations and finance dashboards with scheduled reports.</li>
         </ul>
-
         <div class="plan-cta-wrap">
           <a href="mailto:hello@meshrfid.com?subject=Standard%20plan" class="btn-cta">Talk about Standard</a>
         </div>
       </article>
 
-      <!-- Pro -->
       <article class="plan-card">
         <div class="plan-badge">For finance-led ops</div>
         <div class="plan-name">Pro</div>
         <div class="plan-price">£249<span>/month</span></div>
         <div class="plan-annual">£2,988/year</div>
-
         <p class="plan-meta">
           For finance teams that need granular operational and financial control end to end.
         </p>
@@ -346,19 +318,16 @@
           <li>3PL, franchise and wholesale views in a single pane of glass.</li>
           <li>AP/AR-friendly exports and audit-ready history.</li>
         </ul>
-
         <div class="plan-cta-wrap">
           <a href="mailto:hello@meshrfid.com?subject=Pro%20plan" class="btn-cta">Book a Pro walkthrough</a>
         </div>
       </article>
 
-      <!-- Enterprise -->
       <article class="plan-card">
         <div class="plan-badge">Enterprise</div>
         <div class="plan-name">Enterprise</div>
         <div class="plan-price">Custom<span>/month</span></div>
         <div class="plan-annual">Built to your volumes</div>
-
         <p class="plan-meta">
           For large retail and warehouse networks, 3PLs and brands needing deeper integration,
           higher tag volumes and dedicated support.
@@ -369,7 +338,6 @@
           <li>API and data integrations to your existing stack.</li>
           <li>Dedicated onboarding and account management.</li>
         </ul>
-
         <div class="plan-cta-wrap">
           <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry" class="btn-cta">Contact us about Enterprise</a>
         </div>
@@ -391,8 +359,6 @@
   </section>
 </main>
 
-<footer>
-  © MeshRFID 2025.
-</footer>
+<footer>© MeshRFID 2025.</footer>
 </body>
 </html>
