@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeshRFID – RFID stock control for small to enterprise retailers</title>
+  <title>MeshRFID – RFID stock control for small to enterprise sized retailers</title>
   <style>
     body {
       margin: 0;
@@ -32,6 +32,9 @@
     nav a:hover {
       text-decoration: underline;
     }
+    nav strong {
+      font-size: 18px;   /* logo slightly larger than nav links */
+    }
     h1 {
       font-size: 32px;
       margin-bottom: 10px;
@@ -55,6 +58,7 @@
       margin-right: 10px;
       text-decoration: none;
       font-size: 15px;
+      text-align: center;
     }
     .btn-primary {
       background: #000;
@@ -63,6 +67,7 @@
     .btn-outline {
       border: 1px solid #000;
       color: #000;
+      background: #fff;
     }
     .pricing {
       margin-top: 20px;
@@ -91,6 +96,11 @@
       font-size: 13px;
       color: #666;
       margin-top: 6px;
+    }
+    /* centre buttons inside pricing cards */
+    .price-card .btn {
+      display: block;
+      margin: 10px auto 0 auto;
     }
     form input, form textarea {
       width: 100%;
@@ -134,7 +144,7 @@
     </nav>
 
     <h1>RFID stock control for small retailers</h1>
-    <p>Know exactly what you have, how much its worth and where it is. Stop losing stock and run your store efficiently – using the phone you already have.</p>
+    <p>Know exactly what you have, how much it’s worth and where it is. Stop losing stock and run your store efficiently – using the phone you already have.</p>
 
     <div class="cta-buttons">
       <a href="signup.html" class="btn btn-primary">Get started free</a>
@@ -152,6 +162,7 @@
         <p class="price-main">£0 / month</p>
         <p class="price-secondary">Free forever</p>
         <p>Phone NFC<br>Up to 500 items<br>Single user</p>
+        <a href="signup.html" class="btn btn-outline">Start free</a>
       </div>
 
       <div class="price-card">
@@ -160,7 +171,7 @@
         <p class="price-secondary">or £79 / month billed annually (£948 / year)</p>
         <p>Full stock control<br>Reports<br>UHF handheld support</p>
         <p class="price-notes">No setup fees. Cancel anytime.</p>
-        <a href="signup.html" class="btn btn-primary" style="margin-top:10px; display:inline-block;">
+        <a href="signup.html" class="btn btn-primary">
           Choose Standard
         </a>
       </div>
@@ -171,7 +182,7 @@
         <p class="price-secondary">or £199 / month billed annually (£2,388 / year)</p>
         <p>Multi-shop retail<br>Central dashboards</p>
         <p class="price-notes">No setup fees. Cancel anytime.</p>
-        <a href="contact.html" class="btn btn-outline" style="margin-top:10px; display:inline-block;">
+        <a href="contact.html" class="btn btn-outline">
           Talk to us
         </a>
       </div>
@@ -181,6 +192,9 @@
         <p class="price-main">Custom pricing</p>
         <p class="price-secondary">Retail sites and warehouses</p>
         <p>Warehouses<br>Antennas<br>Integrations</p>
+        <a href="contact.html" class="btn btn-outline">
+          Talk to us
+        </a>
       </div>
     </div>
   </section>
