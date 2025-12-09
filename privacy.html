@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeshRFID – Privacy Policy</title>
+<style>
+  body { margin:0; font-family:Arial,sans-serif; padding-top:70px; line-height:1.5; }
+  nav {
+    position:fixed; top:0; left:0; right:0; height:60px; background:#fff;
+    border-bottom:1px solid #eee; display:flex; justify-content:space-between;
+    align-items:center; padding:0 20px; z-index:999; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  .nav-left { display:flex; align-items:center; }
+  .nav-left img { height:26px; }
+  .nav-links { display:flex; gap:15px; align-items:center; }
+  .nav-links a { font-size:14px; text-decoration:none; color:#000; }
+  .nav-links a:hover { text-decoration:underline; }
+  .nav-toggle { display:none; border:none; background:none; font-size:22px; cursor:pointer; }
+
+  main { max-width:800px; margin:auto; padding:20px; font-size:14px; }
+  h1 { font-size:24px; margin-bottom:10px; }
+
+  footer { text-align:center; padding:30px 0; font-size:13px; color:#666; }
+
+  @media(max-width:640px){
+    .nav-links {
+      position:absolute; top:60px; right:0; left:0; background:#fff;
+      border-bottom:1px solid #eee; flex-direction:column; align-items:flex-start;
+      padding:10px 20px; display:none;
+    }
+    .nav-links.show { display:flex; }
+    .nav-toggle { display:block; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="index.html"><img src="meshrfid-logo.svg" alt="MeshRFID"></a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+  <div class="nav-links">
+    <a href="index.html#pricing">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <p><strong>Last updated: December 2025</strong></p>
+
+  <p>This page explains how MeshRFID (“we”, “us”) handles information collected through this website.</p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li>Details you enter into forms (name, email, store name, message).</li>
+    <li>Basic technical information (such as browser type, device type and approximate region) via analytics, if enabled.</li>
+  </ul>
+
+  <h2>How we use this information</h2>
+  <ul>
+    <li>To contact you about demos, onboarding and support.</li>
+    <li>To understand demand and improve the product.</li>
+  </ul>
+
+  <h2>How we store and protect data</h2>
+  <p>Form submissions may be stored in our CRM tools and in our database provider (for example, Supabase). We limit access to this data to people working on MeshRFID and take reasonable steps to keep it secure.</p>
+
+  <h2>Sharing your data</h2>
+  <p>We do not sell your data. We may share it with service providers who help us operate the product (for example, hosting and email providers), under appropriate data protection terms.</p>
+
+  <h2>Your rights</h2>
+  <p>You can ask us to update or delete your information by emailing <a href="mailto:info@meshrfid.com">info@meshrfid.com</a>.</p>
+
+  <h2>Contact</h2>
+  <p>If you have questions about this policy, contact <a href="mailto:info@meshrfid.com">info@meshrfid.com</a>.</p>
+</main>
+
+<footer>© MeshRFID 2025.</footer>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+  }
+</script>
+</body>
+</html>
