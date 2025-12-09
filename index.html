@@ -5,7 +5,7 @@
   <title>MeshRFID - Simple RFID for Retail and Warehouses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon: place favicon.ico (and favicon.png) in the repo root -->
+  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -98,7 +98,7 @@
       flex-wrap: wrap;
     }
 
-    /* CTA buttons: no colour by default, black/grey on hover only */
+    /* CTA buttons: neutral by default, dark on hover */
     .btn-cta,
     .btn-cta-secondary {
       border-radius: 999px;
@@ -166,16 +166,11 @@
       margin: 48px 0 20px;
     }
 
+    /* Pricing: auto-fit so we can have 4 plans including Enterprise */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 20px;
-    }
-
-    @media (max-width: 900px) {
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     .plan-card {
@@ -241,7 +236,7 @@
       border-top: 1px solid #e2e2e2;
       padding: 16px 24px;
       font-size: 0.8rem;
-      text-align: center;
+      text-align: centre;
       background: #ffffff;
       margin-top: 40px;
     }
@@ -249,11 +244,12 @@
 </head>
 <body>
 <header>
-  <div class="logo">MeshRFID</div>
+  <div class="logo">MESHRFID</div>
   <nav>
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="case-studies.html">Case studies</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -263,11 +259,11 @@
       <h1>Low-cost RFID that actually pays for itself.</h1>
       <p>
         MeshRFID gives retailers and warehouses real-time visibility of every item in stock.
-        From sole traders to multi-site operations, one platform that scales with you.
+        From sole traders to global retail and warehouse networks, one platform that scales with you.
       </p>
       <div class="hero-actions">
-        <a href="#pricing" class="btn-cta">View pricing</a>
-        <a href="how-it-works.html" class="btn-cta-secondary">How it works</a>
+        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta">Book a demo</a>
+        <a href="#pricing" class="btn-cta-secondary">View pricing</a>
       </div>
     </div>
 
@@ -282,7 +278,7 @@
         <span class="value">-20–40%</span>
       </div>
       <div class="hero-metrics-row">
-        <span class="label">ROI on hardware & tags</span>
+        <span class="label">ROI on hardware &amp; tags</span>
         <span class="value">Month 1–3</span>
       </div>
     </aside>
@@ -297,7 +293,6 @@
         <div class="plan-badge">Entry</div>
         <div class="plan-name">Starter</div>
         <div class="plan-price">£49<span>/month</span></div>
-        <!-- Annual total figure -->
         <div class="plan-annual">£588/year</div>
 
         <p class="plan-meta">
@@ -310,7 +305,7 @@
         </ul>
 
         <div class="plan-cta-wrap">
-          <a href="#contact" class="btn-cta">Start with Starter</a>
+          <a href="mailto:hello@meshrfid.com?subject=Starter%20plan" class="btn-cta">Start with Starter</a>
         </div>
       </article>
 
@@ -319,7 +314,6 @@
         <div class="plan-badge">Most popular</div>
         <div class="plan-name">Standard</div>
         <div class="plan-price">£149<span>/month</span></div>
-        <!-- Annual total figure -->
         <div class="plan-annual">£1,788/year</div>
 
         <p class="plan-meta">
@@ -333,19 +327,15 @@
         </ul>
 
         <div class="plan-cta-wrap">
-          <a href="#contact" class="btn-cta">Talk about Standard</a>
+          <a href="mailto:hello@meshrfid.com?subject=Standard%20plan" class="btn-cta">Talk about Standard</a>
         </div>
       </article>
 
-      <!-- Pro (previously Professional) -->
+      <!-- Pro -->
       <article class="plan-card">
         <div class="plan-badge">For finance-led ops</div>
-        <div class="plan-name">Pro</div> <!-- renamed from Professional to Pro -->
-
-        <!-- Pro monthly cost set to £249/month -->
+        <div class="plan-name">Pro</div>
         <div class="plan-price">£249<span>/month</span></div>
-
-        <!-- Annual total figure -->
         <div class="plan-annual">£2,988/year</div>
 
         <p class="plan-meta">
@@ -359,7 +349,30 @@
         </ul>
 
         <div class="plan-cta-wrap">
-          <a href="#contact" class="btn-cta">Book a Pro walkthrough</a>
+          <a href="mailto:hello@meshrfid.com?subject=Pro%20plan" class="btn-cta">Book a Pro walkthrough</a>
+        </div>
+      </article>
+
+      <!-- Enterprise -->
+      <article class="plan-card">
+        <div class="plan-badge">Enterprise</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">Custom<span>/month</span></div>
+        <div class="plan-annual">Built to your volumes</div>
+
+        <p class="plan-meta">
+          For large retail and warehouse networks, 3PLs and brands needing deeper integration,
+          higher tag volumes and dedicated support.
+        </p>
+        <ul class="plan-list">
+          <li>Unlimited sites, tailored tag volumes and hardware mix.</li>
+          <li>Advanced finance, audit and compliance reporting.</li>
+          <li>API and data integrations to your existing stack.</li>
+          <li>Dedicated onboarding and account management.</li>
+        </ul>
+
+        <div class="plan-cta-wrap">
+          <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry" class="btn-cta">Contact us about Enterprise</a>
         </div>
       </article>
     </div>
@@ -368,11 +381,12 @@
   <section id="contact">
     <h2 class="section-title">Next step</h2>
     <p>
-      Send your volume and current process, and we’ll come back with a simple finance-led
-      ROI breakdown and rollout plan.
+      Send your volume and current process and we’ll come back with a simple finance-led
+      ROI breakdown and rollout plan, or book a demo to see MeshRFID in action.
     </p>
     <div class="hero-actions" style="margin-top: 16px;">
-      <a href="mailto:hello@meshrfid.com" class="btn-cta">Email us</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20contact" class="btn-cta">Contact us</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta-secondary">Book a demo</a>
       <a href="case-studies.html" class="btn-cta-secondary">See case studies</a>
     </div>
   </section>
