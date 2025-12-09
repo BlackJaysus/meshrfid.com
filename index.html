@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MeshRFID – Simple RFID stock control for small retailers</title>
+  <title>MeshRFID – RFID stock control for small retailers</title>
   <style>
     body {
       margin: 0;
@@ -28,6 +28,9 @@
       text-decoration: none;
       font-size: 14px;
       margin-left: 15px;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     h1 {
       font-size: 32px;
@@ -62,21 +65,32 @@
       color: #000;
     }
     .pricing {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
       margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 20px;
     }
     .price-card {
       border: 1px solid #ddd;
       padding: 20px;
       border-radius: 4px;
-      width: 260px;
-      flex: 1;
-      min-width: 220px;
     }
     .price-card h3 {
       margin-top: 0;
+    }
+    .price-main {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .price-secondary {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    .price-notes {
+      font-size: 13px;
+      color: #666;
+      margin-top: 6px;
     }
     form input, form textarea {
       width: 100%;
@@ -100,6 +114,11 @@
       font-size: 14px;
       color: #666;
     }
+    @media (min-width: 800px) {
+      .pricing {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
   </style>
 </head>
 
@@ -108,8 +127,9 @@
     <nav>
       <div><strong>MeshRFID</strong></div>
       <div>
-        <a href="#">Pricing</a>
-        <a href="#">Login</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="contact.html">Contact</a>
+        <a href="login.html">Login</a>
       </div>
     </nav>
 
@@ -117,37 +137,43 @@
     <p>Know exactly what you have and where it is. Stop losing stock and run your store efficiently – using the phone you already have.</p>
 
     <div class="cta-buttons">
-      <a href="#" class="btn btn-primary">Get started free</a>
+      <a href="signup.html" class="btn btn-primary">Get started free</a>
       <a href="#contact" class="btn btn-outline">Book a demo</a>
     </div>
   </header>
 
-  <section>
+  <section id="pricing">
     <h2>Pricing</h2>
-    <p>Simple pricing, no hidden fees.</p>
+    <p>Simple pricing, no contracts. Cancel anytime.</p>
 
     <div class="pricing">
       <div class="price-card">
         <h3>Starter</h3>
-        <p><strong>£0 / month</strong></p>
+        <p class="price-main">£0 / month</p>
+        <p class="price-secondary">Free forever</p>
         <p>Phone NFC<br>Up to 500 items<br>Single user</p>
       </div>
 
       <div class="price-card">
         <h3>Standard</h3>
-        <p><strong>£99 / month per shop</strong></p>
+        <p class="price-main">£99 / month per shop</p>
+        <p class="price-secondary">or £79 / month billed annually (£948 / year)</p>
         <p>Full stock control<br>Reports<br>UHF handheld support</p>
+        <p class="price-notes">No setup fees. Cancel anytime.</p>
       </div>
 
       <div class="price-card">
         <h3>Professional</h3>
-        <p><strong>£250 / month per shop</strong></p>
+        <p class="price-main">£250 / month per shop</p>
+        <p class="price-secondary">or £199 / month billed annually (£2,388 / year)</p>
         <p>Multi-shop retail<br>Central dashboards</p>
+        <p class="price-notes">No setup fees. Cancel anytime.</p>
       </div>
 
       <div class="price-card">
         <h3>Enterprise</h3>
-        <p><strong>Custom</strong></p>
+        <p class="price-main">Custom pricing</p>
+        <p class="price-secondary">Retail sites and warehouses</p>
         <p>Warehouses<br>Antennas<br>Integrations</p>
       </div>
     </div>
