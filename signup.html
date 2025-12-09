@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>MeshRFID – Get started free</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Set up a free MeshRFID Starter account and prove ROI from month one.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <meta property="og:title" content="MeshRFID – Get started free">
+  <meta property="og:description" content="Tell us about your stores or warehouses and we’ll help you prove value quickly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meshrfid.com/signup.html">
+  <meta property="og:site_name" content="MeshRFID">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     body {
       margin:0;
@@ -117,24 +137,57 @@
   <h1>Get started free</h1>
   <p>We’ll help you set up a free Starter account and prove value in the first month.</p>
 
-  <form action="mailto:info@meshrfid.com" method="post" enctype="text/plain">
-    <input type="text" name="Name" placeholder="Your name" required>
-    <input type="email" name="Email" placeholder="Your email" required>
-    <input type="text" name="Company" placeholder="Company / store / warehouse name" required>
-    <input type="text" name="Sites" placeholder="Number of sites" required>
-    <textarea name="Message" placeholder="Anything else we should know?" rows="4"></textarea>
+  <form id="signup-form">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <input type="text" name="company" placeholder="Company / store / warehouse name" required>
+    <input type="text" name="sites" placeholder="Number of sites" required>
+    <textarea name="message" placeholder="Anything else we should know?" rows="4"></textarea>
     <button type="submit">Submit</button>
   </form>
 </main>
 
 <footer>© MeshRFID 2025.</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks  = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('show');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+  }
+
+  const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const signupForm = document.getElementById('signup-form');
+  if (signupForm) {
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(signupForm);
+      const payload = {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        company: formData.get('company') || '',
+        sites: formData.get('sites') || '',
+        message: formData.get('message') || '',
+        source: 'signup'
+      };
+      const { error } = await supabaseClient.from('leads').insert([payload]);
+      if (error) {
+        alert('Something went wrong. Please email info@meshrfid.com.');
+      } else {
+        alert('Thanks – we’ve received your details and will follow up.');
+        signupForm.reset();
+      }
     });
   }
 </script>
