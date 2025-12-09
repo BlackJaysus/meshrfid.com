@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeshRFID – Terms of Use</title>
+<style>
+  body { margin:0; font-family:Arial,sans-serif; padding-top:70px; line-height:1.5; }
+  nav {
+    position:fixed; top:0; left:0; right:0; height:60px; background:#fff;
+    border-bottom:1px solid #eee; display:flex; justify-content:space-between;
+    align-items:center; padding:0 20px; z-index:999; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  .nav-left { display:flex; align-items:center; }
+  .nav-left img { height:26px; }
+  .nav-links { display:flex; gap:15px; align-items:center; }
+  .nav-links a { font-size:14px; text-decoration:none; color:#000; }
+  .nav-links a:hover { text-decoration:underline; }
+  .nav-toggle { display:none; border:none; background:none; font-size:22px; cursor:pointer; }
+
+  main { max-width:800px; margin:auto; padding:20px; font-size:14px; }
+  h1 { font-size:24px; margin-bottom:10px; }
+
+  footer { text-align:center; padding:30px 0; font-size:13px; color:#666; }
+
+  @media(max-width:640px){
+    .nav-links {
+      position:absolute; top:60px; right:0; left:0; background:#fff;
+      border-bottom:1px solid #eee; flex-direction:column; align-items:flex-start;
+      padding:10px 20px; display:none;
+    }
+    .nav-links.show { display:flex; }
+    .nav-toggle { display:block; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a href="index.html"><img src="meshrfid-logo.svg" alt="MeshRFID"></a>
+  </div>
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+  <div class="nav-links">
+    <a href="index.html#pricing">Pricing</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
+
+<main>
+  <h1>Terms of Use</h1>
+  <p><strong>Last updated: December 2025</strong></p>
+
+  <h2>1. Introduction</h2>
+  <p>These Terms govern your use of the MeshRFID website. By using this site, you agree to them.</p>
+
+  <h2>2. No warranty</h2>
+  <p>This website is provided “as is” without any guarantees. We may change or remove content at any time.</p>
+
+  <h2>3. Use of content</h2>
+  <p>You may not copy or reuse substantial parts of this site without our permission.</p>
+
+  <h2>4. Limitation of liability</h2>
+  <p>We are not liable for any loss or damage arising from your use of this site, as far as applicable law allows.</p>
+
+  <h2>5. Changes</h2>
+  <p>We may update these Terms from time to time. The latest version will always be available on this page.</p>
+
+  <h2>6. Contact</h2>
+  <p>If you have questions about these Terms, contact <a href="mailto:info@meshrfid.com">info@meshrfid.com</a>.</p>
+</main>
+
+<footer>© MeshRFID 2025.</footer>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+  }
+</script>
+</body>
+</html>
