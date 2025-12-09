@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>MeshRFID – Case studies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="See how MeshRFID delivers month-one ROI for a sole trader, a multi-store retail chain and a 3PL warehouse operator.">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <meta property="og:title" content="MeshRFID – Case studies">
+  <meta property="og:description" content="Examples from a boutique, a 12-store retail chain and a 3PL warehouse, showing shrink reduction, labour savings and payback time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://meshrfid.com/case-studies.html">
+  <meta property="og:site_name" content="MeshRFID">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     body {
       margin:0;
@@ -98,6 +118,7 @@
       color:#333;
     }
     .kpis strong { display:block; }
+
     @media(min-width:900px){
       .cases { grid-template-columns:repeat(3,1fr); }
     }
@@ -225,6 +246,11 @@
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       navLinks.classList.toggle('show');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
     });
   }
 </script>
