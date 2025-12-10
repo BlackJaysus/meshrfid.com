@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      /* Shopify-style palette, adapted for MeshRFID */
-      --mesh-green: #96bf48;
+      /* Shopify brand-ish palette */
+      --mesh-green: #96bf48;          /* Shopify green */
       --mesh-green-dark: #5e8e3e;
-      --mesh-blue: #479ccf;
-      --mesh-bg: #f5f5f5;
+      --mesh-blue: #00a3e0;           /* accent for Enterprise ribbon */
+      --mesh-bg: #f4f6f8;             /* Shopify light grey background */
       --mesh-card-bg: #ffffff;
-      --mesh-soft-bg: #f2f7fa;
-      --mesh-text: #2d3538;
-      --mesh-muted: #666666;
-      --mesh-border: #e0e0e0;
+      --mesh-soft-bg: #f1f3f5;
+      --mesh-text: #212b36;           /* “ink” */
+      --mesh-muted: #637381;
+      --mesh-border: #dfe3e8;
       --mesh-pill-bg: #000000;
     }
 
@@ -162,7 +162,7 @@
       color: #ffffff;
     }
 
-    /* Plan tabs – sticky under header */
+    /* Plan tabs – sticky under header, mobile only */
 
     .plan-tabs-wrapper {
       margin-top: 1.5rem;
@@ -194,8 +194,15 @@
     }
 
     .plan-tab.active {
-      border-bottom: 3px solid var(--mesh-green);
       color: #000000;
+      border-top: 3px solid var(--mesh-green);   /* Shopify-style top line */
+    }
+
+    /* Hide tabs entirely on desktop */
+    @media (min-width: 901px) {
+      .plan-tabs-wrapper {
+        display: none;
+      }
     }
 
     /* Plans grid / slider */
@@ -284,7 +291,7 @@
       padding: 0.2rem 0.65rem;
       border-radius: 999px;
       font-size: 0.78rem;
-      background: #edf7e2;
+      background: #ecf9e6;
       color: var(--mesh-green-dark);
     }
 
@@ -380,11 +387,11 @@
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #d6d6d6;
+      background: #d0d4d9;
     }
 
     .slider-dot.active {
-      background: #222222;
+      background: #212b36;
     }
 
     @media (max-width: 900px) {
@@ -491,7 +498,7 @@
     }
 
     .features-table th {
-      background: #fafafa;
+      background: #fafbfc;
       font-weight: 500;
       white-space: nowrap;
     }
@@ -551,10 +558,6 @@
       display: block;
     }
 
-    .faq-item.open .faq-question span.icon {
-      content: "-";
-    }
-
     /* Footer */
 
     .site-footer {
@@ -601,7 +604,7 @@
         </div>
       </div>
 
-      <!-- Sticky plan tabs (mobile + desktop) -->
+      <!-- Sticky plan tabs – mobile only (hidden on desktop via CSS) -->
       <div class="plan-tabs-wrapper">
         <div class="plan-tabs" id="planTabs">
           <div class="plan-tab active" data-plan-tab="0">Starter</div>
@@ -1042,7 +1045,6 @@
       });
 
       plansRow.addEventListener("scroll", () => {
-        // Find card nearest left edge
         let bestIdx = 0;
         let bestDelta = Infinity;
 
