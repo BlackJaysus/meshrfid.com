@@ -206,17 +206,20 @@
 
     /* Normalised header height so prices align */
     .plan-header-top {
-      min-height: 88px;
+      min-height: 72px;
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .plan-badge {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      opacity: 0.7;
+    .plan-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .plan-subtitle {
+      font-size: 0.9rem;
+      opacity: 0.75;
     }
 
     .plan-tag {
@@ -228,16 +231,6 @@
       border-radius: 999px;
       background: var(--accent);
       color: #fff;
-    }
-
-    .plan-name {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .plan-subtitle {
-      font-size: 0.9rem;
-      opacity: 0.75;
     }
 
     .plan-price {
@@ -515,7 +508,6 @@
                data-monthly-price="19" data-annual-monthly-price="15">
         <div class="plan-header">
           <div class="plan-header-top">
-            <div class="plan-badge">Entry</div>
             <div class="plan-name">Starter</div>
             <div class="plan-subtitle">For solo entrepreneurs. Single site only.</div>
           </div>
@@ -551,13 +543,12 @@
         </div>
       </article>
 
-      <!-- Grow (formerly Standard) -->
+      <!-- Grow -->
       <article class="plan-card highlight" data-plan
                data-monthly-price="149" data-annual-monthly-price="119">
         <div class="plan-header">
           <span class="plan-tag">Most popular</span>
           <div class="plan-header-top">
-            <div class="plan-badge">Grow</div>
             <div class="plan-name">Grow</div>
             <div class="plan-subtitle">For small teams and growing networks.</div>
           </div>
@@ -598,7 +589,6 @@
                data-monthly-price="249" data-annual-monthly-price="199">
         <div class="plan-header">
           <div class="plan-header-top">
-            <div class="plan-badge">Pro</div>
             <div class="plan-name">Pro</div>
             <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
           </div>
@@ -638,7 +628,6 @@
       <article class="plan-card">
         <div class="plan-header">
           <div class="plan-header-top">
-            <div class="plan-badge">Enterprise</div>
             <div class="plan-name">Enterprise</div>
             <div class="plan-subtitle">Custom programmes and SLAs.</div>
           </div>
@@ -916,7 +905,7 @@
           } else {
             priceMain.textContent = '£' + annualMonthlyPrice;
           }
-          priceUnit.textContent = '/month'; // always monthly figure
+          priceUnit.textContent = '/month';
         }
 
         if (foot) {
