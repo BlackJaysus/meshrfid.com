@@ -57,8 +57,8 @@
       top: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
-      background-color: rgba(248, 250, 252, 0.9);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      background-color: #ffffff; /* solid white */
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
     }
 
     .header-inner {
@@ -106,6 +106,36 @@
       background: #f9fafb;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
       transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #111827;
+      border-radius: 999px;
+      margin: 4px 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
     /* COMMON SECTIONS */
@@ -277,11 +307,6 @@
       display: flex;
       flex-direction: column;
       height: 100%;
-    }
-
-    .pricing-card.pro {
-      border-width: 2px;
-      border-color: #0f766e;
     }
 
     .card-header {
@@ -457,6 +482,39 @@
       font-size: 0.85rem;
     }
 
+    /* HOW IT WORKS */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.7rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #16a34a;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
     /* ALTERNATIVE SOLUTIONS */
 
     .alt-grid {
@@ -518,39 +576,6 @@
       border-radius: 999px;
       border: 1px dashed #d4d4d8;
       background: rgba(255, 255, 255, 0.7);
-    }
-
-    /* HOW IT WORKS */
-
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.7rem;
-    }
-
-    .step-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 1.3rem 1.2rem 1.5rem;
-      border: 1px solid #e5e7eb;
-      font-size: 0.9rem;
-      text-align: left;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
-    }
-
-    .step-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #16a34a;
-      margin-bottom: 0.3rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .step-title {
-      font-weight: 600;
-      margin-bottom: 0.35rem;
     }
 
     /* CASE STUDIES */
@@ -645,6 +670,15 @@
       border-radius: 0 0 6px 6px;
     }
 
+    .faq-content ul {
+      padding-left: 1.1rem;
+      margin-top: 0.35rem;
+    }
+
+    .faq-content li {
+      margin-bottom: 0.25rem;
+    }
+
     /* FOOTER */
 
     .site-footer {
@@ -702,15 +736,29 @@
 
     @media (max-width: 768px) {
       .header-inner {
-        flex-wrap: wrap;
-        row-gap: 0.6rem;
+        flex-wrap: nowrap;
+      }
+
+      .nav-toggle {
+        display: block;
       }
 
       .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        row-gap: 0.4rem;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem 1rem;
+        flex-direction: column;
+        gap: 0.6rem;
+        z-index: 30;
+      }
+
+      .site-header.nav-open .nav-links {
+        display: flex;
       }
 
       .pricing-hero {
@@ -735,10 +783,11 @@
       .mobile-plan-tabs {
         display: flex;
         position: sticky;
-        top: 52px; /* just under sticky header */
+        top: 56px; /* just under sticky header */
         z-index: 35;
-        background: #ecfdf3;
-        border-bottom: 1px solid #22c55e;
+        background: #ffffff;
+        border-top: 2px solid #22c55e;
+        border-bottom: 1px solid #e5e7eb;
       }
 
       .pricing-grid {
@@ -747,13 +796,8 @@
         margin-top: 0.9rem;
       }
 
-      /* cancel sticky card headers on mobile – tabs handle this */
       .card-header {
         position: static;
-        top: auto;
-        background: none;
-        padding-top: 0;
-        margin-top: 0;
       }
 
       .benefit-grid,
@@ -774,6 +818,13 @@
     <header class="site-header">
       <div class="header-inner">
         <div class="brand">MeshRFID</div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
         <nav class="nav-links">
           <a href="#pricing" class="active">Pricing</a>
           <a href="#how-it-works">How it works</a>
@@ -900,7 +951,7 @@
           <!-- Pro -->
           <div class="plan-wrapper" id="plan-pro">
             <div class="plan-label green">£1 for the first month</div>
-            <article class="pricing-card pro">
+            <article class="pricing-card">
               <header class="card-header">
                 <div class="plan-name-row">
                   <h2 class="plan-name">Pro</h2>
@@ -1040,6 +1091,44 @@
         </div>
       </section>
 
+      <!-- HOW IT WORKS (moved directly after shared benefits) -->
+      <section id="how-it-works" class="section" aria-label="How MeshRFID works">
+        <h2>How it works</h2>
+        <p class="lead">
+          Roll out RFID with a lightweight stack that connects stores,
+          warehouses and finance in a single view.
+        </p>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-tag">Step 1</div>
+            <h3 class="step-title">Tag and connect your inventory</h3>
+            <p>
+              We help you tag existing and inbound stock, map locations and
+              define the views finance and ops need.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 2</div>
+            <h3 class="step-title">Scan and sync</h3>
+            <p>
+              Teams use handheld readers to capture movements. MeshRFID syncs
+              counts, transfers and shrink in real time.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 3</div>
+            <h3 class="step-title">Report and optimise</h3>
+            <p>
+              Dashboards and exports feed into your existing tools so you can
+              reduce loss, rebalance stock and prove ROI.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <!-- ALTERNATIVE SOLUTIONS -->
       <section class="section" aria-label="Alternative solutions">
         <h2>Alternative solutions for your business</h2>
@@ -1085,44 +1174,6 @@
           <span class="logo-pill">Northshore 3PL</span>
           <span class="logo-pill">Everyday Basics Co.</span>
           <span class="logo-pill">Global Closeout Partners</span>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section id="how-it-works" class="section" aria-label="How MeshRFID works">
-        <h2>How it works</h2>
-        <p class="lead">
-          Roll out RFID with a lightweight stack that connects stores,
-          warehouses and finance in a single view.
-        </p>
-
-        <div class="steps-grid">
-          <article class="step-card">
-            <div class="step-tag">Step 1</div>
-            <h3 class="step-title">Tag and connect your inventory</h3>
-            <p>
-              We help you tag existing and inbound stock, map locations and
-              define the views finance and ops need.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-tag">Step 2</div>
-            <h3 class="step-title">Scan and sync</h3>
-            <p>
-              Teams use handheld readers to capture movements. MeshRFID syncs
-              counts, transfers and shrink in real time.
-            </p>
-          </article>
-
-          <article class="step-card">
-            <div class="step-tag">Step 3</div>
-            <h3 class="step-title">Report and optimise</h3>
-            <p>
-              Dashboards and exports feed into your existing tools so you can
-              reduce loss, rebalance stock and prove ROI.
-            </p>
-          </article>
         </div>
       </section>
 
@@ -1172,7 +1223,7 @@
       <section id="faqs" class="section section-tight" aria-label="FAQs">
         <h2>Frequently asked questions</h2>
         <p class="lead">
-          Answers to the most common questions on pricing, hardware and roll-out.
+          Answers to the most common questions on pricing, hardware, roll-out and ROI.
         </p>
 
         <div class="faq-wrap">
@@ -1182,10 +1233,13 @@
               <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
-              Your subscription covers access to MeshRFID for the number of
-              sites and tagged items in your plan, support, updates and standard
-              reporting. Hardware and any on-site services are quoted
-              separately.
+              Your subscription covers:
+              <ul>
+                <li>Access to MeshRFID for the sites and tag volumes in your plan.</li>
+                <li>Standard dashboards and scheduled exports.</li>
+                <li>Product updates, hosting and support.</li>
+              </ul>
+              Hardware, on-site services and any custom integrations are quoted separately.
             </div>
           </div>
 
@@ -1195,8 +1249,9 @@
               <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
-              Yes. You can move between Starter, Grow and Pro as your volumes
-              change. We simply adjust your billing from the next invoice date.
+              Yes. You can move between Starter, Grow and Pro as your volumes change.
+              We review usage with you, adjust the plan and update billing from the
+              next invoice date. Data, dashboards and integrations stay in place.
             </div>
           </div>
 
@@ -1206,9 +1261,13 @@
               <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
-              No. MeshRFID sits alongside your existing systems and connects via
-              exports or APIs. Most customers start with light-touch
-              integrations.
+              No. MeshRFID typically runs alongside your WMS, ERP and POS. Most
+              customers start with:
+              <ul>
+                <li>Simple CSV exports into finance and BI tools.</li>
+                <li>Lightweight API connections for stock and movements.</li>
+              </ul>
+              If you prefer, we can work with your partners to design a deeper integration later.
             </div>
           </div>
 
@@ -1218,9 +1277,43 @@
               <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
-              A single-site Starter implementation can be live in days. Larger
-              Grow and Pro roll-outs usually phase over a few weeks so training
-              and reporting land properly.
+              Timelines vary by scope:
+              <ul>
+                <li><strong>Starter:</strong> Single-site pilots are usually live in a few days.</li>
+                <li><strong>Grow:</strong> Multi-site roll-outs phase over 2–4 weeks.</li>
+                <li><strong>Pro / Enterprise:</strong> Larger networks may run in waves over a quarter.</li>
+              </ul>
+              We plan the cutover with you so trading is not disrupted.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">What hardware do I need?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              Most customers use a mix of handheld readers, labels and swing tags.
+              We can supply hardware bundles or work with your existing devices if
+              they are compatible. Enterprise projects often add portals or tunnels
+              for high-volume areas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">When do customers usually see ROI?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              It depends on the scale of shrink and stock inaccuracy, but most
+              retailers and 3PLs see measurable impact within the first
+              stock-take cycles – typically:
+              <ul>
+                <li>Lower shrink and write-offs.</li>
+                <li>Fewer emergency transfers and courier spend.</li>
+                <li>Better buy decisions due to accurate stock and ageing data.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -1242,6 +1335,23 @@
   </div>
 
   <script>
+    // header hamburger
+    (function () {
+      const header = document.querySelector(".site-header");
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.querySelectorAll(".nav-links a");
+
+      toggle.addEventListener("click", () => {
+        header.classList.toggle("nav-open");
+      });
+
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          header.classList.remove("nav-open");
+        });
+      });
+    })();
+
     // billing toggle
     (function () {
       const toggleButtons = document.querySelectorAll(
@@ -1294,7 +1404,7 @@
           const targetId = tab.dataset.target;
           const el = document.getElementById(targetId);
           if (el) {
-            const headerOffset = 110; // header + tabs height approx
+            const headerOffset = 120; // header + tabs height approx
             const rect = el.getBoundingClientRect();
             const offset = window.pageYOffset + rect.top - headerOffset;
             window.scrollTo({ top: offset, behavior: "smooth" });
