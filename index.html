@@ -57,7 +57,7 @@
       top: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
-      background-color: rgba(248, 250, 252, 0.85);
+      background-color: rgba(248, 250, 252, 0.9);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
     }
 
@@ -170,7 +170,7 @@
 
     .billing-toggle {
       display: inline-flex;
-      margin: 2rem auto 2.5rem;
+      margin: 2rem auto 1.7rem;
       border-radius: 999px;
       border: 1px solid #e5e7eb;
       background: #f9fafb;
@@ -202,12 +202,40 @@
       margin-left: 0.4rem;
     }
 
+    /* MOBILE PLAN TABS (sticky on mobile) */
+
+    .mobile-plan-tabs {
+      display: none; /* mobile only */
+    }
+
+    .mobile-plan-tab {
+      flex: 1 1 0;
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 0.6rem 0.3rem;
+      border-right: 1px solid #e5e7eb;
+      background: #ffffff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .mobile-plan-tab:last-child {
+      border-right: none;
+    }
+
+    .mobile-plan-tab.active {
+      border-bottom: 2px solid #22c55e;
+      background: #f0fdf4;
+      font-weight: 600;
+    }
+
     /* PRICING GRID */
 
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1.5rem;
+      margin-top: 1.4rem;
     }
 
     .plan-wrapper {
@@ -566,32 +594,86 @@
     }
 
     .faq-item {
-      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 0.9rem;
     }
 
     .faq-summary {
+      width: 100%;
+      background: #f3f4f6;
+      border: 1px solid #d4d4d8;
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.9rem 0;
+      justify-content: space-between;
+      gap: 0.8rem;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.96rem;
+      text-align: left;
     }
 
-    .faq-summary span {
+    .faq-summary:hover {
+      background: #e5e7eb;
+    }
+
+    .faq-summary .faq-q {
       font-weight: 500;
     }
 
-    .faq-summary svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
+    .faq-summary .faq-plus {
+      margin-left: auto;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .faq-summary.open {
+      background: #e0f2fe;
+      border-color: #bfdbfe;
+    }
+
+    .faq-summary.open .faq-plus {
+      transform: rotate(45deg); /* + -> x visually */
     }
 
     .faq-content {
-      padding: 0 0 0.9rem;
+      padding: 0.7rem 1.1rem 0.9rem;
       font-size: 0.9rem;
       color: var(--text-muted);
+      border-left: 1px solid #e5e7eb;
+      border-right: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      border-radius: 0 0 6px 6px;
+    }
+
+    /* FOOTER */
+
+    .site-footer {
+      background: #020617;
+      color: #e5e7eb;
+      margin-top: 2rem;
+      padding: 1.6rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0.85;
+    }
+
+    .footer-links a {
+      color: inherit;
     }
 
     /* MOBILE & TABLET */
@@ -650,31 +732,28 @@
         padding-inline: 0.3rem;
       }
 
+      .mobile-plan-tabs {
+        display: flex;
+        position: sticky;
+        top: 52px; /* just under sticky header */
+        z-index: 35;
+        background: #ecfdf3;
+        border-bottom: 1px solid #22c55e;
+      }
+
       .pricing-grid {
         grid-template-columns: minmax(0, 1fr);
         gap: 1.7rem;
+        margin-top: 0.9rem;
       }
 
-      .plan-label {
-        border-radius: 999px 999px 0 0;
-      }
-
-      .pricing-card {
-        border-radius: 0 0 var(--radius-card) var(--radius-card);
-      }
-
-      /* sticky plan name on mobile */
+      /* cancel sticky card headers on mobile – tabs handle this */
       .card-header {
-        position: sticky;
-        top: 56px;
-        z-index: 10;
-        background: #ffffff;
-        padding-top: 0.7rem;
-        margin-top: -0.7rem;
-      }
-
-      .pricing-card.pro .card-header {
-        top: 54px;
+        position: static;
+        top: auto;
+        background: none;
+        padding-top: 0;
+        margin-top: 0;
       }
 
       .benefit-grid,
@@ -721,9 +800,17 @@
           </button>
         </div>
 
+        <!-- mobile sticky plan tabs -->
+        <nav class="mobile-plan-tabs" aria-label="Plan navigation (mobile)">
+          <div class="mobile-plan-tab active" data-target="plan-starter">Starter</div>
+          <div class="mobile-plan-tab" data-target="plan-grow">Grow</div>
+          <div class="mobile-plan-tab" data-target="plan-pro">Pro</div>
+          <div class="mobile-plan-tab" data-target="plan-enterprise">Enterprise</div>
+        </nav>
+
         <div class="pricing-grid">
           <!-- Starter -->
-          <div class="plan-wrapper">
+          <div class="plan-wrapper" id="plan-starter">
             <div class="plan-label green">£1 for the first month</div>
             <article class="pricing-card">
               <header class="card-header">
@@ -764,7 +851,7 @@
           </div>
 
           <!-- Grow -->
-          <div class="plan-wrapper">
+          <div class="plan-wrapper" id="plan-grow">
             <div class="plan-label green">£1 for the first month</div>
             <article class="pricing-card">
               <header class="card-header">
@@ -811,7 +898,7 @@
           </div>
 
           <!-- Pro -->
-          <div class="plan-wrapper">
+          <div class="plan-wrapper" id="plan-pro">
             <div class="plan-label green">£1 for the first month</div>
             <article class="pricing-card pro">
               <header class="card-header">
@@ -861,7 +948,7 @@
           </div>
 
           <!-- Enterprise -->
-          <div class="plan-wrapper">
+          <div class="plan-wrapper" id="plan-enterprise">
             <div class="plan-label blue">Available on a 1–3 year term</div>
             <article class="pricing-card">
               <header class="card-header">
@@ -1091,13 +1178,8 @@
         <div class="faq-wrap">
           <div class="faq-item">
             <button class="faq-summary" type="button">
-              <span>What is included in the monthly price?</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path
-                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
-                  fill="currentColor"
-                />
-              </svg>
+              <span class="faq-q">What is included in the monthly price?</span>
+              <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
               Your subscription covers access to MeshRFID for the number of
@@ -1109,13 +1191,8 @@
 
           <div class="faq-item">
             <button class="faq-summary" type="button">
-              <span>Can I change plans as I grow?</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path
-                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
-                  fill="currentColor"
-                />
-              </svg>
+              <span class="faq-q">Can I change plans as I grow?</span>
+              <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
               Yes. You can move between Starter, Grow and Pro as your volumes
@@ -1125,13 +1202,8 @@
 
           <div class="faq-item">
             <button class="faq-summary" type="button">
-              <span>Do I need to replace my existing WMS or POS?</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path
-                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
-                  fill="currentColor"
-                />
-              </svg>
+              <span class="faq-q">Do I need to replace my existing WMS or POS?</span>
+              <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
               No. MeshRFID sits alongside your existing systems and connects via
@@ -1142,13 +1214,8 @@
 
           <div class="faq-item">
             <button class="faq-summary" type="button">
-              <span>How long does it take to go live?</span>
-              <svg viewBox="0 0 20 20" aria-hidden="true">
-                <path
-                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
-                  fill="currentColor"
-                />
-              </svg>
+              <span class="faq-q">How long does it take to go live?</span>
+              <span class="faq-plus">+</span>
             </button>
             <div class="faq-content" hidden>
               A single-site Starter implementation can be live in days. Larger
@@ -1159,6 +1226,19 @@
         </div>
       </section>
     </main>
+
+    <!-- STATIC FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> MeshRFID. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#pricing">Pricing</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#faqs">FAQs</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script>
@@ -1199,7 +1279,32 @@
       });
     })();
 
-    // simple FAQ accordion
+    // mobile plan tabs scroll behaviour
+    (function () {
+      const tabs = document.querySelectorAll(".mobile-plan-tab");
+
+      function setActiveTab(targetId) {
+        tabs.forEach((tab) => {
+          tab.classList.toggle("active", tab.dataset.target === targetId);
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetId = tab.dataset.target;
+          const el = document.getElementById(targetId);
+          if (el) {
+            const headerOffset = 110; // header + tabs height approx
+            const rect = el.getBoundingClientRect();
+            const offset = window.pageYOffset + rect.top - headerOffset;
+            window.scrollTo({ top: offset, behavior: "smooth" });
+            setActiveTab(targetId);
+          }
+        });
+      });
+    })();
+
+    // FAQ accordion
     (function () {
       const faqButtons = document.querySelectorAll(".faq-summary");
       faqButtons.forEach((btn) => {
@@ -1207,9 +1312,14 @@
           const content = btn.nextElementSibling;
           const isOpen = !content.hidden;
           content.hidden = isOpen;
+          btn.classList.toggle("open", !isOpen);
         });
       });
     })();
+
+    // footer year
+    document.getElementById("year").textContent =
+      new Date().getFullYear().toString();
   </script>
 </body>
 </html>
