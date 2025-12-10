@@ -85,7 +85,7 @@
       flex-wrap: wrap;
     }
 
-    /* Global CTA styles (hero, contact etc) */
+    /* Global CTAs (hero, contact etc) */
     .btn-cta,
     .btn-cta-secondary {
       border-radius: 999px;
@@ -100,6 +100,7 @@
       align-items: center;
       justify-content: center;
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
     }
 
     .btn-cta:hover {
@@ -208,15 +209,21 @@
       gap: 4px;
     }
 
+    /* CTA area anchored at bottom so all buttons align in one row */
     .plan-cta-wrap {
-      margin-top: 14px;
+      margin-top: auto;
+      padding-top: 16px;
     }
 
-    /* Card CTAs – same width, one line */
-    .plan-card .btn-cta {
+    .plan-cta-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .plan-cta-row .btn-cta,
+    .plan-cta-row .btn-cta-secondary {
       width: 100%;
       justify-content: center;
-      white-space: nowrap;
     }
 
     footer {
@@ -275,6 +282,7 @@
     <h2 class="section-title">Plans for every size of operation</h2>
 
     <div class="pricing-grid">
+      <!-- Starter -->
       <article class="plan-card">
         <div class="plan-badge">Entry</div>
         <div class="plan-name">Starter</div>
@@ -289,10 +297,21 @@
           <li>Basic dashboards and export for finance.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Starter%20plan" class="btn-cta">Start with Starter</a>
+          <div class="plan-cta-row">
+            <!-- replace href values with your real Stripe Checkout URLs -->
+            <a href="https://buy.stripe.com/STARTER_MONTHLY_PLACEHOLDER"
+               class="btn-cta" target="_blank" rel="noopener">
+              Monthly
+            </a>
+            <a href="https://buy.stripe.com/STARTER_ANNUAL_PLACEHOLDER"
+               class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual (Best Value)
+            </a>
+          </div>
         </div>
       </article>
 
+      <!-- Standard -->
       <article class="plan-card">
         <div class="plan-badge">Most popular</div>
         <div class="plan-name">Standard</div>
@@ -308,10 +327,20 @@
           <li>Operations and finance dashboards with scheduled reports.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Standard%20plan" class="btn-cta">Talk about Standard</a>
+          <div class="plan-cta-row">
+            <a href="https://buy.stripe.com/STANDARD_MONTHLY_PLACEHOLDER"
+               class="btn-cta" target="_blank" rel="noopener">
+              Monthly
+            </a>
+            <a href="https://buy.stripe.com/STANDARD_ANNUAL_PLACEHOLDER"
+               class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual (Best Value)
+            </a>
+          </div>
         </div>
       </article>
 
+      <!-- Pro -->
       <article class="plan-card">
         <div class="plan-badge">For finance-led ops</div>
         <div class="plan-name">Pro</div>
@@ -327,10 +356,20 @@
           <li>AP/AR-friendly exports and audit-ready history.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Pro%20plan" class="btn-cta">Book a Pro Walkthrough</a>
+          <div class="plan-cta-row">
+            <a href="https://buy.stripe.com/PRO_MONTHLY_PLACEHOLDER"
+               class="btn-cta" target="_blank" rel="noopener">
+              Monthly
+            </a>
+            <a href="https://buy.stripe.com/PRO_ANNUAL_PLACEHOLDER"
+               class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual (Best Value)
+            </a>
+          </div>
         </div>
       </article>
 
+      <!-- Enterprise -->
       <article class="plan-card">
         <div class="plan-badge">Enterprise</div>
         <div class="plan-name">Enterprise</div>
@@ -347,7 +386,12 @@
           <li>Dedicated onboarding and account management.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry" class="btn-cta">Contact Us about Enterprise</a>
+          <div class="plan-cta-row">
+            <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry"
+               class="btn-cta-secondary">
+              Contact Us about Enterprise
+            </a>
+          </div>
         </div>
       </article>
     </div>
