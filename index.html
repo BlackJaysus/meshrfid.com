@@ -1,1283 +1,1090 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MeshRFID - Simple RFID for Retail and Warehouses</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/favicon.png">
-
+  <meta charset="UTF-8" />
+  <title>MeshRFID – Pricing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --accent: #142849;  /* navy */
-      --shopify-green: #23e879;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color-scheme: light;
+      /* Shopify-style palette, adapted for MeshRFID */
+      --mesh-green: #96bf48;
+      --mesh-green-dark: #5e8e3e;
+      --mesh-blue: #479ccf;
+      --mesh-bg: #f5f5f5;
+      --mesh-card-bg: #ffffff;
+      --mesh-soft-bg: #f2f7fa;
+      --mesh-text: #2d3538;
+      --mesh-muted: #666666;
+      --mesh-border: #e0e0e0;
+      --mesh-pill-bg: #000000;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
-      background: #f7f7f7;
-      color: #111;
-      line-height: 1.5;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: var(--mesh-bg);
+      color: var(--mesh-text);
     }
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* Header */
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-    header {
+    /* Header / nav */
+
+    .site-header {
       background: #ffffff;
-      border-bottom: 1px solid #e2e2e2;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      border-bottom: 1px solid var(--mesh-border);
       position: sticky;
       top: 0;
       z-index: 40;
     }
 
-    .logo {
-      font-weight: 400;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-      transform: scale(1.1); /* ~10% larger */
-      transform-origin: left center;
-      white-space: nowrap;
-    }
-
-    nav {
+    .header-inner {
       display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 0.9rem;
+      justify-content: space-between;
+      height: 56px;
     }
 
-    nav a { opacity: 0.8; }
-    nav a:hover { opacity: 1; }
+    .logo a {
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      color: #000;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .site-nav a:hover {
+      text-decoration: underline;
+    }
+
+    .nav-cta {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #000;
+    }
 
     .nav-toggle {
       display: none;
-      background: none;
+      background: transparent;
       border: none;
-      padding: 6px;
-      margin-left: 8px;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
       cursor: pointer;
     }
 
     .nav-toggle span {
-      display: block;
-      width: 20px;
       height: 2px;
-      background: #111;
+      width: 100%;
+      background: #000;
       border-radius: 999px;
-      margin: 4px 0;
-      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    header.nav-open .nav-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-    header.nav-open .nav-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-    header.nav-open .nav-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* Mobile nav */
-
-    @media (max-width: 720px) {
-      header { padding: 10px 12px; }
-
-      nav {
+    @media (max-width: 768px) {
+      .site-nav {
         position: absolute;
-        top: 100%;
-        left: 0;
+        top: 56px;
         right: 0;
+        left: 0;
         background: #ffffff;
-        border-bottom: 1px solid #e2e2e2;
-        padding: 10px 16px 12px;
+        border-bottom: 1px solid var(--mesh-border);
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        padding: 0.75rem 1.5rem 1rem;
         display: none;
       }
-
-      header.nav-open nav { display: flex; }
-
-      .nav-toggle { display: inline-flex; }
+      .site-nav.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: flex;
+      }
     }
 
-    /* Layout */
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
+    main {
+      padding: 1.8rem 0 3rem;
     }
-
-    section { scroll-margin-top: 72px; }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 32px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-    }
-
-    .hero h1 {
-      font-size: 2.3rem;
-      margin-bottom: 16px;
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.9rem; }
-    }
-
-    .hero p {
-      font-size: 1rem;
-      max-width: 520px;
-      opacity: 0.9;
-    }
-
-    .hero-actions {
-      margin-top: 24px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* Global CTAs */
-
-    .btn-cta,
-    .btn-cta-secondary {
-      border-radius: 999px;
-      padding: 10px 20px;
-      border: 1px solid #111;
-      background: transparent;
-      color: #111;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .btn-cta:hover {
-      background: #111;
-      color: #fff;
-    }
-
-    .btn-cta-secondary {
-      border-color: #555;
-      color: #333;
-    }
-    .btn-cta-secondary:hover {
-      background: #555;
-      border-color: #555;
-      color: #fff;
-    }
-
-    /* Hero side card */
-
-    .hero-metrics {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      display: grid;
-      gap: 10px;
-      font-size: 0.85rem;
-    }
-
-    .hero-metrics h2 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-
-    .hero-metrics-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 0.85rem;
-    }
-
-    .hero-metrics-row span.label { opacity: 0.7; }
-    .hero-metrics-row span.value { font-weight: 600; }
-
-    @media (max-width: 900px) {
-      .hero-metrics { max-width: 420px; }
-    }
-
-    /* Headings */
-
-    .section-title {
-      font-size: 1.4rem;
-      margin: 48px 0 16px;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      opacity: 0.8;
-      margin-bottom: 16px;
-      max-width: 640px;
-    }
-
-    .section-subtitle-wide { max-width: none; }
 
     /* Billing toggle */
 
-    .billing-toggle-shell {
-      margin-bottom: 12px;
+    .billing-toggle-wrapper {
+      margin-top: 1.5rem;
       display: flex;
       justify-content: center;
     }
 
-    .billing-toggle-wrapper {
+    .billing-toggle {
       width: 100%;
       max-width: 520px;
-      padding: 3px;
+      padding: 4px;
       border-radius: 999px;
-      border: 2px solid var(--shopify-green);
+      border: 2px solid var(--mesh-green);
       background: #ffffff;
-    }
-
-    .billing-toggle {
-      position: relative;
       display: flex;
-      width: 100%;
-      border-radius: 999px;
-      overflow: hidden;
     }
 
-    /* sliding black pill */
-    .billing-toggle-thumb {
-      position: absolute;
-      top: 4px;
-      bottom: 4px;
-      left: 4px;
-      width: calc(50% - 8px);
-      border-radius: 999px;
-      background: #111;
-      transition: left 0.2s ease;
-    }
-
-    /* when yearly is active move pill to the right */
-    .billing-toggle.annual .billing-toggle-thumb {
-      left: calc(50% + 4px);
-    }
-
-    .billing-option {
-      flex: 1 1 0;
+    .billing-toggle button {
+      flex: 1;
       border: none;
       background: transparent;
-      padding: 8px 10px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      color: #111;
-      white-space: nowrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .billing-option.active {
-      color: #fff;
-    }
-
-    /* Plan tab bar (mobile focus) */
-
-    .pricing-tabs {
-      display: none;
-      background: #ffffff;
-      border-bottom: 1px solid #e5e5e5;
-      margin: 0 -16px 12px;
-      padding: 0 16px;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    .pricing-tab {
-      border: none;
-      background: transparent;
-      padding: 10px 18px;
+      padding: 0.6rem 0.75rem;
       font-size: 0.95rem;
+      border-radius: 999px;
       cursor: pointer;
-      border-bottom: 3px solid transparent;
-      flex: 0 0 auto;
+      color: var(--mesh-text);
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .pricing-tab.active {
-      border-bottom-color: var(--shopify-green);
+    .billing-toggle button.active {
+      background: var(--mesh-pill-bg);
+      color: #ffffff;
     }
 
-    @media (max-width: 768px) {
-      .pricing-tabs {
-        display: flex;
-        position: sticky;
-        top: 52px; /* just under the main header */
-        z-index: 30;
-      }
+    /* Plan tabs – sticky under header */
+
+    .plan-tabs-wrapper {
+      margin-top: 1.5rem;
     }
 
-    /* Pricing grid and cards */
+    .plan-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--mesh-border);
+      background: #ffffff;
+      position: sticky;
+      top: 56px;
+      z-index: 30;
+      overflow-x: auto;
+    }
 
-    .pricing-grid {
+    .plan-tab {
+      flex: 1 0 25%;
+      text-align: center;
+      padding: 0.8rem 0.25rem;
+      font-size: 0.9rem;
+      border-right: 1px solid var(--mesh-border);
+      background: #ffffff;
+      color: var(--mesh-muted);
+      white-space: nowrap;
+    }
+
+    .plan-tab:last-child {
+      border-right: none;
+    }
+
+    .plan-tab.active {
+      border-bottom: 3px solid var(--mesh-green);
+      color: #000000;
+    }
+
+    /* Plans grid / slider */
+
+    .plans-section {
+      margin-top: 2rem;
+    }
+
+    .plans-header h1 {
+      margin: 0 0 0.3rem;
+      font-size: 1.6rem;
+    }
+
+    .plans-header p {
+      margin: 0;
+      color: var(--mesh-muted);
+      font-size: 0.96rem;
+    }
+
+    .plans-row {
+      margin-top: 2.2rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 768px) {
-      .pricing-grid {
-        display: block;
-      }
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
     }
 
     .plan-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 18px 18px 20px;
-      border: 1px solid #e2e2e2;
+      background: var(--mesh-card-bg);
+      border-radius: 18px;
+      padding: 1.6rem 1.6rem 1.4rem;
+      border: 1px solid var(--mesh-border);
       display: flex;
       flex-direction: column;
-      gap: 10px;
       position: relative;
-      min-width: 0;
+      min-height: 420px;
     }
 
-    .plan-card.highlight {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent);
-    }
+    /* Ribbons */
 
-    /* full-width card feel on mobile */
-    @media (max-width: 768px) {
-      .plan-card {
-        border-radius: 24px;
-        margin: 0;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        display: none; /* show only active card */
-      }
-      .plan-card.active {
-        display: flex;
-      }
-    }
-
-    .plan-top-banner {
-      margin: -18px -18px 14px;
-      padding: 8px 12px;
-      border-radius: 24px 24px 0 0;
-      font-size: 0.85rem;
+    .plan-ribbon {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -32px;
+      height: 32px;
+      border-radius: 999px 999px 0 0;
+      background: var(--mesh-green);
+      color: #000;
+      font-size: 0.9rem;
       font-weight: 500;
-      text-align: center;
-    }
-    .plan-top-banner.green {
-      background: var(--shopify-green);
-      color: #111;
-    }
-    .plan-top-banner.blue {
-      background: #2563eb;
-      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .plan-header {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    .plan-card--enterprise .plan-ribbon {
+      background: var(--mesh-blue);
+      color: #ffffff;
     }
 
-    .plan-header-top {
-      min-height: 72px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    /* Card header */
+
+    .plan-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--mesh-muted);
+      margin-bottom: 0.45rem;
     }
 
     .plan-name-row {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.2rem;
     }
 
     .plan-name {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 600;
+    }
+
+    .popular-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      background: #edf7e2;
+      color: var(--mesh-green-dark);
     }
 
     .plan-subtitle {
-      font-size: 0.9rem;
-      opacity: 0.75;
+      font-size: 0.95rem;
+      color: var(--mesh-muted);
+      margin-bottom: 1rem;
     }
 
-    .plan-tag {
-      display: inline-block;
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
+    .plan-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      margin-bottom: 0.25rem;
     }
 
     .plan-price {
-      margin-top: 4px;
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
+      font-size: 1.9rem;
+      font-weight: 600;
     }
 
-    .plan-price-main {
-      font-size: 1.6rem;
-      font-weight: 700;
+    .plan-price-suffix {
+      font-size: 0.95rem;
+      color: var(--mesh-muted);
     }
 
-    .plan-price-unit {
-      font-size: 0.9rem;
-      opacity: 0.75;
+    .plan-billing-note {
+      font-size: 0.88rem;
+      color: var(--mesh-muted);
+      margin-top: 0.35rem;
+      margin-bottom: 1.1rem;
     }
 
-    .plan-price-foot {
-      font-size: 0.8rem;
-      opacity: 0.75;
-      min-height: 2.4em;
+    .plan-features {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
     }
 
-    .plan-meta {
-      font-size: 0.9rem;
-      opacity: 0.9;
+    .plan-features ul {
+      margin: 0.6rem 0 0;
+      padding-left: 1rem;
     }
 
-    .plan-list {
-      margin-top: 4px;
-      padding-left: 18px;
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+    .plan-features li + li {
+      margin-top: 0.3rem;
     }
 
-    .plan-cta-wrap {
+    .plan-cta {
       margin-top: auto;
-      padding-top: 10px;
+      padding-top: 1.4rem;
     }
 
-    .plan-cta-button {
-      width: 100%;
-      justify-content: center;
-    }
-
-    /* “What every plan gets you” cards */
-
-    .benefit-card-row {
-      margin-top: 14px;
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-    }
-
-    .benefit-card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 16px 16px 14px;
-      min-width: 260px;
-      max-width: 300px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-      flex: 0 0 auto;
-    }
-
-    .benefit-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: #eef2ff;
-      display: flex;
+    .btn-outline,
+    .btn-primary {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      border: 1px solid #000;
+      background: #ffffff;
+      color: #000;
+      cursor: pointer;
+      width: 100%;
     }
 
-    .benefit-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-      font-size: 0.98rem;
+    .btn-primary {
+      background: #000000;
+      color: #ffffff;
     }
 
-    .benefit-text {
-      font-size: 0.86rem;
-      opacity: 0.9;
+    .btn-outline:hover,
+    .btn-primary:hover {
+      border-color: var(--mesh-green-dark);
     }
 
-    .benefit-dots {
-      margin-top: 10px;
-      display: flex;
+    .btn-primary:hover {
+      background: var(--mesh-green-dark);
+    }
+
+    /* Mobile slider behaviour + dots */
+
+    .plans-dots {
+      display: none;
       justify-content: center;
-      gap: 6px;
+      gap: 0.35rem;
+      margin-top: 0.9rem;
     }
 
-    .benefit-dot {
+    .slider-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #d4d4d4;
+      background: #d6d6d6;
     }
 
-    .benefit-dot.active {
-      background: #222;
+    .slider-dot.active {
+      background: #222222;
     }
 
-    @media (min-width: 860px) {
-      .benefit-card-row {
-        overflow-x: visible;
-        flex-wrap: nowrap;
+    @media (max-width: 900px) {
+      .plans-row {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 1rem;
       }
-      .benefit-dots {
-        display: none;
+
+      .plan-card {
+        min-width: 82%;
+        max-width: 420px;
+        scroll-snap-align: start;
+      }
+
+      .plans-dots {
+        display: flex;
       }
     }
 
-    /* Comparison table */
+    /* “What every plan gets you” */
 
-    .comparison-wrapper {
-      overflow-x: auto;
-      margin-top: 12px;
+    .plan-benefits {
+      background: var(--mesh-soft-bg);
+      border-radius: 24px;
+      padding: 2.5rem 1.5rem 2rem;
+      margin-top: 3rem;
     }
 
-    table.comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-      background: #ffffff;
-      border-radius: 18px;
-      overflow: hidden;
-      min-width: 640px;
+    .plan-benefits h2 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.4rem;
     }
 
-    table.comparison-table th,
-    table.comparison-table td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #ececec;
-      text-align: left;
+    .plan-benefits p {
+      margin: 0;
+      color: var(--mesh-muted);
+      max-width: 720px;
+      font-size: 0.95rem;
     }
 
-    table.comparison-table th {
-      font-weight: 600;
-      background: #fafafa;
+    .benefit-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.3rem;
     }
 
-    table.comparison-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    table.comparison-table td.center { text-align: center; }
-    table.comparison-table .tick { font-size: 1rem; }
-
-    .group-row td {
-      background: #f0f3f7;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-    }
-
-    .feature-toggle-btn {
-      margin: 10px 0;
+    .benefit-chip {
+      padding: 0.55rem 1.2rem;
       border-radius: 999px;
-      padding: 8px 16px;
-      border: 1px solid #ccc;
-      background: #fff;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-
-    .feature-toggle-btn:hover { border-color: #999; }
-
-    .extra-row { display: none; }
-
-    /* FAQ */
-
-    .faq-list {
-      margin-top: 12px;
-      display: grid;
-      gap: 10px;
-    }
-
-    .faq-item {
       background: #ffffff;
-      border-radius: 14px;
-      padding: 12px 14px;
-      border: 1px solid #e2e2e2;
+      border: 1px solid var(--mesh-border);
       font-size: 0.9rem;
     }
 
-    .faq-question {
-      font-weight: 600;
-      margin-bottom: 4px;
+    /* Feature list (accordion) */
+
+    .features-section {
+      margin-top: 2rem;
     }
 
-    /* Contact */
+    .features-toggle-btn {
+      margin: 1.5rem auto 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid var(--mesh-border);
+      padding: 0.7rem 1.4rem;
+      background: #ffffff;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
 
-    #contact p { max-width: 620px; }
+    .features-toggle-btn span.icon {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .features-table-wrapper {
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--mesh-border);
+    }
+
+    .features-table th,
+    .features-table td {
+      padding: 0.75rem 0.9rem;
+      border-bottom: 1px solid var(--mesh-border);
+      text-align: left;
+    }
+
+    .features-table th {
+      background: #fafafa;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .features-table tr:last-child th,
+    .features-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .feat-centre {
+      text-align: center;
+    }
+
+    /* FAQ */
+
+    .faq-section {
+      margin-top: 3rem;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.5rem 1.75rem;
+      border: 1px solid var(--mesh-border);
+    }
+
+    .faq-section h2 {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+    }
+
+    .faq-item + .faq-item {
+      border-top: 1px solid var(--mesh-border);
+    }
+
+    .faq-question {
+      padding: 1rem 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.98rem;
+    }
+
+    .faq-question span.icon {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-left: 1rem;
+    }
+
+    .faq-answer {
+      padding-bottom: 1rem;
+      color: var(--mesh-muted);
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-item.open .faq-question span.icon {
+      content: "-";
+    }
 
     /* Footer */
 
-    footer {
-      border-top: 1px solid #e2e2e2;
-      padding: 16px 24px;
-      font-size: 0.8rem;
-      text-align: center;
+    .site-footer {
+      border-top: 1px solid var(--mesh-border);
       background: #ffffff;
-      margin-top: 32px;
+      padding: 1.2rem 1.5rem;
+      font-size: 0.82rem;
+      color: var(--mesh-muted);
+      text-align: center;
     }
   </style>
 </head>
 <body>
-<header>
-  <a href="index.html" class="logo">MeshRFID</a>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="how-it-works.html">How it works</a>
-    <a href="case-studies.html">Case studies</a>
-    <a href="#faq">FAQ</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-</header>
-
-<main class="container">
-  <!-- Hero -->
-  <section class="hero">
-    <div>
-      <h1>Low-cost RFID that actually pays for itself.</h1>
-      <p>
-        MeshRFID gives retailers and warehouses real-time visibility of every item in stock.
-        From solo operators to chains and 3PLs, it’s the same platform, scaled to your volume.
-      </p>
-      <div class="hero-actions">
-        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Demo" class="btn-cta">Book a demo</a>
-        <a href="#pricing" class="btn-cta-secondary">View pricing</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="#top">MeshRFID</a>
       </div>
+      <nav class="site-nav">
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#case-studies">Case studies</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">Contact</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <aside class="hero-metrics">
-      <h2>Finance snapshot</h2>
-      <div class="hero-metrics-row">
-        <span class="label">Typical stock accuracy uplift</span>
-        <span class="value">+15–30%</span>
+  <main id="top">
+    <section id="pricing" class="container plans-section">
+      <div class="plans-header">
+        <h1>Plans for every size of operation</h1>
+        <p>Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.</p>
       </div>
-      <div class="hero-metrics-row">
-        <span class="label">Shrink reduction</span>
-        <span class="value">-20–40%</span>
-      </div>
-      <div class="hero-metrics-row">
-        <span class="label">ROI on hardware &amp; tags</span>
-        <span class="value">Month 1–3</span>
-      </div>
-    </aside>
-  </section>
 
-  <!-- Pricing -->
-  <section id="pricing">
-    <h2 class="section-title">Plans for every size of operation</h2>
-    <p class="section-subtitle">
-      Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.
-    </p>
-
-    <!-- Billing toggle -->
-    <div class="billing-toggle-shell">
+      <!-- Billing toggle -->
       <div class="billing-toggle-wrapper">
-        <div class="billing-toggle" role="tablist" aria-label="Billing period">
-          <div class="billing-toggle-thumb"></div>
-          <button class="billing-option active" data-billing="monthly" type="button">
-            Pay monthly
-          </button>
-          <button class="billing-option" data-billing="annual" type="button">
-            Pay yearly (save 20%)
-          </button>
+        <div class="billing-toggle" id="billingToggle">
+          <button type="button" data-billing="monthly" class="active">Pay monthly</button>
+          <button type="button" data-billing="yearly">Pay yearly (save 20%)</button>
         </div>
       </div>
-    </div>
 
-    <!-- Plan tab bar (mobile) -->
-    <div class="pricing-tabs" aria-label="Plans">
-      <button class="pricing-tab active" data-plan-tab="Starter">Starter</button>
-      <button class="pricing-tab" data-plan-tab="Grow">Grow</button>
-      <button class="pricing-tab" data-plan-tab="Pro">Pro</button>
-      <button class="pricing-tab" data-plan-tab="Enterprise">Enterprise</button>
-    </div>
-
-    <!-- Cards -->
-    <div class="pricing-grid">
-
-      <!-- Starter -->
-      <article class="plan-card active" data-plan
-               data-plan-id="Starter"
-               data-monthly-price="25" data-annual-monthly-price="20">
-        <div class="plan-top-banner green">£1 for the first month</div>
-        <div class="plan-header">
-          <div class="plan-header-top">
-            <div class="plan-name-row">
-              <div class="plan-name">Starter</div>
-            </div>
-            <div class="plan-subtitle">For solo entrepreneurs. Single site only.</div>
-          </div>
-
-          <div class="plan-price">
-            <span class="plan-price-main">£25</span>
-            <span class="plan-price-unit">/month</span>
-          </div>
-          <div class="plan-price-foot"
-               data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
-          </div>
+      <!-- Sticky plan tabs (mobile + desktop) -->
+      <div class="plan-tabs-wrapper">
+        <div class="plan-tabs" id="planTabs">
+          <div class="plan-tab active" data-plan-tab="0">Starter</div>
+          <div class="plan-tab" data-plan-tab="1">Grow</div>
+          <div class="plan-tab" data-plan-tab="2">Pro</div>
+          <div class="plan-tab" data-plan-tab="3">Enterprise</div>
         </div>
+      </div>
 
-        <p class="plan-meta">
-          Simple RFID counts and shrink visibility for one location.
-        </p>
-        <ul class="plan-list">
-          <li>Up to 1,000 active tagged items.</li>
-          <li>Single location, handheld reader (BYO or purchase separately).</li>
-          <li>Basic dashboards for stock accuracy and loss.</li>
-        </ul>
+      <!-- Cards / slider -->
+      <div class="plans-row" id="plansRow">
+        <!-- Starter -->
+        <article
+          class="plan-card"
+          data-plan="0"
+          data-monthly-price="25"
+          data-yearly-monthly-price="20"
+        >
+          <div class="plan-ribbon">£1 for the first month</div>
+          <div class="plan-eyebrow">Entry</div>
+          <div class="plan-name-row">
+            <div class="plan-name">Starter</div>
+          </div>
+          <div class="plan-subtitle">For solo entrepreneurs. Single site only.</div>
 
-        <div class="plan-cta-wrap">
-          <a
-            class="btn-cta plan-cta-button"
-            href="#"
-            data-monthly-url="https://buy.stripe.com/STARTER_MONTHLY"
-            data-annual-url="https://buy.stripe.com/STARTER_ANNUAL"
+          <div class="plan-price-row">
+            <div class="plan-price price-value">£25</div>
+            <div class="plan-price-suffix price-suffix">/month</div>
+          </div>
+          <p
+            class="plan-billing-note"
+            data-monthly-note="Billed monthly. VAT added at checkout."
+            data-yearly-note="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly."
           >
-            Start monthly
-          </a>
-        </div>
-      </article>
+            Billed monthly. VAT added at checkout.
+          </p>
 
-      <!-- Grow -->
-      <article class="plan-card highlight" data-plan
-               data-plan-id="Grow"
-               data-monthly-price="149" data-annual-monthly-price="119">
-        <div class="plan-top-banner green">£1 for the first month</div>
-        <div class="plan-header">
-          <div class="plan-header-top">
-            <div class="plan-name-row">
-              <div class="plan-name">Grow</div>
-              <span class="plan-tag">Most popular</span>
-            </div>
-            <div class="plan-subtitle">For small teams and growing networks.</div>
+          <div class="plan-features">
+            Simple RFID counts and shrink visibility for small operators.
+            <ul>
+              <li>Up to 1,000 active tagged items.</li>
+              <li>Single location, handheld reader (BYO or purchase separately).</li>
+              <li>Basic dashboards for stock accuracy and loss.</li>
+            </ul>
           </div>
 
-          <div class="plan-price">
-            <span class="plan-price-main">£149</span>
-            <span class="plan-price-unit">/month</span>
+          <div class="plan-cta">
+            <button class="btn-outline">Start monthly</button>
           </div>
-          <div class="plan-price-foot"
-               data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
+        </article>
+
+        <!-- Grow -->
+        <article
+          class="plan-card"
+          data-plan="1"
+          data-monthly-price="149"
+          data-yearly-monthly-price="119"
+        >
+          <div class="plan-ribbon">£1 for the first month</div>
+          <div class="plan-eyebrow">Standard</div>
+          <div class="plan-name-row">
+            <div class="plan-name">Grow</div>
+            <span class="popular-pill">Most popular</span>
           </div>
-        </div>
+          <div class="plan-subtitle">For small teams and growing networks.</div>
 
-        <p class="plan-meta">
-          Multi-site visibility with scheduled finance-ready reporting.
-        </p>
-        <ul class="plan-list">
-          <li>Up to 20,000 active tagged items across locations.</li>
-          <li>Cycle counts and shrink reports by store and warehouse.</li>
-          <li>Operations and finance dashboards with scheduled exports.</li>
-        </ul>
-
-        <div class="plan-cta-wrap">
-          <a
-            class="btn-cta plan-cta-button"
-            href="#"
-            data-monthly-url="https://buy.stripe.com/STANDARD_MONTHLY"
-            data-annual-url="https://buy.stripe.com/STANDARD_ANNUAL"
+          <div class="plan-price-row">
+            <div class="plan-price price-value">£149</div>
+            <div class="plan-price-suffix price-suffix">/month</div>
+          </div>
+          <p
+            class="plan-billing-note"
+            data-monthly-note="Billed monthly. VAT added at checkout."
+            data-yearly-note="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly."
           >
-            Start monthly
-          </a>
-        </div>
-      </article>
+            Billed monthly. VAT added at checkout.
+          </p>
 
-      <!-- Pro -->
-      <article class="plan-card" data-plan
-               data-plan-id="Pro"
-               data-monthly-price="249" data-annual-monthly-price="199">
-        <div class="plan-top-banner green">£1 for the first month</div>
-        <div class="plan-header">
-          <div class="plan-header-top">
-            <div class="plan-name-row">
-              <div class="plan-name">Pro</div>
-            </div>
-            <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
+          <div class="plan-features">
+            Multi-site visibility with scheduled finance-ready reporting.
+            <ul>
+              <li>Up to 20,000 active tagged items across locations.</li>
+              <li>Cycle counts and shrink reports by store and warehouse.</li>
+              <li>Operations and finance dashboards with scheduled exports.</li>
+            </ul>
           </div>
 
-          <div class="plan-price">
-            <span class="plan-price-main">£249</span>
-            <span class="plan-price-unit">/month</span>
+          <div class="plan-cta">
+            <button class="btn-outline">Start monthly</button>
           </div>
-          <div class="plan-price-foot"
-               data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
+        </article>
+
+        <!-- Pro -->
+        <article
+          class="plan-card"
+          data-plan="2"
+          data-monthly-price="249"
+          data-yearly-monthly-price="199"
+        >
+          <div class="plan-ribbon">£1 for the first month</div>
+          <div class="plan-eyebrow">Pro</div>
+          <div class="plan-name-row">
+            <div class="plan-name">Pro</div>
           </div>
-        </div>
+          <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
 
-        <p class="plan-meta">
-          Finance-led control with consolidated views and integrations.
-        </p>
-        <ul class="plan-list">
-          <li>Unlimited active tagged items across all sites and clients.</li>
-          <li>Consolidated dashboards with drill-down and ageing reports.</li>
-          <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
-        </ul>
-
-        <div class="plan-cta-wrap">
-          <a
-            class="btn-cta plan-cta-button"
-            href="#"
-            data-monthly-url="https://buy.stripe.com/PRO_MONTHLY"
-            data-annual-url="https://buy.stripe.com/PRO_ANNUAL"
+          <div class="plan-price-row">
+            <div class="plan-price price-value">£249</div>
+            <div class="plan-price-suffix price-suffix">/month</div>
+          </div>
+          <p
+            class="plan-billing-note"
+            data-monthly-note="Billed monthly. VAT added at checkout."
+            data-yearly-note="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly."
           >
-            Start monthly
-          </a>
-        </div>
-      </article>
+            Billed monthly. VAT added at checkout.
+          </p>
 
-      <!-- Enterprise -->
-      <article class="plan-card" data-plan-id="Enterprise">
-        <div class="plan-top-banner blue">Available on a 1–3 year term</div>
-        <div class="plan-header">
-          <div class="plan-header-top">
-            <div class="plan-name-row">
-              <div class="plan-name">Enterprise</div>
-            </div>
-            <div class="plan-subtitle">Custom programmes and SLAs.</div>
+          <div class="plan-features">
+            Finance-led control with consolidated views and integrations.
+            <ul>
+              <li>Unlimited active tagged items across all sites and clients.</li>
+              <li>Consolidated dashboards with drill-down and ageing reports.</li>
+              <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
+            </ul>
           </div>
 
-          <div class="plan-price">
-            <span class="plan-price-main">Custom</span>
-            <span class="plan-price-unit">/month</span>
+          <div class="plan-cta">
+            <button class="btn-outline">Start monthly</button>
           </div>
-          <div class="plan-price-foot">
+        </article>
+
+        <!-- Enterprise -->
+        <article
+          class="plan-card plan-card--enterprise"
+          data-plan="3"
+          data-monthly-price="0"
+          data-yearly-monthly-price="0"
+        >
+          <div class="plan-ribbon">Available on a 1–3 year term</div>
+          <div class="plan-eyebrow">Enterprise</div>
+          <div class="plan-name-row">
+            <div class="plan-name">Enterprise</div>
+          </div>
+          <div class="plan-subtitle">Custom programmes and SLAs.</div>
+
+          <div class="plan-price-row">
+            <div class="plan-price">Custom</div>
+            <div class="plan-price-suffix">/month</div>
+          </div>
+          <p class="plan-billing-note">
             Tailored volumes, hardware bundles and commercial terms.
+          </p>
+
+          <div class="plan-features">
+            For complex networks needing deeper integration, governance and dedicated support.
+            <ul>
+              <li>Unlimited sites and tag volumes with bespoke commercials.</li>
+              <li>Hardware rollout, onboarding and training.</li>
+              <li>Custom dashboards and reporting packs for finance and operations.</li>
+            </ul>
+          </div>
+
+          <div class="plan-cta">
+            <button class="btn-primary">Contact sales</button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Dots under mobile slider -->
+      <div class="plans-dots" id="plansDots">
+        <div class="slider-dot active" data-dot="0"></div>
+        <div class="slider-dot" data-dot="1"></div>
+        <div class="slider-dot" data-dot="2"></div>
+        <div class="slider-dot" data-dot="3"></div>
+      </div>
+
+      <!-- What every plan gets you -->
+      <section class="plan-benefits">
+        <h2>What every plan gets you</h2>
+        <p>
+          No matter where you start, every MeshRFID plan is built around finance-grade
+          inventory data, so you always know what you own, where it is, and what it’s worth.
+        </p>
+        <div class="benefit-chips">
+          <span class="benefit-chip">Inventory control you can trust</span>
+          <span class="benefit-chip">Real-time stock transparency</span>
+          <span class="benefit-chip">Better cash and open-to-buy management</span>
+          <span class="benefit-chip">Maximised margin on each unit</span>
+          <span class="benefit-chip">Decision-ready reporting for finance</span>
+        </div>
+      </section>
+
+      <!-- Full feature list -->
+      <section class="features-section">
+        <button class="features-toggle-btn" id="featuresToggle">
+          <span class="icon" id="featuresToggleIcon">+</span>
+          <span id="featuresToggleText">Show full feature list</span>
+        </button>
+
+        <div class="features-table-wrapper" id="featuresTableWrapper">
+          <table class="features-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th class="feat-centre">Starter</th>
+                <th class="feat-centre">Grow</th>
+                <th class="feat-centre">Pro</th>
+                <th class="feat-centre">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Real-time stock counts</th>
+                <td class="feat-centre">✓</td>
+                <td class="feat-centre">✓</td>
+                <td class="feat-centre">✓</td>
+                <td class="feat-centre">✓</td>
+              </tr>
+              <tr>
+                <th>Shrink &amp; loss reporting</th>
+                <td class="feat-centre">Basic</td>
+                <td class="feat-centre">Store &amp; warehouse</td>
+                <td class="feat-centre">Network-wide</td>
+                <td class="feat-centre">Network-wide + custom</td>
+              </tr>
+              <tr>
+                <th>Sites / locations included</th>
+                <td class="feat-centre">1</td>
+                <td class="feat-centre">Multi-site</td>
+                <td class="feat-centre">Unlimited</td>
+                <td class="feat-centre">Unlimited</td>
+              </tr>
+              <tr>
+                <th>Tag volume</th>
+                <td class="feat-centre">Up to 1k</td>
+                <td class="feat-centre">Up to 20k</td>
+                <td class="feat-centre">Unlimited</td>
+                <td class="feat-centre">Unlimited</td>
+              </tr>
+              <tr>
+                <th>Finance-ready exports</th>
+                <td class="feat-centre">CSV</td>
+                <td class="feat-centre">Scheduled CSV</td>
+                <td class="feat-centre">Scheduled CSV &amp; API</td>
+                <td class="feat-centre">Custom packs &amp; API</td>
+              </tr>
+              <tr>
+                <th>Ageing &amp; margin analytics</th>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">By site</td>
+                <td class="feat-centre">By site &amp; client</td>
+                <td class="feat-centre">Custom</td>
+              </tr>
+              <tr>
+                <th>Multi-currency support</th>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">✓</td>
+                <td class="feat-centre">✓</td>
+              </tr>
+              <tr>
+                <th>ERP / finance integrations</th>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">Standard connectors</td>
+                <td class="feat-centre">Standard + custom</td>
+                <td class="feat-centre">Bespoke programme</td>
+              </tr>
+              <tr>
+                <th>Dedicated account team</th>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">-</td>
+                <td class="feat-centre">Optional</td>
+                <td class="feat-centre">Included</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Placeholder anchors so nav links don't 404 -->
+      <section id="how-it-works" style="margin-top:3rem;"></section>
+      <section id="case-studies" style="margin-top:1rem;"></section>
+
+      <!-- FAQ -->
+      <section id="faq" class="faq-section">
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is the first month really £1 on all non-Enterprise plans?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes. Starter, Grow and Pro are £1 for the first month per organisation.
+            After that, standard pricing applies at the rate shown for your chosen
+            billing option.
           </div>
         </div>
 
-        <p class="plan-meta">
-          For complex networks needing deeper integration, governance and dedicated support.
-        </p>
-        <ul class="plan-list">
-          <li>Unlimited sites and tag volumes with bespoke commercials.</li>
-          <li>Hardware rollout, onboarding and training.</li>
-          <li>Custom dashboards and reporting packs for finance and operations.</li>
-        </ul>
-
-        <div class="plan-cta-wrap">
-          <a
-            class="btn-cta-secondary plan-cta-button"
-            href="mailto:hello@meshrfid.com?subject=Enterprise%20Enquiry"
-          >
-            Contact sales
-          </a>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What’s the difference between Grow and Pro?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Grow is for small teams and regional networks – up to roughly 20,000
+            active tagged items across locations with scheduled finance exports.
+            Pro is built for chains, warehouses and 3PLs that need unlimited tags,
+            multi-currency reporting, ageing analysis and direct ERP / finance
+            integrations.
+          </div>
         </div>
-      </article>
 
-    </div>
-  </section>
-
-  <!-- What every plan gets you -->
-  <section>
-    <h2 class="section-title">What every plan gets you</h2>
-    <p class="section-subtitle section-subtitle-wide">
-      Every MeshRFID plan gives you finance-grade inventory data you can actually run the business on.
-    </p>
-
-    <div class="benefit-card-row">
-      <article class="benefit-card">
-        <div class="benefit-icon">📦</div>
-        <div class="benefit-title">Inventory control you can trust</div>
-        <div class="benefit-text">
-          Clean, tagged stock files so finance and ops work from the same numbers, not estimates and gut feel.
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are tag volumes measured by SKU or by individual item?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Volumes are based on active tagged items, not SKUs. If you have
+            200 units of the same SKU, that counts as 200 active tagged items.
+          </div>
         </div>
-      </article>
 
-      <article class="benefit-card">
-        <div class="benefit-icon">🔍</div>
-        <div class="benefit-title">Real-time stock transparency</div>
-        <div class="benefit-text">
-          See what’s on the shop floor, in the back room, or in 3PL storage in seconds, not days of manual counts.
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I switch plans later?</span>
+            <span class="icon">+</span>
+          </div>
+          <div class="faq-answer">
+            Yes. You can move between Starter, Grow and Pro as your volumes and
+            requirements change. Enterprise plans are agreed on a 1–3 year term.
+          </div>
         </div>
-      </article>
+      </section>
+    </section>
+  </main>
 
-      <article class="benefit-card">
-        <div class="benefit-icon">💷</div>
-        <div class="benefit-title">Better cash management</div>
-        <div class="benefit-text">
-          Reduce overbuying, release cash from dead stock and shrink, and plan purchases against actual demand.
-        </div>
-      </article>
+  <footer class="site-footer" id="contact">
+    © MeshRFID 2025.
+  </footer>
 
-      <article class="benefit-card">
-        <div class="benefit-icon">📊</div>
-        <div class="benefit-title">Decision-ready reporting</div>
-        <div class="benefit-text">
-          Scheduled, finance-ready exports that plug into your reporting stack with no manual rework.
-        </div>
-      </article>
-    </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Mobile nav
+      const navToggle = document.querySelector(".nav-toggle");
+      const siteNav = document.querySelector(".site-nav");
+      navToggle.addEventListener("click", () => {
+        siteNav.classList.toggle("open");
+      });
 
-    <!-- dots like Shopify -->
-    <div class="benefit-dots" aria-hidden="true">
-      <span class="benefit-dot active"></span>
-      <span class="benefit-dot"></span>
-      <span class="benefit-dot"></span>
-      <span class="benefit-dot"></span>
-    </div>
-  </section>
+      // Billing toggle
+      const billingToggle = document.getElementById("billingToggle");
+      const billingButtons = billingToggle.querySelectorAll("button");
+      const planCards = document.querySelectorAll(".plan-card");
 
-  <!-- Full list of features / comparison -->
-  <section>
-    <h2 class="section-title">Full list of features</h2>
-    <p class="section-subtitle">
-      A more detailed look at what’s included on each plan. Use this when you’re aligning finance, ops and IT.
-    </p>
+      function setBilling(mode) {
+        billingButtons.forEach((btn) =>
+          btn.classList.toggle("active", btn.dataset.billing === mode)
+        );
 
-    <button type="button" class="feature-toggle-btn" id="featureToggleBtn">
-      Show full feature list +
-    </button>
+        planCards.forEach((card) => {
+          const priceEl = card.querySelector(".price-value");
+          const suffixEl = card.querySelector(".price-suffix");
+          const noteEl = card.querySelector(".plan-billing-note");
 
-    <div class="comparison-wrapper">
-      <table class="comparison-table">
-        <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Starter</th>
-          <th>Grow</th>
-          <th>Pro</th>
-          <th>Enterprise</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Inventory & operations -->
-        <tr class="group-row">
-          <td colspan="5">Inventory &amp; operations</td>
-        </tr>
-        <tr>
-          <td>Active tagged items included</td>
-          <td>Up to 1,000</td>
-          <td>Up to 20,000</td>
-          <td>Unlimited</td>
-          <td>Unlimited</td>
-        </tr>
-        <tr>
-          <td>Locations included</td>
-          <td>1</td>
-          <td>Multi-site</td>
-          <td>Multi-site &amp; multi-client</td>
-          <td>Global networks</td>
-        </tr>
-        <tr>
-          <td>Walk-and-scan handheld counts</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
+          if (!priceEl || !suffixEl || !noteEl) return;
 
-        <!-- Finance & reporting -->
-        <tr class="group-row extra-row">
-          <td colspan="5">Finance &amp; reporting</td>
-        </tr>
-        <tr class="extra-row">
-          <td>Stock accuracy &amp; shrink dashboards</td>
-          <td>Basic</td>
-          <td>Standard</td>
-          <td>Consolidated</td>
-          <td>Custom packs</td>
-        </tr>
-        <tr class="extra-row">
-          <td>Ageing and valuation reports</td>
-          <td class="center">–</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        <tr class="extra-row">
-          <td>Multi-entity consolidated views</td>
-          <td class="center">–</td>
-          <td class="center">–</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
+          const monthly = Number(card.dataset.monthlyPrice || 0);
+          const yearlyMonthly = Number(card.dataset.yearlyMonthlyPrice || 0);
 
-        <!-- Integrations & data -->
-        <tr class="group-row extra-row">
-          <td colspan="5">Integrations &amp; data</td>
-        </tr>
-        <tr class="extra-row">
-          <td>CSV exports</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        <tr class="extra-row">
-          <td>API access</td>
-          <td class="center">–</td>
-          <td class="center">Add-on</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center">Custom</td>
-        </tr>
-        <tr class="extra-row">
-          <td>ERP / finance integrations</td>
-          <td class="center">–</td>
-          <td class="center">Add-on</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center">Custom</td>
-        </tr>
-
-        <!-- Support & rollout -->
-        <tr class="group-row extra-row">
-          <td colspan="5">Support &amp; rollout</td>
-        </tr>
-        <tr class="extra-row">
-          <td>Self-serve onboarding guides</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        <tr class="extra-row">
-          <td>Email support</td>
-          <td class="center">–</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        <tr class="extra-row">
-          <td>Quarterly success reviews</td>
-          <td class="center">–</td>
-          <td class="center">–</td>
-          <td class="center"><span class="tick">✓</span></td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        <tr class="extra-row">
-          <td>Dedicated account team</td>
-          <td class="center">–</td>
-          <td class="center">–</td>
-          <td class="center">–</td>
-          <td class="center"><span class="tick">✓</span></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <h2 class="section-title">FAQ</h2>
-    <p class="section-subtitle">
-      A few common questions from finance, ops and IT teams. If you need more detail, just reach out.
-    </p>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question">Is pricing based on SKUs or individual items?</div>
-        <p>
-          Pricing is based on the number of active tagged items in circulation, not the number of SKUs.
-          A size run of the same style still counts as multiple items because each unit has its own tag.
-        </p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Can we start on one plan and move up later?</div>
-        <p>
-          Yes. You can upgrade from Starter to Grow or Pro at any time as volumes grow or you need more finance features.
-          Your data and history stay in place.
-        </p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">What does “walk and scan” actually do today?</div>
-        <p>
-          The handheld reader captures every tag in range and MeshRFID compares that count with your expected stock for that
-          location. You see variances and unknown tags, so you can investigate shrink or misplacements quickly.
-        </p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">Do we need new hardware?</div>
-        <p>
-          You can bring your own compatible handheld readers, or we can supply hardware bundles on Grow, Pro and
-          Enterprise plans. Hardware is priced separately from the software subscription.
-        </p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question">How does support differ by plan?</div>
-        <p>
-          Starter is self-serve with onboarding guides and templates. Grow adds email support, while Pro and Enterprise
-          add priority response times and scheduled success reviews. Enterprise customers also receive a named account team.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / Next step -->
-  <section id="contact">
-    <h2 class="section-title">Next step</h2>
-    <p class="section-subtitle">
-      Share your current volumes and process and we’ll come back with a finance-led ROI view
-      and rollout plan, or jump straight to a live demo of MeshRFID in action.
-    </p>
-    <div class="hero-actions" style="margin-top: 16px;">
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Contact" class="btn-cta">Contact us</a>
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Demo" class="btn-cta-secondary">Book a demo</a>
-      <a href="case-studies.html" class="btn-cta-secondary">See case studies</a>
-    </div>
-  </section>
-</main>
-
-<footer>© MeshRFID 2025.</footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let billing = 'monthly';
-
-    const toggleButtons = document.querySelectorAll('.billing-option');
-    const billingToggleEl = document.querySelector('.billing-toggle');
-    const plans = document.querySelectorAll('[data-plan]');
-    const CTA_LABEL_MONTHLY = 'Start monthly';
-    const CTA_LABEL_ANNUAL = 'Start yearly – save 20%';
-
-    function updateBillingUI() {
-      plans.forEach(plan => {
-        const monthlyPrice = plan.dataset.monthlyPrice;
-        const annualMonthlyPrice = plan.dataset.annualMonthlyPrice;
-
-        const priceMain = plan.querySelector('.plan-price-main');
-        const priceUnit = plan.querySelector('.plan-price-unit');
-        const foot = plan.querySelector('.plan-price-foot');
-        const cta = plan.querySelector('.plan-cta-button');
-
-        if (priceMain && priceUnit && monthlyPrice && annualMonthlyPrice) {
-          if (billing === 'monthly') {
-            priceMain.textContent = '£' + monthlyPrice;
+          if (mode === "monthly") {
+            priceEl.textContent = "£" + monthly;
+            suffixEl.textContent = "/month";
+            noteEl.textContent = noteEl.dataset.monthlyNote;
           } else {
-            priceMain.textContent = '£' + annualMonthlyPrice;
+            priceEl.textContent = "£" + yearlyMonthly;
+            suffixEl.textContent = "/month";
+            noteEl.textContent = noteEl.dataset.yearlyNote;
           }
-          priceUnit.textContent = '/month';
-        }
-
-        if (foot) {
-          const footMonthly = foot.getAttribute('data-monthly-foot');
-          const footAnnual = foot.getAttribute('data-annual-foot');
-          if (footMonthly && footAnnual) {
-            foot.textContent = (billing === 'monthly') ? footMonthly : footAnnual;
-          }
-        }
-
-        if (cta && cta.dataset.monthlyUrl && cta.dataset.annualUrl) {
-          cta.href = (billing === 'monthly') ? cta.dataset.monthlyUrl : cta.dataset.annualUrl;
-          cta.textContent = (billing === 'monthly') ? CTA_LABEL_MONTHLY : CTA_LABEL_ANNUAL;
-        }
-      });
-
-      toggleButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.billing === billing);
-      });
-
-      if (billingToggleEl) {
-        billingToggleEl.classList.toggle('annual', billing === 'annual');
+        });
       }
-    }
 
-    toggleButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        billing = btn.dataset.billing;
-        updateBillingUI();
+      billingButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const mode = btn.dataset.billing;
+          setBilling(mode);
+        });
+      });
+
+      // Plan tabs + slider dots
+      const plansRow = document.getElementById("plansRow");
+      const planTabs = document.querySelectorAll(".plan-tab");
+      const dots = document.querySelectorAll(".slider-dot");
+
+      function activateIndex(idx) {
+        planTabs.forEach((tab) =>
+          tab.classList.toggle(
+            "active",
+            Number(tab.dataset.planTab) === idx
+          )
+        );
+        dots.forEach((dot) =>
+          dot.classList.toggle("active", Number(dot.dataset.dot) === idx)
+        );
+      }
+
+      function scrollToCard(idx) {
+        const card = document.querySelector(`.plan-card[data-plan="${idx}"]`);
+        if (!card) return;
+
+        const containerLeft = plansRow.getBoundingClientRect().left;
+        const cardLeft = card.getBoundingClientRect().left;
+        const currentScroll = plansRow.scrollLeft;
+        const offset = cardLeft - containerLeft;
+
+        plansRow.scrollTo({
+          left: currentScroll + offset,
+          behavior: "smooth",
+        });
+
+        activateIndex(idx);
+      }
+
+      planTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const idx = Number(tab.dataset.planTab);
+          scrollToCard(idx);
+        });
+      });
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = Number(dot.dataset.dot);
+          scrollToCard(idx);
+        });
+      });
+
+      plansRow.addEventListener("scroll", () => {
+        // Find card nearest left edge
+        let bestIdx = 0;
+        let bestDelta = Infinity;
+
+        planCards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const containerRect = plansRow.getBoundingClientRect();
+          const delta = Math.abs(rect.left - containerRect.left);
+          const idx = Number(card.dataset.plan);
+          if (delta < bestDelta) {
+            bestDelta = delta;
+            bestIdx = idx;
+          }
+        });
+
+        activateIndex(bestIdx);
+      });
+
+      // Features accordion
+      const featuresToggle = document.getElementById("featuresToggle");
+      const featuresWrapper = document.getElementById("featuresTableWrapper");
+      const featuresIcon = document.getElementById("featuresToggleIcon");
+      const featuresText = document.getElementById("featuresToggleText");
+
+      featuresToggle.addEventListener("click", () => {
+        const isOpen = featuresWrapper.style.display === "block";
+        featuresWrapper.style.display = isOpen ? "none" : "block";
+        featuresIcon.textContent = isOpen ? "+" : "–";
+        featuresText.textContent = isOpen
+          ? "Show full feature list"
+          : "Hide full feature list";
+      });
+
+      // FAQ accordion
+      document.querySelectorAll(".faq-item").forEach((item) => {
+        const q = item.querySelector(".faq-question");
+        const icon = q.querySelector(".icon");
+        q.addEventListener("click", () => {
+          const open = item.classList.toggle("open");
+          icon.textContent = open ? "–" : "+";
+        });
       });
     });
-
-    updateBillingUI();
-
-    // Feature table toggle (expand/collapse) with +/-
-    const featureBtn = document.getElementById('featureToggleBtn');
-    const extraRows = document.querySelectorAll('.comparison-table .extra-row');
-    let featuresExpanded = false;
-
-    function setFeatureVisibility() {
-      extraRows.forEach(row => {
-        row.style.display = featuresExpanded ? 'table-row' : 'none';
-      });
-      featureBtn.textContent = featuresExpanded
-        ? 'Hide full feature list –'
-        : 'Show full feature list +';
-    }
-
-    featureBtn.addEventListener('click', () => {
-      featuresExpanded = !featuresExpanded;
-      setFeatureVisibility();
-    });
-
-    setFeatureVisibility();
-
-    // Mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const headerEl = document.querySelector('header');
-
-    if (navToggle && headerEl) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = headerEl.classList.toggle('nav-open');
-        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      });
-    }
-
-    // Plan tabs (mobile)
-    const planTabs = document.querySelectorAll('.pricing-tab');
-    const planCards = document.querySelectorAll('.plan-card');
-
-    function activatePlan(id) {
-      planTabs.forEach(tab => {
-        tab.classList.toggle('active', tab.dataset.planTab === id);
-      });
-
-      // on mobile we rely on .active for visibility;
-      // on desktop .active is ignored visually but harmless
-      planCards.forEach(card => {
-        const cardId = card.dataset.planId;
-        if (cardId) {
-          card.classList.toggle('active', cardId === id);
-        }
-      });
-    }
-
-    planTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        activatePlan(tab.dataset.planTab);
-      });
-    });
-
-    // default – keep Starter selected in tabs on load
-    activatePlan('Starter');
-  });
-</script>
+  </script>
 </body>
 </html>
