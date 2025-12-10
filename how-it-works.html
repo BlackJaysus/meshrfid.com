@@ -5,7 +5,6 @@
   <title>How MeshRFID Works</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -14,11 +13,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: #f7f7f7;
@@ -26,10 +21,7 @@
       line-height: 1.5;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    a { text-decoration: none; color: inherit; }
 
     header {
       background: #ffffff;
@@ -45,9 +37,9 @@
 
     .logo {
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      text-transform: none;
+      letter-spacing: 0.03em;
     }
 
     nav a {
@@ -55,10 +47,7 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
-
-    nav a:hover {
-      opacity: 1;
-    }
+    nav a:hover { opacity: 1; }
 
     .container {
       max-width: 900px;
@@ -66,10 +55,7 @@
       padding: 32px 16px 64px;
     }
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
 
     p.lead {
       opacity: 0.85;
@@ -151,7 +137,6 @@
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
       margin-top: 24px;
     }
-
     .btn-cta:hover {
       background: #111;
       color: #fff;
@@ -169,7 +154,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">MeshRFID</div>
+  <a href="index.html" class="logo">MeshRFID</a>
   <nav>
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -180,8 +165,7 @@
 <main class="container">
   <h1>How MeshRFID works</h1>
   <p class="lead">
-    Simple line from tag to balance sheet. no complex rollouts, no heavy IT project.
-    You tag, scan, and MeshRFID does the rest.
+    Simple line from tag to balance sheet. You tag, scan and MeshRFID does the rest – no heavy IT project.
   </p>
 
   <section class="steps">
@@ -207,7 +191,7 @@
       <div class="step-label">Step 3</div>
       <div class="step-title">Dashboards for ops and finance</div>
       <p>
-        Real-time views show &ldquo;what&rsquo;s actually here&rdquo; vs &ldquo;what the system thinks is here&rdquo;,
+        Real-time views show what is actually on hand versus what the system thinks is there,
         with shrink, ageing and mis-location surfaced for operations and finance teams.
       </p>
     </article>
@@ -222,7 +206,6 @@
     </article>
   </section>
 
-  <!-- Simple line graphic using shapes, as requested -->
   <section class="line-graphic">
     <strong>At-a-glance flow</strong>
     <div class="line-graphic-inner">
@@ -234,15 +217,13 @@
       <span class="line-connector"></span>
       <span class="line-node">MeshRFID</span>
       <span class="line-connector"></span>
-      <span class="line-node">Ops &amp; Finance dashboards</span>
+      <span class="line-node">Ops &amp; finance dashboards</span>
     </div>
   </section>
 
-  <a href="index.html#pricing" class="btn-cta">View plans and annual totals</a>
+  <a href="index.html#pricing" class="btn-cta">View Plans and Pricing</a>
 </main>
 
-<footer>
-  © MeshRFID 2025.
-</footer>
+<footer>© MeshRFID 2025.</footer>
 </body>
 </html>
