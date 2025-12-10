@@ -194,13 +194,15 @@
     }
 
     .plan-header {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
+    /* Normalised header height so prices align */
     .plan-header-top {
-      min-height: 90px; /* keeps price line aligned across cards */
+      min-height: 88px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -214,7 +216,9 @@
     }
 
     .plan-tag {
-      align-self: flex-start;
+      position: absolute;
+      top: 4px;
+      right: 0;
       font-size: 0.75rem;
       padding: 2px 8px;
       border-radius: 999px;
@@ -311,62 +315,23 @@
       color: #fff;
     }
 
-    /* Features grid */
+    /* “What every plan gets you” row */
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
+    .plan-benefits-row {
       margin-top: 12px;
-    }
-
-    .feature-card {
-      background: #ffffff;
-      border-radius: 14px;
-      padding: 12px 14px;
-      border: 1px solid #e2e2e2;
-      font-size: 0.9rem;
-    }
-
-    .feature-card-title {
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    /* Visual row */
-
-    .visuals-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-
-    .visual-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 16px 16px 18px;
-      border: 1px solid #e2e2e2;
       display: flex;
-      flex-direction: column;
       gap: 8px;
-      font-size: 0.9rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
     }
 
-    .visual-icon {
-      width: 32px;
-      height: 32px;
+    .plan-benefit {
+      background: #ffffff;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #fff, #ddd);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    .visual-title {
-      font-weight: 600;
-      margin-top: 4px;
+      border: 1px solid #e2e2e2;
+      padding: 6px 12px;
+      white-space: nowrap;
+      font-weight: 500;
     }
 
     /* Comparison table */
@@ -407,6 +372,14 @@
 
     table.comparison-table .tick {
       font-size: 1rem;
+    }
+
+    .group-row td {
+      background: #f0f3f7;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
     }
 
     .feature-toggle-btn {
@@ -533,8 +506,7 @@
 
       <!-- Starter -->
       <article class="plan-card" data-plan
-               data-monthly-price="19" data-annual-price="182"
-               data-monthly-unit="/month" data-annual-unit="/year">
+               data-monthly-price="19" data-annual-monthly-price="15">
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-badge">Entry</div>
@@ -548,7 +520,7 @@
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. Cancel or upgrade any time."
-               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
+               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
         </div>
 
@@ -575,12 +547,11 @@
 
       <!-- Standard -->
       <article class="plan-card highlight" data-plan
-               data-monthly-price="149" data-annual-price="1430"
-               data-monthly-unit="/month" data-annual-unit="/year">
+               data-monthly-price="149" data-annual-monthly-price="119">
         <div class="plan-header">
+          <span class="plan-tag">Most popular</span>
           <div class="plan-header-top">
             <div class="plan-badge">Standard</div>
-            <div class="plan-tag">Most popular</div>
             <div class="plan-name">Standard</div>
             <div class="plan-subtitle">For small teams and growing networks.</div>
           </div>
@@ -591,7 +562,7 @@
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
+               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
         </div>
 
@@ -618,8 +589,7 @@
 
       <!-- Pro -->
       <article class="plan-card" data-plan
-               data-monthly-price="249" data-annual-price="2390"
-               data-monthly-unit="/month" data-annual-unit="/year">
+               data-monthly-price="249" data-annual-monthly-price="199">
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-badge">Pro</div>
@@ -627,13 +597,13 @@
             <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
           </div>
 
-          <div class="plan-price">
+        <div class="plan-price">
             <span class="plan-price-main">£249</span>
             <span class="plan-price-unit">/month</span>
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
+               data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
         </div>
 
@@ -698,72 +668,27 @@
     </div>
   </section>
 
-  <!-- What every plan includes -->
+  <!-- What every plan gets you -->
   <section>
-    <h2 class="section-title">What every MeshRFID plan includes</h2>
+    <h2 class="section-title">What every plan gets you</h2>
     <p class="section-subtitle">
-      Core capabilities are included on every plan so you can get to value quickly, then add capacity and finance features as you scale.
+      No matter where you start, every MeshRFID plan is built around finance-grade inventory data.
     </p>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-card-title">Fast handheld counts</div>
-        <p>Walk-and-scan counts using a handheld reader, with results back in minutes.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card-title">Variance alerts</div>
-        <p>Highlight gaps between expected and actual stock by location.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card-title">Tag and location history</div>
-        <p>Basic history of reads by time and place for investigation work.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card-title">Export to CSV</div>
-        <p>Export counts and variances for finance, auditors or external systems.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card-title">Role-based access</div>
-        <p>Separate access for store teams, warehouse teams and finance.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-card-title">Support</div>
-        <p>Email support and onboarding help to get your first locations live.</p>
-      </div>
+    <div class="plan-benefits-row">
+      <div class="plan-benefit">Inventory control you can trust</div>
+      <div class="plan-benefit">Real-time stock transparency</div>
+      <div class="plan-benefit">Better cash management</div>
+      <div class="plan-benefit">Maximised margin on each unit</div>
+      <div class="plan-benefit">Decision-ready reporting</div>
     </div>
   </section>
 
-  <!-- Visual row -->
+  <!-- Full list of features / comparison -->
   <section>
-    <h2 class="section-title">Built for finance, ops and 3PLs together</h2>
+    <h2 class="section-title">Full list of features</h2>
     <p class="section-subtitle">
-      MeshRFID sits between the shop floor and the balance sheet so everyone works from the same set of numbers.
-    </p>
-
-    <div class="visuals-row">
-      <div class="visual-card">
-        <div class="visual-icon">£</div>
-        <div class="visual-title">Finance-led dashboards</div>
-        <p>See shrink, stock accuracy and ageing in one place, with ready-to-send packs for month-end.</p>
-      </div>
-      <div class="visual-card">
-        <div class="visual-icon">📦</div>
-        <div class="visual-title">Ops-friendly workflows</div>
-        <p>Simple walk-and-scan flows for stores and warehouses that fit into current routines.</p>
-      </div>
-      <div class="visual-card">
-        <div class="visual-icon">🤝</div>
-        <div class="visual-title">3PL &amp; client views</div>
-        <p>Give each client or banner a clean view of their stock, while finance sees everything consolidated.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Comparison table -->
-  <section>
-    <h2 class="section-title">Compare plans</h2>
-    <p class="section-subtitle">
-      Choose the plan that matches your volumes and finance needs. You can upgrade at any time.
+      A more detailed look at what’s included on each plan. Use this when you’re aligning finance, ops and IT.
     </p>
 
     <button type="button" class="feature-toggle-btn" id="featureToggleBtn">
@@ -782,74 +707,115 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Inventory & operations -->
+          <tr class="group-row">
+            <td colspan="5">Inventory &amp; operations</td>
+          </tr>
           <tr>
-            <td>Active tagged items</td>
+            <td>Active tagged items included</td>
             <td>Up to 1,000</td>
             <td>Up to 20,000</td>
             <td>Unlimited</td>
             <td>Unlimited</td>
           </tr>
           <tr>
-            <td>Locations</td>
+            <td>Locations included</td>
             <td>1</td>
             <td>Multi-site</td>
             <td>Multi-site &amp; multi-client</td>
             <td>Global networks</td>
           </tr>
           <tr>
-            <td>Cycle counts &amp; shrink reports</td>
+            <td>Walk-and-scan handheld counts</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr>
-            <td>Finance dashboards</td>
-            <td>Basic</td>
-            <td>Standard</td>
-            <td>Consolidated + drill-down</td>
-            <td>Custom</td>
           </tr>
 
-          <!-- Extra rows (collapsible) -->
+          <!-- Finance & reporting -->
+          <tr class="group-row extra-row">
+            <td colspan="5">Finance &amp; reporting</td>
+          </tr>
           <tr class="extra-row">
-            <td>Ageing reports</td>
+            <td>Stock accuracy &amp; shrink dashboards</td>
+            <td>Basic</td>
+            <td>Standard</td>
+            <td>Consolidated</td>
+            <td>Custom packs</td>
+          </tr>
+          <tr class="extra-row">
+            <td>Ageing and valuation reports</td>
             <td class="center">–</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
           <tr class="extra-row">
-            <td>Multi-currency</td>
+            <td>Multi-entity consolidated views</td>
             <td class="center">–</td>
             <td class="center">–</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
+
+          <!-- Integrations & data -->
+          <tr class="group-row extra-row">
+            <td colspan="5">Integrations &amp; data</td>
+          </tr>
           <tr class="extra-row">
-            <td>API &amp; ERP integrations</td>
+            <td>CSV exports</td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
+          </tr>
+          <tr class="extra-row">
+            <td>API access</td>
             <td class="center">–</td>
             <td class="center">Add-on</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center">Custom</td>
           </tr>
           <tr class="extra-row">
-            <td>Audit-ready exports</td>
-            <td class="center">Basic</td>
-            <td class="center">Standard</td>
+            <td>ERP / finance integrations</td>
+            <td class="center">–</td>
+            <td class="center">Add-on</td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center">Custom</td>
+          </tr>
+
+          <!-- Support & rollout -->
+          <tr class="group-row extra-row">
+            <td colspan="5">Support &amp; rollout</td>
+          </tr>
+          <tr class="extra-row">
+            <td>Self-serve onboarding guides</td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
           <tr class="extra-row">
-            <td>Extra tag capacity</td>
-            <td colspan="4">Tag add-ons available on all plans in 1,000-item blocks.</td>
+            <td>Email support</td>
+            <td class="center">–</td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
           </tr>
           <tr class="extra-row">
-            <td>Support</td>
-            <td>Email</td>
-            <td>Email + scheduled check-ins</td>
-            <td>Priority support</td>
-            <td>Named account team</td>
+            <td>Quarterly success reviews</td>
+            <td class="center">–</td>
+            <td class="center">–</td>
+            <td class="center"><span class="tick">✓</span></td>
+            <td class="center"><span class="tick">✓</span></td>
+          </tr>
+          <tr class="extra-row">
+            <td>Dedicated account team</td>
+            <td class="center">–</td>
+            <td class="center">–</td>
+            <td class="center">–</td>
+            <td class="center"><span class="tick">✓</span></td>
           </tr>
         </tbody>
       </table>
@@ -893,10 +859,10 @@
         </p>
       </div>
       <div class="faq-item">
-        <div class="faq-question">How do integrations work on Pro?</div>
+        <div class="faq-question">How does support differ by plan?</div>
         <p>
-          Pro exposes APIs and connectors so you can feed counts and valuations into ERP or finance systems.
-          Typical integrations push location-level counts, variances and ageing into your existing reporting stack.
+          Starter is self-serve with onboarding guides and templates. Standard adds email support, while Pro and Enterprise
+          add priority response times and scheduled success reviews. Enterprise customers also receive a named account team.
         </p>
       </div>
     </div>
@@ -931,23 +897,20 @@
     function updateBillingUI() {
       plans.forEach(plan => {
         const monthlyPrice = plan.dataset.monthlyPrice;
-        const annualPrice = plan.dataset.annualPrice;
-        const monthlyUnit = plan.dataset.monthlyUnit || '/month';
-        const annualUnit = plan.dataset.annualUnit || '/year';
+        const annualMonthlyPrice = plan.dataset.annualMonthlyPrice;
 
         const priceMain = plan.querySelector('.plan-price-main');
         const priceUnit = plan.querySelector('.plan-price-unit');
         const foot = plan.querySelector('.plan-price-foot');
         const cta = plan.querySelector('.plan-cta-button');
 
-        if (priceMain && priceUnit && monthlyPrice && annualPrice) {
+        if (priceMain && priceUnit && monthlyPrice && annualMonthlyPrice) {
           if (billing === 'monthly') {
             priceMain.textContent = '£' + monthlyPrice;
-            priceUnit.textContent = monthlyUnit;
           } else {
-            priceMain.textContent = '£' + annualPrice;
-            priceUnit.textContent = annualUnit;
+            priceMain.textContent = '£' + annualMonthlyPrice;
           }
+          priceUnit.textContent = '/month'; // always monthly figure
         }
 
         if (foot) {
