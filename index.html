@@ -5,6 +5,7 @@
   <title>MeshRFID - Simple RFID for Retail and Warehouses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -23,6 +24,8 @@
     }
 
     a { text-decoration: none; color: inherit; }
+
+    /* Header */
 
     header {
       background: #ffffff;
@@ -50,11 +53,15 @@
     }
     nav a:hover { opacity: 1; }
 
+    /* Layout */
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 32px 16px 64px;
     }
+
+    /* Hero */
 
     .hero {
       display: grid;
@@ -86,6 +93,7 @@
     }
 
     /* Global CTAs (hero, contact etc) */
+
     .btn-cta,
     .btn-cta-secondary {
       border-radius: 999px;
@@ -118,6 +126,8 @@
       color: #fff;
     }
 
+    /* Hero side card */
+
     .hero-metrics {
       background: #ffffff;
       border-radius: 18px;
@@ -143,6 +153,8 @@
     .hero-metrics-row span.label { opacity: 0.7; }
     .hero-metrics-row span.value { font-weight: 600; }
 
+    /* Pricing */
+
     .section-title {
       font-size: 1.4rem;
       margin: 48px 0 20px;
@@ -162,6 +174,9 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      position: relative;
+      padding-bottom: 92px;   /* space for buttons */
+      overflow: hidden;
     }
 
     .plan-badge {
@@ -209,14 +224,18 @@
       gap: 4px;
     }
 
-    /* CTA area anchored at bottom so all buttons align in one row */
+    /* CTA block inside cards */
+
     .plan-cta-wrap {
-      margin-top: auto;
-      padding-top: 16px;
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
     }
 
     .plan-cta-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
 
@@ -224,7 +243,27 @@
     .plan-cta-row .btn-cta-secondary {
       width: 100%;
       justify-content: center;
+      font-size: 0.85rem;
+      white-space: nowrap;
     }
+
+    /* Enterprise: single full-width CTA but aligned with row */
+
+    .plan-card:last-child .plan-cta-row {
+      grid-template-columns: 1fr;
+    }
+
+    .plan-card:last-child .plan-cta-row a {
+      width: 100%;
+    }
+
+    /* Contact section */
+
+    #contact p {
+      max-width: 620px;
+    }
+
+    /* Footer */
 
     footer {
       border-top: 1px solid #e2e2e2;
@@ -248,6 +287,7 @@
 </header>
 
 <main class="container">
+  <!-- Hero -->
   <section class="hero">
     <div>
       <h1>Low-cost RFID that actually pays for itself.</h1>
@@ -256,7 +296,7 @@
         From sole traders to global retail and warehouse networks, it’s the same platform, scaled to your volume.
       </p>
       <div class="hero-actions">
-        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta">Book a Demo</a>
+        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Demo" class="btn-cta">Book a Demo</a>
         <a href="#pricing" class="btn-cta-secondary">View Pricing</a>
       </div>
     </div>
@@ -278,10 +318,12 @@
     </aside>
   </section>
 
+  <!-- Pricing -->
   <section id="pricing">
     <h2 class="section-title">Plans for every size of operation</h2>
 
     <div class="pricing-grid">
+
       <!-- Starter -->
       <article class="plan-card">
         <div class="plan-badge">Entry</div>
@@ -292,20 +334,19 @@
           Ideal for sole traders and single sites getting started with RFID.
         </p>
         <ul class="plan-list">
-          <li>Includes 200 active tagged items (Starter units now 200, not 500).</li>
-          <li>Single handheld reader (BYO smartphone optional).</li>
+          <li>Includes 200 active tagged items.</li>
+          <li>Single handheld reader (smartphone optional).</li>
           <li>Basic dashboards and export for finance.</li>
         </ul>
+
         <div class="plan-cta-wrap">
           <div class="plan-cta-row">
-            <!-- replace href values with your real Stripe Checkout URLs -->
-            <a href="https://buy.stripe.com/STARTER_MONTHLY_PLACEHOLDER"
-               class="btn-cta" target="_blank" rel="noopener">
+            <!-- Replace these three Stripe URLs with your real Checkout links -->
+            <a href="https://buy.stripe.com/STARTER_MONTHLY" class="btn-cta" target="_blank" rel="noopener">
               Monthly
             </a>
-            <a href="https://buy.stripe.com/STARTER_ANNUAL_PLACEHOLDER"
-               class="btn-cta-secondary" target="_blank" rel="noopener">
-              Annual (Best Value)
+            <a href="https://buy.stripe.com/STARTER_ANNUAL" class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual – Save 20%
             </a>
           </div>
         </div>
@@ -313,28 +354,27 @@
 
       <!-- Standard -->
       <article class="plan-card">
-        <div class="plan-badge">Most popular</div>
+        <div class="plan-badge">Most Popular</div>
         <div class="plan-name">Standard</div>
         <div class="plan-price">£149<span>/month</span></div>
         <div class="plan-annual">£1,788/year</div>
         <p class="plan-meta">
-          Built for growing retailers and warehouse networks that need tighter control.
+          For growing retailers and warehouse networks that need tighter control.
         </p>
         <ul class="plan-list">
-          <li>Cap: up to 5,000 active tagged items included.</li>
-          <li>Buy more capacity in 100-item increments as you grow.</li>
+          <li>Up to 5,000 tagged items included.</li>
+          <li>Buy more capacity in 100-item increments.</li>
           <li>Multi-location and basic 3PL support.</li>
-          <li>Operations and finance dashboards with scheduled reports.</li>
+          <li>Operations and scheduled finance reports.</li>
         </ul>
+
         <div class="plan-cta-wrap">
           <div class="plan-cta-row">
-            <a href="https://buy.stripe.com/STANDARD_MONTHLY_PLACEHOLDER"
-               class="btn-cta" target="_blank" rel="noopener">
+            <a href="https://buy.stripe.com/STANDARD_MONTHLY" class="btn-cta" target="_blank" rel="noopener">
               Monthly
             </a>
-            <a href="https://buy.stripe.com/STANDARD_ANNUAL_PLACEHOLDER"
-               class="btn-cta-secondary" target="_blank" rel="noopener">
-              Annual (Best Value)
+            <a href="https://buy.stripe.com/STANDARD_ANNUAL" class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual – Save 20%
             </a>
           </div>
         </div>
@@ -342,7 +382,7 @@
 
       <!-- Pro -->
       <article class="plan-card">
-        <div class="plan-badge">For finance-led ops</div>
+        <div class="plan-badge">For Finance-Led Ops</div>
         <div class="plan-name">Pro</div>
         <div class="plan-price">£249<span>/month</span></div>
         <div class="plan-annual">£2,988/year</div>
@@ -350,20 +390,19 @@
           For finance teams that need granular operational and financial control end to end.
         </p>
         <ul class="plan-list">
-          <li>Cap: up to 20,000 active tagged items included.</li>
-          <li>Buy more capacity in 100-item increments (no hard ceiling).</li>
-          <li>3PL, franchise and wholesale views in a single pane of glass.</li>
-          <li>AP/AR-friendly exports and audit-ready history.</li>
+          <li>Up to 20,000 tagged items included.</li>
+          <li>Unlimited capacity add-ons in 100-item blocks.</li>
+          <li>3PL, franchise and wholesale dashboards.</li>
+          <li>Audit-ready inbound and outbound trails.</li>
         </ul>
+
         <div class="plan-cta-wrap">
           <div class="plan-cta-row">
-            <a href="https://buy.stripe.com/PRO_MONTHLY_PLACEHOLDER"
-               class="btn-cta" target="_blank" rel="noopener">
+            <a href="https://buy.stripe.com/PRO_MONTHLY" class="btn-cta" target="_blank" rel="noopener">
               Monthly
             </a>
-            <a href="https://buy.stripe.com/PRO_ANNUAL_PLACEHOLDER"
-               class="btn-cta-secondary" target="_blank" rel="noopener">
-              Annual (Best Value)
+            <a href="https://buy.stripe.com/PRO_ANNUAL" class="btn-cta-secondary" target="_blank" rel="noopener">
+              Annual – Save 20%
             </a>
           </div>
         </div>
@@ -385,18 +424,20 @@
           <li>API and data integrations to your existing stack.</li>
           <li>Dedicated onboarding and account management.</li>
         </ul>
+
         <div class="plan-cta-wrap">
           <div class="plan-cta-row">
-            <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry"
-               class="btn-cta-secondary">
-              Contact Us about Enterprise
+            <a href="mailto:hello@meshrfid.com?subject=Enterprise%20Enquiry" class="btn-cta">
+              Contact Sales
             </a>
           </div>
         </div>
       </article>
+
     </div>
   </section>
 
+  <!-- Contact / Next step -->
   <section id="contact">
     <h2 class="section-title">Next step</h2>
     <p>
@@ -404,8 +445,8 @@
       ROI breakdown and rollout plan, or jump straight to a live demo.
     </p>
     <div class="hero-actions" style="margin-top: 16px;">
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20contact" class="btn-cta">Contact Us</a>
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta-secondary">Book a Demo</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Contact" class="btn-cta">Contact Us</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Demo" class="btn-cta-secondary">Book a Demo</a>
       <a href="case-studies.html" class="btn-cta-secondary">See Case Studies</a>
     </div>
   </section>
