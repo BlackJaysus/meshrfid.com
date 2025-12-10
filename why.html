@@ -22,22 +22,21 @@
       position: relative;
     }
 
-    /* Header – optional, consistent with pricing page */
+    /* HEADER (white, like pricing page) */
     .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 30;
-      background: rgba(0,0,0,0.65);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(15,23,42,0.5);
+      background: #ffffff;
+      border-bottom: 1px solid rgba(226,232,240,0.9);
     }
 
     .header-inner {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0.7rem 1.5rem;
+      padding: 0.8rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -47,13 +46,14 @@
     .brand {
       font-weight: 600;
       letter-spacing: 0.04em;
+      color: #111827;
     }
 
     .nav-links {
       display: flex;
       gap: 1.5rem;
       align-items: center;
-      color: #e5e7eb;
+      color: #6b7280;
     }
 
     .nav-links a {
@@ -65,70 +65,100 @@
     .nav-links a.active {
       opacity: 1;
       font-weight: 500;
+      color: #111827;
     }
 
     .btn-outline {
-      padding: 0.3rem 0.9rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid rgba(209,213,219,0.85);
-      background: rgba(15,23,42,0.9);
-      color: #f9fafb;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #111827;
       font-size: 0.8rem;
       cursor: pointer;
     }
 
-    /* Video */
-
-    #bg-video {
+    /* "Video" background – animated gradients */
+    .moving-bg {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 20% 0%, rgba(34,197,94,0.35), transparent 50%),
-                  radial-gradient(circle at 80% 100%, rgba(15,118,110,0.5), transparent 55%),
-                  rgba(0,0,0,0.65);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34,197,94,0.42), transparent 55%),
+        radial-gradient(circle at 100% 100%, rgba(37,99,235,0.4), transparent 60%),
+        radial-gradient(circle at 50% 120%, rgba(15,23,42,1), #000000 70%);
       mix-blend-mode: normal;
+      animation: bgShift 18s ease-in-out infinite alternate;
       z-index: -1;
     }
 
-    /* Simple centre text in case video fails / SEO */
+    @keyframes bgShift {
+      0% {
+        transform: scale(1) translate(0,0);
+        filter: blur(0px);
+      }
+      50% {
+        transform: scale(1.05) translate(0,-10px);
+        filter: blur(2px);
+      }
+      100% {
+        transform: scale(1.12) translate(0,10px);
+        filter: blur(4px);
+      }
+    }
 
-    .fallback-text {
+    /* Text like a motion-graphic video */
+    .centre-stage {
       position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -40%);
+      width: 100%;
+      max-width: 720px;
       text-align: center;
       padding: 0 1.5rem;
       pointer-events: none;
     }
 
-    .fallback-text h1 {
+    .text-frame {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      opacity: 0;
+      animation: textCycle 16s infinite;
+    }
+
+    .t1 { animation-delay: 0s; }
+    .t2 { animation-delay: 4s; }
+    .t3 { animation-delay: 8s; }
+    .t4 { animation-delay: 12s; }
+
+    @keyframes textCycle {
+      0%   { opacity: 0; transform: translate(-50%, 25px); }
+      8%   { opacity: 1; transform: translate(-50%, 0); }
+      25%  { opacity: 1; transform: translate(-50%, 0); }
+      35%  { opacity: 0; transform: translate(-50%, -25px); }
+      100% { opacity: 0; transform: translate(-50%, -25px); }
+    }
+
+    .headline {
       font-size: 2.2rem;
+      font-weight: 700;
       margin-bottom: 0.6rem;
     }
 
-    .fallback-text p {
-      font-size: 0.95rem;
-      max-width: 460px;
+    .subline {
+      font-size: 0.98rem;
       color: #e5e7eb;
-      opacity: 0.9;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
-    /* CTA button on top of video */
-
+    /* CTA at bottom, like before */
     .cta-wrap {
       position: fixed;
-      bottom: 5%;
+      bottom: 6%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -160,24 +190,21 @@
       opacity: 0.85;
     }
 
-    /* Mobile tweaks */
-
     @media (max-width: 768px) {
       .header-inner {
         padding-inline: 1rem;
-        font-size: 0.85rem;
       }
 
-      .nav-links {
-        gap: 0.75rem;
+      .centre-stage {
+        transform: translate(-50%, -35%);
       }
 
-      .fallback-text h1 {
-        font-size: 1.6rem;
+      .headline {
+        font-size: 1.7rem;
       }
 
-      .fallback-text p {
-        font-size: 0.85rem;
+      .subline {
+        font-size: 0.86rem;
       }
 
       .cta-btn {
@@ -205,31 +232,45 @@
       </div>
     </header>
 
-    <!-- Background video (muted, autoplay, loop) -->
-    <video
-      id="bg-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    >
-      <source src="meshrfid-why.mp4" type="video/mp4" />
-      <!-- Optional: <source src="meshrfid-why.webm" type="video/webm" /> -->
-    </video>
+    <!-- Animated background -->
+    <div class="moving-bg"></div>
 
-    <div class="overlay"></div>
+    <!-- “Video” text sequence -->
+    <div class="centre-stage">
+      <div class="text-frame t1">
+        <div class="headline">More bang for your RFID buck.</div>
+        <div class="subline">
+          MeshRFID turns low-cost tagging into higher margins – less shrink, cleaner stock,
+          and inventory data finance can trust.
+        </div>
+      </div>
 
-    <!-- Fallback text if video doesn't load -->
-    <div class="fallback-text">
-      <h1>More bang for your RFID buck.</h1>
-      <p>
-        MeshRFID turns low-cost tagging into higher margins – less shrink, cleaner stock,
-        and inventory data finance can trust.
-      </p>
+      <div class="text-frame t2">
+        <div class="headline">Low cost. High return.</div>
+        <div class="subline">
+          Affordable tags and readers, with stock visibility that pays for itself in months,
+          not years.
+        </div>
+      </div>
+
+      <div class="text-frame t3">
+        <div class="headline">Reduce shrink. Increase accuracy.</div>
+        <div class="subline">
+          See every item by site, zone and status so losses drop and replenishment decisions
+          finally match reality.
+        </div>
+      </div>
+
+      <div class="text-frame t4">
+        <div class="headline">Data finance can sign off.</div>
+        <div class="subline">
+          Live counts and valuations that tie back to the balance sheet – from sole traders
+          to multi-country networks.
+        </div>
+      </div>
     </div>
 
-    <!-- CTA over video -->
+    <!-- CTA -->
     <div class="cta-wrap">
       <a href="index.html#pricing" class="cta-btn">See pricing</a>
       <div class="cta-note">Low cost, low friction, high return.</div>
