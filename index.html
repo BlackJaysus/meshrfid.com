@@ -11,7 +11,8 @@
 
   <style>
     :root {
-      --accent: #142849; /* navy highlight */
+      --accent: #142849;  /* navy */
+      --shopify-green: #23e879;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color-scheme: light;
     }
@@ -42,8 +43,10 @@
 
     .logo {
       font-weight: 400;
-      font-size: 1.05rem;
-      letter-spacing: 0.03em;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      transform: scale(1.1); /* ~10% larger */
+      transform-origin: left center;
       white-space: nowrap;
     }
 
@@ -54,10 +57,7 @@
       font-size: 0.9rem;
     }
 
-    nav a {
-      opacity: 0.8;
-    }
-
+    nav a { opacity: 0.8; }
     nav a:hover { opacity: 1; }
 
     .nav-toggle {
@@ -92,9 +92,7 @@
     /* Mobile nav */
 
     @media (max-width: 720px) {
-      header {
-        padding: 10px 12px;
-      }
+      header { padding: 10px 12px; }
 
       nav {
         position: absolute;
@@ -110,13 +108,9 @@
         display: none;
       }
 
-      header.nav-open nav {
-        display: flex;
-      }
+      header.nav-open nav { display: flex; }
 
-      .nav-toggle {
-        display: inline-flex;
-      }
+      .nav-toggle { display: inline-flex; }
     }
 
     /* Layout */
@@ -139,9 +133,7 @@
     }
 
     @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+      .hero { grid-template-columns: 1fr; }
     }
 
     .hero h1 {
@@ -228,9 +220,7 @@
     .hero-metrics-row span.value { font-weight: 600; }
 
     @media (max-width: 900px) {
-      .hero-metrics {
-        max-width: 420px;
-      }
+      .hero-metrics { max-width: 420px; }
     }
 
     /* Headings */
@@ -247,11 +237,79 @@
       max-width: 640px;
     }
 
-    .section-subtitle-wide {
-      max-width: none;
+    .section-subtitle-wide { max-width: none; }
+
+    /* Pricing section */
+
+    .billing-toggle-shell {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
     }
 
-    /* Pricing cards */
+    .billing-toggle-wrapper {
+      width: 100%;
+      max-width: 520px;
+      padding: 3px;
+      border-radius: 999px;
+      border: 2px solid var(--shopify-green);
+      background: #ffffff;
+    }
+
+    .billing-toggle {
+      display: flex;
+      width: 100%;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .billing-option {
+      flex: 1 1 0;
+      border: none;
+      background: transparent;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .billing-option.active {
+      background: #111;
+      color: #fff;
+    }
+
+    /* Plan tab bar (mobile focus) */
+
+    .pricing-tabs {
+      display: none;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      margin: 0 -16px 12px;
+      padding: 0 16px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .pricing-tab {
+      border: none;
+      background: transparent;
+      padding: 10px 18px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      flex: 0 0 auto;
+    }
+
+    .pricing-tab.active {
+      border-bottom-color: var(--shopify-green);
+    }
+
+    @media (max-width: 768px) {
+      .pricing-tabs { display: flex; }
+    }
+
+    /* Pricing grid and cards */
 
     .pricing-grid {
       display: grid;
@@ -260,9 +318,15 @@
       align-items: stretch;
     }
 
+    @media (max-width: 768px) {
+      .pricing-grid {
+        display: block;
+      }
+    }
+
     .plan-card {
       background: #ffffff;
-      border-radius: 18px;
+      border-radius: 24px;
       padding: 18px 18px 20px;
       border: 1px solid #e2e2e2;
       display: flex;
@@ -277,16 +341,29 @@
       box-shadow: 0 0 0 1px var(--accent);
     }
 
+    /* full-width card feel on mobile */
+    @media (max-width: 768px) {
+      .plan-card {
+        border-radius: 24px;
+        margin: 0;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        display: none; /* show only active card */
+      }
+      .plan-card.active {
+        display: flex;
+      }
+    }
+
     .plan-top-banner {
-      margin: -18px -18px 10px;
-      padding: 6px 10px;
-      border-radius: 18px 18px 0 0;
-      font-size: 0.8rem;
+      margin: -18px -18px 14px;
+      padding: 8px 12px;
+      border-radius: 24px 24px 0 0;
+      font-size: 0.85rem;
       font-weight: 500;
       text-align: center;
     }
     .plan-top-banner.green {
-      background: #28f58b;
+      background: var(--shopify-green);
       color: #111;
     }
     .plan-top-banner.blue {
@@ -380,58 +457,54 @@
       justify-content: center;
     }
 
-    /* Billing toggle */
+    /* “What every plan gets you” cards */
 
-    .billing-toggle-wrapper {
+    .benefit-card-row {
+      margin-top: 14px;
       display: flex;
-      justify-content: center;
-      margin-bottom: 18px;
-    }
-
-    .billing-toggle {
-      display: inline-flex;
-      background: #e5e5e5;
-      border-radius: 999px;
-      padding: 3px;
-      gap: 3px;
-    }
-
-    .billing-option {
-      border: none;
-      background: transparent;
-      border-radius: 999px;
-      padding: 6px 14px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      line-height: 1.2;
-      color: #333;
-      white-space: nowrap;
-    }
-
-    .billing-option.active {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    /* “What every plan gets you” row */
-
-    .plan-benefits-row {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: nowrap;
-      font-size: 0.85rem;
+      gap: 12px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
 
-    .plan-benefit {
+    .benefit-card {
       background: #ffffff;
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+      min-width: 260px;
+      max-width: 300px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      flex: 0 0 auto;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
       border-radius: 999px;
-      border: 1px solid #e2e2e2;
-      padding: 6px 12px;
-      white-space: nowrap;
-      font-weight: 500;
+      background: #eef2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .benefit-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 0.98rem;
+    }
+
+    .benefit-text {
+      font-size: 0.86rem;
+      opacity: 0.9;
+    }
+
+    @media (min-width: 860px) {
+      .benefit-card-row {
+        overflow-x: visible;
+        flex-wrap: nowrap;
+      }
     }
 
     /* Comparison table */
@@ -467,13 +540,8 @@
       border-bottom: none;
     }
 
-    table.comparison-table td.center {
-      text-align: center;
-    }
-
-    table.comparison-table .tick {
-      font-size: 1rem;
-    }
+    table.comparison-table td.center { text-align: center; }
+    table.comparison-table .tick { font-size: 1rem; }
 
     .group-row td {
       background: #f0f3f7;
@@ -493,13 +561,9 @@
       cursor: pointer;
     }
 
-    .feature-toggle-btn:hover {
-      border-color: #999;
-    }
+    .feature-toggle-btn:hover { border-color: #999; }
 
-    .extra-row {
-      display: none;
-    }
+    .extra-row { display: none; }
 
     /* FAQ */
 
@@ -524,9 +588,7 @@
 
     /* Contact */
 
-    #contact p {
-      max-width: 620px;
-    }
+    #contact p { max-width: 620px; }
 
     /* Footer */
 
@@ -599,21 +661,33 @@
     </p>
 
     <!-- Billing toggle -->
-    <div class="billing-toggle-wrapper">
-      <div class="billing-toggle" role="tablist" aria-label="Billing period">
-        <button class="billing-option active" data-billing="monthly" type="button">
-          Pay monthly
-        </button>
-        <button class="billing-option" data-billing="annual" type="button">
-          Pay yearly (save 20%)
-        </button>
+    <div class="billing-toggle-shell">
+      <div class="billing-toggle-wrapper">
+        <div class="billing-toggle" role="tablist" aria-label="Billing period">
+          <button class="billing-option active" data-billing="monthly" type="button">
+            Pay monthly
+          </button>
+          <button class="billing-option" data-billing="annual" type="button">
+            Pay yearly (save 20%)
+          </button>
+        </div>
       </div>
     </div>
 
+    <!-- Plan tab bar (mobile) -->
+    <div class="pricing-tabs" aria-label="Plans">
+      <button class="pricing-tab active" data-plan-tab="Starter">Starter</button>
+      <button class="pricing-tab" data-plan-tab="Grow">Grow</button>
+      <button class="pricing-tab" data-plan-tab="Pro">Pro</button>
+      <button class="pricing-tab" data-plan-tab="Enterprise">Enterprise</button>
+    </div>
+
+    <!-- Cards -->
     <div class="pricing-grid">
 
       <!-- Starter -->
-      <article class="plan-card" data-plan
+      <article class="plan-card active" data-plan
+               data-plan-id="Starter"
                data-monthly-price="25" data-annual-monthly-price="20">
         <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
@@ -628,7 +702,8 @@
             <span class="plan-price-main">£25</span>
             <span class="plan-price-unit">/month</span>
           </div>
-          <div class="plan-price-foot"
+          <div class="plan-price-foot
+                      "
                data-monthly-foot="Billed monthly. VAT added at checkout."
                data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
@@ -657,6 +732,7 @@
 
       <!-- Grow -->
       <article class="plan-card highlight" data-plan
+               data-plan-id="Grow"
                data-monthly-price="149" data-annual-monthly-price="119">
         <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
@@ -701,6 +777,7 @@
 
       <!-- Pro -->
       <article class="plan-card" data-plan
+               data-plan-id="Pro"
                data-monthly-price="249" data-annual-monthly-price="199">
         <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
@@ -743,7 +820,7 @@
       </article>
 
       <!-- Enterprise -->
-      <article class="plan-card">
+      <article class="plan-card" data-plan-id="Enterprise">
         <div class="plan-top-banner blue">Available on a 1–3 year term</div>
         <div class="plan-header">
           <div class="plan-header-top">
@@ -791,12 +868,38 @@
       Every MeshRFID plan gives you finance-grade inventory data you can actually run the business on.
     </p>
 
-    <div class="plan-benefits-row">
-      <div class="plan-benefit">Inventory control you can trust</div>
-      <div class="plan-benefit">Real-time stock transparency</div>
-      <div class="plan-benefit">Better cash management</div>
-      <div class="plan-benefit">Maximised margin on each unit</div>
-      <div class="plan-benefit">Decision-ready reporting</div>
+    <div class="benefit-card-row">
+      <article class="benefit-card">
+        <div class="benefit-icon">📦</div>
+        <div class="benefit-title">Inventory control you can trust</div>
+        <div class="benefit-text">
+          Clean, tagged stock files so finance and ops work from the same numbers, not estimates and gut feel.
+        </div>
+      </article>
+
+      <article class="benefit-card">
+        <div class="benefit-icon">🔍</div>
+        <div class="benefit-title">Real-time stock transparency</div>
+        <div class="benefit-text">
+          See what’s on the shop floor, in the back room, or in 3PL storage in seconds, not days of manual counts.
+        </div>
+      </article>
+
+      <article class="benefit-card">
+        <div class="benefit-icon">💷</div>
+        <div class="benefit-title">Better cash management</div>
+        <div class="benefit-text">
+          Reduce overbuying, release cash from dead stock and shrink, and plan purchases against actual demand.
+        </div>
+      </article>
+
+      <article class="benefit-card">
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-title">Decision-ready reporting</div>
+        <div class="benefit-text">
+          Scheduled, finance-ready exports that plug into your reporting stack with no manual rework.
+        </div>
+      </article>
     </div>
   </section>
 
@@ -814,125 +917,125 @@
     <div class="comparison-wrapper">
       <table class="comparison-table">
         <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Starter</th>
-            <th>Grow</th>
-            <th>Pro</th>
-            <th>Enterprise</th>
-          </tr>
+        <tr>
+          <th>Feature</th>
+          <th>Starter</th>
+          <th>Grow</th>
+          <th>Pro</th>
+          <th>Enterprise</th>
+        </tr>
         </thead>
         <tbody>
-          <!-- Inventory & operations -->
-          <tr class="group-row">
-            <td colspan="5">Inventory &amp; operations</td>
-          </tr>
-          <tr>
-            <td>Active tagged items included</td>
-            <td>Up to 1,000</td>
-            <td>Up to 20,000</td>
-            <td>Unlimited</td>
-            <td>Unlimited</td>
-          </tr>
-          <tr>
-            <td>Locations included</td>
-            <td>1</td>
-            <td>Multi-site</td>
-            <td>Multi-site &amp; multi-client</td>
-            <td>Global networks</td>
-          </tr>
-          <tr>
-            <td>Walk-and-scan handheld counts</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
+        <!-- Inventory & operations -->
+        <tr class="group-row">
+          <td colspan="5">Inventory &amp; operations</td>
+        </tr>
+        <tr>
+          <td>Active tagged items included</td>
+          <td>Up to 1,000</td>
+          <td>Up to 20,000</td>
+          <td>Unlimited</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Locations included</td>
+          <td>1</td>
+          <td>Multi-site</td>
+          <td>Multi-site &amp; multi-client</td>
+          <td>Global networks</td>
+        </tr>
+        <tr>
+          <td>Walk-and-scan handheld counts</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
 
-          <!-- Finance & reporting -->
-          <tr class="group-row extra-row">
-            <td colspan="5">Finance &amp; reporting</td>
-          </tr>
-          <tr class="extra-row">
-            <td>Stock accuracy &amp; shrink dashboards</td>
-            <td>Basic</td>
-            <td>Standard</td>
-            <td>Consolidated</td>
-            <td>Custom packs</td>
-          </tr>
-          <tr class="extra-row">
-            <td>Ageing and valuation reports</td>
-            <td class="center">–</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr class="extra-row">
-            <td>Multi-entity consolidated views</td>
-            <td class="center">–</td>
-            <td class="center">–</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
+        <!-- Finance & reporting -->
+        <tr class="group-row extra-row">
+          <td colspan="5">Finance &amp; reporting</td>
+        </tr>
+        <tr class="extra-row">
+          <td>Stock accuracy &amp; shrink dashboards</td>
+          <td>Basic</td>
+          <td>Standard</td>
+          <td>Consolidated</td>
+          <td>Custom packs</td>
+        </tr>
+        <tr class="extra-row">
+          <td>Ageing and valuation reports</td>
+          <td class="center">–</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
+        <tr class="extra-row">
+          <td>Multi-entity consolidated views</td>
+          <td class="center">–</td>
+          <td class="center">–</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
 
-          <!-- Integrations & data -->
-          <tr class="group-row extra-row">
-            <td colspan="5">Integrations &amp; data</td>
-          </tr>
-          <tr class="extra-row">
-            <td>CSV exports</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr class="extra-row">
-            <td>API access</td>
-            <td class="center">–</td>
-            <td class="center">Add-on</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center">Custom</td>
-          </tr>
-          <tr class="extra-row">
-            <td>ERP / finance integrations</td>
-            <td class="center">–</td>
-            <td class="center">Add-on</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center">Custom</td>
-          </tr>
+        <!-- Integrations & data -->
+        <tr class="group-row extra-row">
+          <td colspan="5">Integrations &amp; data</td>
+        </tr>
+        <tr class="extra-row">
+          <td>CSV exports</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
+        <tr class="extra-row">
+          <td>API access</td>
+          <td class="center">–</td>
+          <td class="center">Add-on</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center">Custom</td>
+        </tr>
+        <tr class="extra-row">
+          <td>ERP / finance integrations</td>
+          <td class="center">–</td>
+          <td class="center">Add-on</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center">Custom</td>
+        </tr>
 
-          <!-- Support & rollout -->
-          <tr class="group-row extra-row">
-            <td colspan="5">Support &amp; rollout</td>
-          </tr>
-          <tr class="extra-row">
-            <td>Self-serve onboarding guides</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr class="extra-row">
-            <td>Email support</td>
-            <td class="center">–</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr class="extra-row">
-            <td>Quarterly success reviews</td>
-            <td class="center">–</td>
-            <td class="center">–</td>
-            <td class="center"><span class="tick">✓</span></td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
-          <tr class="extra-row">
-            <td>Dedicated account team</td>
-            <td class="center">–</td>
-            <td class="center">–</td>
-            <td class="center">–</td>
-            <td class="center"><span class="tick">✓</span></td>
-          </tr>
+        <!-- Support & rollout -->
+        <tr class="group-row extra-row">
+          <td colspan="5">Support &amp; rollout</td>
+        </tr>
+        <tr class="extra-row">
+          <td>Self-serve onboarding guides</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
+        <tr class="extra-row">
+          <td>Email support</td>
+          <td class="center">–</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
+        <tr class="extra-row">
+          <td>Quarterly success reviews</td>
+          <td class="center">–</td>
+          <td class="center">–</td>
+          <td class="center"><span class="tick">✓</span></td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
+        <tr class="extra-row">
+          <td>Dedicated account team</td>
+          <td class="center">–</td>
+          <td class="center">–</td>
+          <td class="center">–</td>
+          <td class="center"><span class="tick">✓</span></td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -1088,6 +1191,34 @@
         navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       });
     }
+
+    // Plan tabs (mobile)
+    const planTabs = document.querySelectorAll('.pricing-tab');
+    const planCards = document.querySelectorAll('.plan-card');
+
+    function activatePlan(id) {
+      planTabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.planTab === id);
+      });
+
+      // on mobile we rely on .active for visibility;
+      // on desktop .active is ignored visually but harmless
+      planCards.forEach(card => {
+        const cardId = card.dataset.planId;
+        if (cardId) {
+          card.classList.toggle('active', cardId === id);
+        }
+      });
+    }
+
+    planTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        activatePlan(tab.dataset.planTab);
+      });
+    });
+
+    // default – keep Starter selected in tabs on load
+    activatePlan('Starter');
   });
 </script>
 </body>
