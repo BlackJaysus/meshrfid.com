@@ -41,8 +41,8 @@
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 400;
+      font-size: 1.05rem; /* ~10% larger */
       letter-spacing: 0.03em;
     }
 
@@ -239,9 +239,9 @@
     }
 
     .plan-tag {
-      position: absolute;
-      top: 6px;
-      right: 10px;
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: 2px;
       font-size: 0.75rem;
       padding: 2px 8px;
       border-radius: 999px;
@@ -563,11 +563,11 @@
       <!-- Grow -->
       <article class="plan-card highlight" data-plan
                data-monthly-price="149" data-annual-monthly-price="119">
-        <span class="plan-tag">Most popular</span>
         <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-name">Grow</div>
+            <span class="plan-tag">Most popular</span>
             <div class="plan-subtitle">For small teams and growing networks.</div>
           </div>
 
