@@ -169,6 +169,10 @@
       max-width: 640px;
     }
 
+    .section-subtitle-wide {
+      max-width: none;
+    }
+
     /* Pricing cards */
 
     .pricing-grid {
@@ -321,8 +325,10 @@
       margin-top: 12px;
       display: flex;
       gap: 8px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       font-size: 0.85rem;
+      overflow-x: auto;
+      padding-bottom: 4px;
     }
 
     .plan-benefit {
@@ -458,7 +464,7 @@
       <h1>Low-cost RFID that actually pays for itself.</h1>
       <p>
         MeshRFID gives retailers and warehouses real-time visibility of every item in stock.
-        From sole traders to chains and 3PLs, it’s the same platform, scaled to your volume.
+        From solo operators to chains and 3PLs, it’s the same platform, scaled to your volume.
       </p>
       <div class="hero-actions">
         <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20Demo" class="btn-cta">Book a demo</a>
@@ -511,7 +517,7 @@
           <div class="plan-header-top">
             <div class="plan-badge">Entry</div>
             <div class="plan-name">Starter</div>
-            <div class="plan-subtitle">For sole traders and single sites.</div>
+            <div class="plan-subtitle">For solo entrepreneurs. Single site only.</div>
           </div>
 
           <div class="plan-price">
@@ -519,13 +525,13 @@
             <span class="plan-price-unit">/month</span>
           </div>
           <div class="plan-price-foot"
-               data-monthly-foot="Billed monthly. Cancel or upgrade any time."
+               data-monthly-foot="Billed monthly. VAT added at checkout."
                data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
         </div>
 
         <p class="plan-meta">
-          Simple RFID counts and shrink visibility for small operators.
+          Simple RFID counts and shrink visibility for one location.
         </p>
         <ul class="plan-list">
           <li>Up to 1,000 active tagged items.</li>
@@ -545,14 +551,14 @@
         </div>
       </article>
 
-      <!-- Standard -->
+      <!-- Grow (formerly Standard) -->
       <article class="plan-card highlight" data-plan
                data-monthly-price="149" data-annual-monthly-price="119">
         <div class="plan-header">
           <span class="plan-tag">Most popular</span>
           <div class="plan-header-top">
-            <div class="plan-badge">Standard</div>
-            <div class="plan-name">Standard</div>
+            <div class="plan-badge">Grow</div>
+            <div class="plan-name">Grow</div>
             <div class="plan-subtitle">For small teams and growing networks.</div>
           </div>
 
@@ -597,7 +603,7 @@
             <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
           </div>
 
-        <div class="plan-price">
+          <div class="plan-price">
             <span class="plan-price-main">£249</span>
             <span class="plan-price-unit">/month</span>
           </div>
@@ -671,8 +677,8 @@
   <!-- What every plan gets you -->
   <section>
     <h2 class="section-title">What every plan gets you</h2>
-    <p class="section-subtitle">
-      No matter where you start, every MeshRFID plan is built around finance-grade inventory data.
+    <p class="section-subtitle section-subtitle-wide">
+      Every MeshRFID plan gives you finance-grade inventory data you can actually run the business on.
     </p>
 
     <div class="plan-benefits-row">
@@ -692,7 +698,7 @@
     </p>
 
     <button type="button" class="feature-toggle-btn" id="featureToggleBtn">
-      Show full feature list
+      Show full feature list +
     </button>
 
     <div class="comparison-wrapper">
@@ -701,7 +707,7 @@
           <tr>
             <th>Feature</th>
             <th>Starter</th>
-            <th>Standard</th>
+            <th>Grow</th>
             <th>Pro</th>
             <th>Enterprise</th>
           </tr>
@@ -840,7 +846,7 @@
       <div class="faq-item">
         <div class="faq-question">Can we start on one plan and move up later?</div>
         <p>
-          Yes. You can upgrade from Starter to Standard or Pro at any time as volumes grow or you need more finance features.
+          Yes. You can upgrade from Starter to Grow or Pro at any time as volumes grow or you need more finance features.
           Your data and history stay in place.
         </p>
       </div>
@@ -854,14 +860,14 @@
       <div class="faq-item">
         <div class="faq-question">Do we need new hardware?</div>
         <p>
-          You can bring your own compatible handheld readers, or we can supply hardware bundles on Standard, Pro and
+          You can bring your own compatible handheld readers, or we can supply hardware bundles on Grow, Pro and
           Enterprise plans. Hardware is priced separately from the software subscription.
         </p>
       </div>
       <div class="faq-item">
         <div class="faq-question">How does support differ by plan?</div>
         <p>
-          Starter is self-serve with onboarding guides and templates. Standard adds email support, while Pro and Enterprise
+          Starter is self-serve with onboarding guides and templates. Grow adds email support, while Pro and Enterprise
           add priority response times and scheduled success reviews. Enterprise customers also receive a named account team.
         </p>
       </div>
@@ -941,7 +947,7 @@
 
     updateBillingUI();
 
-    // Feature table toggle (expand/collapse)
+    // Feature table toggle (expand/collapse) with +/-
     const featureBtn = document.getElementById('featureToggleBtn');
     const extraRows = document.querySelectorAll('.comparison-table .extra-row');
     let featuresExpanded = false;
@@ -950,7 +956,9 @@
       extraRows.forEach(row => {
         row.style.display = featuresExpanded ? 'table-row' : 'none';
       });
-      featureBtn.textContent = featuresExpanded ? 'Hide full feature list' : 'Show full feature list';
+      featureBtn.textContent = featuresExpanded
+        ? 'Hide full feature list –'
+        : 'Show full feature list +';
     }
 
     featureBtn.addEventListener('click', () => {
