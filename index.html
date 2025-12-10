@@ -6,22 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      /* Shopify brand-ish palette */
-      --mesh-green: #96bf48;          /* Shopify green */
-      --mesh-green-dark: #5e8e3e;
-      --mesh-blue: #00a3e0;           /* accent for Enterprise ribbon */
-      --mesh-bg: #f4f6f8;             /* Shopify light grey background */
+      /* Shopify pricing-style palette */
+      --mesh-green: #00c26a;        /* primary green */
+      --mesh-green-dark: #05935a;
+      --mesh-blue: #0085ff;         /* enterprise ribbon */
+      --mesh-bg: #f4f6f8;
       --mesh-card-bg: #ffffff;
       --mesh-soft-bg: #f1f3f5;
-      --mesh-text: #212b36;           /* “ink” */
+      --mesh-text: #212b36;
       --mesh-muted: #637381;
       --mesh-border: #dfe3e8;
       --mesh-pill-bg: #000000;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -72,9 +70,7 @@
       font-size: 0.95rem;
     }
 
-    .site-nav a:hover {
-      text-decoration: underline;
-    }
+    .site-nav a:hover { text-decoration: underline; }
 
     .nav-cta {
       padding: 0.4rem 0.9rem;
@@ -115,12 +111,8 @@
         padding: 0.75rem 1.5rem 1rem;
         display: none;
       }
-      .site-nav.open {
-        display: flex;
-      }
-      .nav-toggle {
-        display: flex;
-      }
+      .site-nav.open { display: flex; }
+      .nav-toggle { display: flex; }
     }
 
     main {
@@ -133,6 +125,7 @@
       margin-top: 1.5rem;
       display: flex;
       justify-content: center;
+      margin-bottom: 2.25rem; /* space under toggle */
     }
 
     .billing-toggle {
@@ -164,9 +157,7 @@
 
     /* Plan tabs – sticky under header, mobile only */
 
-    .plan-tabs-wrapper {
-      margin-top: 1.5rem;
-    }
+    .plan-tabs-wrapper { margin-top: 0.5rem; }
 
     .plan-tabs {
       display: flex;
@@ -189,27 +180,21 @@
       white-space: nowrap;
     }
 
-    .plan-tab:last-child {
-      border-right: none;
-    }
+    .plan-tab:last-child { border-right: none; }
 
     .plan-tab.active {
       color: #000000;
-      border-top: 3px solid var(--mesh-green);   /* Shopify-style top line */
+      border-top: 3px solid var(--mesh-green);
     }
 
-    /* Hide tabs entirely on desktop */
+    /* Hide tabs on desktop */
     @media (min-width: 901px) {
-      .plan-tabs-wrapper {
-        display: none;
-      }
+      .plan-tabs-wrapper { display: none; }
     }
 
-    /* Plans grid / slider */
+    /* Plans grid */
 
-    .plans-section {
-      margin-top: 2rem;
-    }
+    .plans-section { margin-top: 2rem; }
 
     .plans-header h1 {
       margin: 0 0 0.3rem;
@@ -223,7 +208,7 @@
     }
 
     .plans-row {
-      margin-top: 2.2rem;
+      margin-top: 0;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 1.5rem;
@@ -280,10 +265,7 @@
       margin-bottom: 0.2rem;
     }
 
-    .plan-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
+    .plan-name { font-size: 1.2rem; font-weight: 600; }
 
     .popular-pill {
       display: inline-flex;
@@ -308,10 +290,7 @@
       margin-bottom: 0.25rem;
     }
 
-    .plan-price {
-      font-size: 1.9rem;
-      font-weight: 600;
-    }
+    .plan-price { font-size: 1.9rem; font-weight: 600; }
 
     .plan-price-suffix {
       font-size: 0.95rem;
@@ -336,9 +315,7 @@
       padding-left: 1rem;
     }
 
-    .plan-features li + li {
-      margin-top: 0.3rem;
-    }
+    .plan-features li + li { margin-top: 0.3rem; }
 
     .plan-cta {
       margin-top: auto;
@@ -370,11 +347,9 @@
       border-color: var(--mesh-green-dark);
     }
 
-    .btn-primary:hover {
-      background: var(--mesh-green-dark);
-    }
+    .btn-primary:hover { background: var(--mesh-green-dark); }
 
-    /* Mobile slider behaviour + dots */
+    /* Mobile: stack cards vertically */
 
     .plans-dots {
       display: none;
@@ -390,28 +365,20 @@
       background: #d0d4d9;
     }
 
-    .slider-dot.active {
-      background: #212b36;
-    }
+    .slider-dot.active { background: #212b36; }
 
     @media (max-width: 900px) {
       .plans-row {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 1rem;
-        padding-bottom: 1rem;
+        display: block;
       }
 
       .plan-card {
-        min-width: 82%;
-        max-width: 420px;
-        scroll-snap-align: start;
+        min-width: auto;
+        max-width: none;
+        margin-bottom: 1.5rem;
       }
 
-      .plans-dots {
-        display: flex;
-      }
+      .plans-dots { display: flex; }
     }
 
     /* “What every plan gets you” */
@@ -453,9 +420,7 @@
 
     /* Feature list (accordion) */
 
-    .features-section {
-      margin-top: 2rem;
-    }
+    .features-section { margin-top: 2rem; }
 
     .features-toggle-btn {
       margin: 1.5rem auto 0;
@@ -504,13 +469,9 @@
     }
 
     .features-table tr:last-child th,
-    .features-table tr:last-child td {
-      border-bottom: none;
-    }
+    .features-table tr:last-child td { border-bottom: none; }
 
-    .feat-centre {
-      text-align: center;
-    }
+    .feat-centre { text-align: center; }
 
     /* FAQ */
 
@@ -528,9 +489,7 @@
       font-size: 1.4rem;
     }
 
-    .faq-item + .faq-item {
-      border-top: 1px solid var(--mesh-border);
-    }
+    .faq-item + .faq-item { border-top: 1px solid var(--mesh-border); }
 
     .faq-question {
       padding: 1rem 0;
@@ -554,9 +513,7 @@
       display: none;
     }
 
-    .faq-item.open .faq-answer {
-      display: block;
-    }
+    .faq-item.open .faq-answer { display: block; }
 
     /* Footer */
 
@@ -604,7 +561,7 @@
         </div>
       </div>
 
-      <!-- Sticky plan tabs – mobile only (hidden on desktop via CSS) -->
+      <!-- Sticky plan tabs – mobile only -->
       <div class="plan-tabs-wrapper">
         <div class="plan-tabs" id="planTabs">
           <div class="plan-tab active" data-plan-tab="0">Starter</div>
@@ -614,7 +571,7 @@
         </div>
       </div>
 
-      <!-- Cards / slider -->
+      <!-- Cards -->
       <div class="plans-row" id="plansRow">
         <!-- Starter -->
         <article
@@ -774,7 +731,7 @@
         </article>
       </div>
 
-      <!-- Dots under mobile slider -->
+      <!-- Dots under cards (mobile) -->
       <div class="plans-dots" id="plansDots">
         <div class="slider-dot active" data-dot="0"></div>
         <div class="slider-dot" data-dot="1"></div>
@@ -885,7 +842,7 @@
         </div>
       </section>
 
-      <!-- Placeholder anchors so nav links don't 404 -->
+      <!-- Placeholder anchors -->
       <section id="how-it-works" style="margin-top:3rem;"></section>
       <section id="case-studies" style="margin-top:1rem;"></section>
 
@@ -953,9 +910,11 @@
       // Mobile nav
       const navToggle = document.querySelector(".nav-toggle");
       const siteNav = document.querySelector(".site-nav");
-      navToggle.addEventListener("click", () => {
-        siteNav.classList.toggle("open");
-      });
+      if (navToggle && siteNav) {
+        navToggle.addEventListener("click", () => {
+          siteNav.classList.toggle("open");
+        });
+      }
 
       // Billing toggle
       const billingToggle = document.getElementById("billingToggle");
@@ -996,12 +955,12 @@
         });
       });
 
-      // Plan tabs + slider dots
-      const plansRow = document.getElementById("plansRow");
+      // Plan tabs + dots (stacked cards mobile)
       const planTabs = document.querySelectorAll(".plan-tab");
       const dots = document.querySelectorAll(".slider-dot");
+      const plansRow = document.getElementById("plansRow");
 
-      function activateIndex(idx) {
+      function setActivePlan(idx) {
         planTabs.forEach((tab) =>
           tab.classList.toggle(
             "active",
@@ -1013,53 +972,76 @@
         );
       }
 
-      function scrollToCard(idx) {
-        const card = document.querySelector(`.plan-card[data-plan="${idx}"]`);
-        if (!card) return;
-
-        const containerLeft = plansRow.getBoundingClientRect().left;
-        const cardLeft = card.getBoundingClientRect().left;
-        const currentScroll = plansRow.scrollLeft;
-        const offset = cardLeft - containerLeft;
-
-        plansRow.scrollTo({
-          left: currentScroll + offset,
-          behavior: "smooth",
-        });
-
-        activateIndex(idx);
-      }
-
+      // Scroll to card when tab clicked (mobile)
       planTabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           const idx = Number(tab.dataset.planTab);
-          scrollToCard(idx);
+          const target = document.querySelector(
+            '.plan-card[data-plan="' + idx + '"]'
+          );
+          if (!target) return;
+
+          // Offset for sticky header + tabs
+          const header = document.querySelector(".site-header");
+          const tabsBar = document.querySelector(".plan-tabs");
+          const offset =
+            (header ? header.offsetHeight : 0) +
+            (tabsBar ? tabsBar.offsetHeight : 0) +
+            10;
+
+          const top =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            offset;
+
+          window.scrollTo({ top, behavior: "smooth" });
         });
       });
 
+      // Intersection observer to update active tab/dot while scrolling (mobile)
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const idx = Number(entry.target.dataset.plan);
+                setActivePlan(idx);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "-55% 0px -40% 0px", // focus on middle of viewport
+            threshold: 0,
+          }
+        );
+
+        planCards.forEach((card) => observer.observe(card));
+      }
+
+      // Clicking dots scrolls to card
       dots.forEach((dot) => {
         dot.addEventListener("click", () => {
           const idx = Number(dot.dataset.dot);
-          scrollToCard(idx);
+          const target = document.querySelector(
+            '.plan-card[data-plan="' + idx + '"]'
+          );
+          if (!target) return;
+
+          const header = document.querySelector(".site-header");
+          const tabsBar = document.querySelector(".plan-tabs");
+          const offset =
+            (header ? header.offsetHeight : 0) +
+            (tabsBar ? tabsBar.offsetHeight : 0) +
+            10;
+
+          const top =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            offset;
+
+          window.scrollTo({ top, behavior: "smooth" });
         });
-      });
-
-      plansRow.addEventListener("scroll", () => {
-        let bestIdx = 0;
-        let bestDelta = Infinity;
-
-        planCards.forEach((card) => {
-          const rect = card.getBoundingClientRect();
-          const containerRect = plansRow.getBoundingClientRect();
-          const delta = Math.abs(rect.left - containerRect.left);
-          const idx = Number(card.dataset.plan);
-          if (delta < bestDelta) {
-            bestDelta = delta;
-            bestIdx = idx;
-          }
-        });
-
-        activateIndex(bestIdx);
       });
 
       // Features accordion
