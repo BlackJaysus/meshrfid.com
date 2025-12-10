@@ -36,7 +36,6 @@
       z-index: 20;
     }
 
-    /* Old logo style */
     .logo {
       font-weight: 700;
       font-size: 0.95rem;
@@ -86,7 +85,7 @@
       flex-wrap: wrap;
     }
 
-    /* CTAs: neutral default, dark on hover */
+    /* Global CTA styles (hero, contact etc) */
     .btn-cta,
     .btn-cta-secondary {
       border-radius: 999px;
@@ -209,7 +208,16 @@
       gap: 4px;
     }
 
-    .plan-cta-wrap { margin-top: 14px; }
+    .plan-cta-wrap {
+      margin-top: 14px;
+    }
+
+    /* Card CTAs – same width, one line */
+    .plan-card .btn-cta {
+      width: 100%;
+      justify-content: center;
+      white-space: nowrap;
+    }
 
     footer {
       border-top: 1px solid #e2e2e2;
@@ -223,7 +231,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">MeshRFID</div>
+  <a href="index.html" class="logo">MeshRFID</a>
   <nav>
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -241,8 +249,8 @@
         From sole traders to global retail and warehouse networks, it’s the same platform, scaled to your volume.
       </p>
       <div class="hero-actions">
-        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta">Book a demo</a>
-        <a href="#pricing" class="btn-cta-secondary">View pricing</a>
+        <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta">Book a Demo</a>
+        <a href="#pricing" class="btn-cta-secondary">View Pricing</a>
       </div>
     </div>
 
@@ -319,7 +327,7 @@
           <li>AP/AR-friendly exports and audit-ready history.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Pro%20plan" class="btn-cta">Book a Pro walkthrough</a>
+          <a href="mailto:hello@meshrfid.com?subject=Pro%20plan" class="btn-cta">Book a Pro Walkthrough</a>
         </div>
       </article>
 
@@ -339,7 +347,7 @@
           <li>Dedicated onboarding and account management.</li>
         </ul>
         <div class="plan-cta-wrap">
-          <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry" class="btn-cta">Contact us about Enterprise</a>
+          <a href="mailto:hello@meshrfid.com?subject=Enterprise%20enquiry" class="btn-cta">Contact Us about Enterprise</a>
         </div>
       </article>
     </div>
@@ -352,9 +360,9 @@
       ROI breakdown and rollout plan, or jump straight to a live demo.
     </p>
     <div class="hero-actions" style="margin-top: 16px;">
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20contact" class="btn-cta">Contact us</a>
-      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta-secondary">Book a demo</a>
-      <a href="case-studies.html" class="btn-cta-secondary">See case studies</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20contact" class="btn-cta">Contact Us</a>
+      <a href="mailto:hello@meshrfid.com?subject=MeshRFID%20demo" class="btn-cta-secondary">Book a Demo</a>
+      <a href="case-studies.html" class="btn-cta-secondary">See Case Studies</a>
     </div>
   </section>
 </main>
