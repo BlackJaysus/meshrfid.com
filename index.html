@@ -239,7 +239,7 @@
 
     .section-subtitle-wide { max-width: none; }
 
-    /* Pricing section */
+    /* Billing toggle */
 
     .billing-toggle-shell {
       margin-bottom: 12px;
@@ -257,10 +257,28 @@
     }
 
     .billing-toggle {
+      position: relative;
       display: flex;
       width: 100%;
       border-radius: 999px;
       overflow: hidden;
+    }
+
+    /* sliding black pill */
+    .billing-toggle-thumb {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 4px;
+      width: calc(50% - 8px);
+      border-radius: 999px;
+      background: #111;
+      transition: left 0.2s ease;
+    }
+
+    /* when yearly is active move pill to the right */
+    .billing-toggle.annual .billing-toggle-thumb {
+      left: calc(50% + 4px);
     }
 
     .billing-option {
@@ -270,12 +288,13 @@
       padding: 8px 10px;
       font-size: 0.9rem;
       cursor: pointer;
-      color: #333;
+      color: #111;
       white-space: nowrap;
+      position: relative;
+      z-index: 1;
     }
 
     .billing-option.active {
-      background: #111;
       color: #fff;
     }
 
@@ -306,7 +325,12 @@
     }
 
     @media (max-width: 768px) {
-      .pricing-tabs { display: flex; }
+      .pricing-tabs {
+        display: flex;
+        position: sticky;
+        top: 52px; /* just under the main header */
+        z-index: 30;
+      }
     }
 
     /* Pricing grid and cards */
@@ -374,7 +398,7 @@
     .plan-header {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
 
     .plan-header-top {
@@ -500,10 +524,31 @@
       opacity: 0.9;
     }
 
+    .benefit-dots {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .benefit-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #d4d4d4;
+    }
+
+    .benefit-dot.active {
+      background: #222;
+    }
+
     @media (min-width: 860px) {
       .benefit-card-row {
         overflow-x: visible;
         flex-wrap: nowrap;
+      }
+      .benefit-dots {
+        display: none;
       }
     }
 
@@ -664,6 +709,7 @@
     <div class="billing-toggle-shell">
       <div class="billing-toggle-wrapper">
         <div class="billing-toggle" role="tablist" aria-label="Billing period">
+          <div class="billing-toggle-thumb"></div>
           <button class="billing-option active" data-billing="monthly" type="button">
             Pay monthly
           </button>
@@ -702,8 +748,7 @@
             <span class="plan-price-main">£25</span>
             <span class="plan-price-unit">/month</span>
           </div>
-          <div class="plan-price-foot
-                      "
+          <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. VAT added at checkout."
                data-annual-foot="Billed yearly in advance at the discounted monthly rate. Save 20% vs paying monthly.">
           </div>
@@ -900,6 +945,14 @@
           Scheduled, finance-ready exports that plug into your reporting stack with no manual rework.
         </div>
       </article>
+    </div>
+
+    <!-- dots like Shopify -->
+    <div class="benefit-dots" aria-hidden="true">
+      <span class="benefit-dot active"></span>
+      <span class="benefit-dot"></span>
+      <span class="benefit-dot"></span>
+      <span class="benefit-dot"></span>
     </div>
   </section>
 
@@ -1109,6 +1162,7 @@
     let billing = 'monthly';
 
     const toggleButtons = document.querySelectorAll('.billing-option');
+    const billingToggleEl = document.querySelector('.billing-toggle');
     const plans = document.querySelectorAll('[data-plan]');
     const CTA_LABEL_MONTHLY = 'Start monthly';
     const CTA_LABEL_ANNUAL = 'Start yearly – save 20%';
@@ -1149,6 +1203,10 @@
       toggleButtons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.billing === billing);
       });
+
+      if (billingToggleEl) {
+        billingToggleEl.classList.toggle('annual', billing === 'annual');
+      }
     }
 
     toggleButtons.forEach(btn => {
