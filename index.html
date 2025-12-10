@@ -42,7 +42,6 @@
     .logo {
       font-weight: 700;
       font-size: 0.95rem;
-      text-transform: none;
       letter-spacing: 0.03em;
     }
 
@@ -92,7 +91,7 @@
       flex-wrap: wrap;
     }
 
-    /* Global CTAs (hero, contact etc) */
+    /* Global CTAs */
 
     .btn-cta,
     .btn-cta-secondary {
@@ -131,10 +130,10 @@
     .hero-metrics {
       background: #ffffff;
       border-radius: 18px;
-      padding: 20px;
+      padding: 18px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       display: grid;
-      gap: 12px;
+      gap: 10px;
       font-size: 0.85rem;
     }
 
@@ -157,24 +156,24 @@
 
     .section-title {
       font-size: 1.4rem;
-      margin: 48px 0 20px;
+      margin: 48px 0 16px;
     }
 
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 20px;
+      gap: 18px;
       align-items: stretch;
     }
 
     .plan-card {
       background: #ffffff;
       border-radius: 18px;
-      padding: 20px 20px 24px;
+      padding: 18px 18px 20px;
       border: 1px solid #e2e2e2;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .plan-badge {
@@ -192,11 +191,10 @@
     .plan-subtitle {
       font-size: 0.9rem;
       opacity: 0.75;
-      margin-top: 2px;
     }
 
     .plan-price {
-      margin-top: 8px;
+      margin-top: 6px;
       display: flex;
       align-items: baseline;
       gap: 4px;
@@ -213,37 +211,31 @@
     }
 
     .plan-price-foot {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       opacity: 0.75;
       margin-top: 2px;
+      min-height: 2.2em;
     }
 
     .plan-meta {
       font-size: 0.9rem;
       opacity: 0.9;
-      margin-top: 6px;
     }
 
     .plan-list {
-      margin-top: 8px;
+      margin-top: 4px;
       padding-left: 18px;
       font-size: 0.85rem;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-    }
-
-    .plan-extra {
-      margin-top: 8px;
-      font-size: 0.8rem;
-      opacity: 0.8;
+      gap: 3px;
     }
 
     /* CTA block inside cards */
 
     .plan-cta-wrap {
       margin-top: auto;
-      padding-top: 16px;
+      padding-top: 10px;
     }
 
     .plan-cta-button {
@@ -256,7 +248,7 @@
     .billing-toggle-wrapper {
       display: flex;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     .billing-toggle {
@@ -264,7 +256,7 @@
       background: #e5e5e5;
       border-radius: 999px;
       padding: 3px;
-      gap: 4px;
+      gap: 3px;
     }
 
     .billing-option {
@@ -297,7 +289,7 @@
       font-size: 0.8rem;
       text-align: center;
       background: #ffffff;
-      margin-top: 40px;
+      margin-top: 32px;
     }
   </style>
 </head>
@@ -370,24 +362,21 @@
 
         <div class="plan-price">
           <span class="plan-price-main">£19</span>
-          <span class="plan-price-unit>/month</span>
+          <span class="plan-price-unit">/month</span>
         </div>
         <div class="plan-price-foot"
              data-monthly-foot="Billed monthly, VAT added at checkout."
-             data-annual-foot="Billed yearly, equivalent to £19/month with 20% discount on the year.">
+             data-annual-foot="Billed yearly in advance, equivalent to £19/month with 20% discount on the year.">
         </div>
 
         <p class="plan-meta">
           Ideal for sole traders and single sites getting started with RFID.
         </p>
         <ul class="plan-list">
-          <li>Up to 1,000 active tagged items in circulation.</li>
-          <li>Single location, handheld reader (BYO smartphone or reader purchase).</li>
+          <li>Up to 1,000 active tagged items.</li>
+          <li>Single location, handheld reader (BYO or purchase separately).</li>
           <li>Simple dashboards for stock accuracy and shrink.</li>
         </ul>
-        <p class="plan-extra">
-          Extra tag capacity available in 1,000-item blocks on any plan.
-        </p>
 
         <div class="plan-cta-wrap">
           <a
@@ -403,31 +392,27 @@
 
       <!-- Standard -->
       <article class="plan-card" data-plan>
-        <div class="plan-badge">Most Popular</div>
+        <div class="plan-badge">Most popular</div>
         <div class="plan-name">Standard</div>
         <div class="plan-subtitle">For growing retailers and warehouse networks.</div>
 
         <div class="plan-price">
           <span class="plan-price-main">£149</span>
-          <span class="plan-price-unit>/month</span>
+          <span class="plan-price-unit">/month</span>
         </div>
         <div class="plan-price-foot"
              data-monthly-foot="Billed monthly, VAT added at checkout."
-             data-annual-foot="Billed yearly, equivalent to £149/month with 20% discount on the year.">
+             data-annual-foot="Billed yearly in advance, equivalent to £149/month with 20% discount on the year.">
         </div>
 
         <p class="plan-meta">
-          Full operational visibility across sites with finance-ready reporting.
+          Operational visibility across sites with finance-ready reporting.
         </p>
         <ul class="plan-list">
           <li>Up to 20,000 active tagged items across multiple locations.</li>
-          <li>Regular cycle counts and shrink reports by site.</li>
+          <li>Cycle counts and shrink reports by site.</li>
           <li>Operations and finance dashboards with scheduled exports.</li>
-          <li>Support for regional DC + store views.</li>
         </ul>
-        <p class="plan-extra">
-          Extra tag capacity available in 1,000-item blocks; hardware supplied or BYO.
-        </p>
 
         <div class="plan-cta-wrap">
           <a
@@ -449,11 +434,11 @@
 
         <div class="plan-price">
           <span class="plan-price-main">£249</span>
-          <span class="plan-price-unit>/month</span>
+          <span class="plan-price-unit">/month</span>
         </div>
         <div class="plan-price-foot"
              data-monthly-foot="Billed monthly, VAT added at checkout."
-             data-annual-foot="Billed yearly, equivalent to £249/month with 20% discount on the year.">
+             data-annual-foot="Billed yearly in advance, equivalent to £249/month with 20% discount on the year.">
         </div>
 
         <p class="plan-meta">
@@ -461,15 +446,9 @@
         </p>
         <ul class="plan-list">
           <li>Unlimited active tagged items across all sites and clients.</li>
-          <li>Consolidated dashboards with drill-down by site, client or category.</li>
-          <li>Ageing reports and write-down triggers for finance teams.</li>
-          <li>Multi-currency support for international operations.</li>
-          <li>API and ERP integrations for automated finance workflows.</li>
-          <li>Audit-ready inbound/outbound and shrink history export.</li>
+          <li>Consolidated dashboards with drill-down and ageing reports.</li>
+          <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
         </ul>
-        <p class="plan-extra">
-          Designed for finance-led retail, franchise and 3PL networks needing one view of everything.
-        </p>
 
         <div class="plan-cta-wrap">
           <a
@@ -484,14 +463,14 @@
       </article>
 
       <!-- Enterprise -->
-      <article class="plan-card" data-plan>
+      <article class="plan-card">
         <div class="plan-badge">Enterprise</div>
         <div class="plan-name">Enterprise</div>
         <div class="plan-subtitle">Custom programmes and SLAs.</div>
 
         <div class="plan-price">
           <span class="plan-price-main">Custom</span>
-          <span class="plan-price-unit>/month</span>
+          <span class="plan-price-unit">/month</span>
         </div>
         <div class="plan-price-foot">
           Tailored volumes, hardware bundles and commercial terms.
@@ -501,10 +480,9 @@
           For complex networks needing deeper integration, governance and dedicated support.
         </p>
         <ul class="plan-list">
-          <li>Unlimited sites and tag volumes with bespoke commercial terms.</li>
-          <li>Hardware rollout, onboarding and training programme.</li>
+          <li>Unlimited sites and tag volumes with bespoke commercials.</li>
+          <li>Hardware rollout, onboarding and training.</li>
           <li>Custom dashboards and reporting packs for finance and operations.</li>
-          <li>SLAs, security review and procurement support.</li>
         </ul>
 
         <div class="plan-cta-wrap">
@@ -549,10 +527,12 @@
     function updateUI() {
       plans.forEach(plan => {
         const foot = plan.querySelector('.plan-price-foot');
-        const footMonthly = foot.getAttribute('data-monthly-foot');
-        const footAnnual = foot.getAttribute('data-annual-foot');
-        if (footMonthly && footAnnual) {
-          foot.textContent = (billing === 'monthly') ? footMonthly : footAnnual;
+        if (foot) {
+          const footMonthly = foot.getAttribute('data-monthly-foot');
+          const footAnnual = foot.getAttribute('data-annual-foot');
+          if (footMonthly && footAnnual) {
+            foot.textContent = (billing === 'monthly') ? footMonthly : footAnnual;
+          }
         }
 
         const cta = plan.querySelector('.plan-cta-button');
