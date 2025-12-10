@@ -40,9 +40,16 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid rgba(229, 231, 235, 0.85);
+      background: transparent;
+      border-bottom: 1px solid transparent;
       backdrop-filter: blur(16px);
+      transition: background 0.2s ease, border-bottom-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(255, 255, 255, 0.97);
+      border-bottom-color: rgba(229, 231, 235, 0.85);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     }
 
     .header-inner {
@@ -56,19 +63,9 @@
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
       font-weight: 600;
       font-size: 1.02rem;
       letter-spacing: 0.04em;
-    }
-
-    .brand-mark {
-      width: 18px;
-      height: 18px;
-      border-radius: 6px;
-      background: radial-gradient(circle at 20% 0%, #22c55e, #166534);
     }
 
     .nav-links {
@@ -406,10 +403,7 @@
     <!-- HEADER -->
     <header class="site-header">
       <div class="header-inner">
-        <div class="brand">
-          <span class="brand-mark"></span>
-          <span>MeshRFID</span>
-        </div>
+        <div class="brand">MeshRFID</div>
 
         <button class="nav-toggle" aria-label="Toggle navigation">
           <span></span>
@@ -607,11 +601,19 @@
   </div>
 
   <script>
-    // header hamburger
+    // header hamburger + scroll behaviour
     (function () {
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".nav-toggle");
       const links = document.querySelectorAll(".nav-links a");
+
+      function handleScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
 
       toggle.addEventListener("click", () => {
         header.classList.toggle("nav-open");
@@ -622,6 +624,9 @@
           header.classList.remove("nav-open");
         });
       });
+
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
     })();
 
     // footer year
