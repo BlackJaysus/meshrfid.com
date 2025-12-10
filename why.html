@@ -5,907 +5,235 @@
   <title>Why MeshRFID</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg-gradient-start: #e8fbf3;
-      --bg-gradient-mid: #eaf4ff;
-      --bg-gradient-end: #ffffff;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-card: #e5e7eb;
-      --accent-green: #12b981;
-      --accent-green-soft: #22c55e;
-      --accent-blue: #2563eb;
-      --radius-card: 24px;
-      --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.08);
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        sans-serif;
-      color: var(--text-main);
-      background: linear-gradient(
-        180deg,
-        var(--bg-gradient-start) 0%,
-        var(--bg-gradient-mid) 36%,
-        var(--bg-gradient-end) 72%
-      );
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+    html, body {
+      height: 100%;
+      width: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow: hidden;
     }
 
     .page-wrap {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      position: relative;
     }
 
-    /* HEADER */
-
+    /* Header – optional, consistent with pricing page */
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 40;
-      backdrop-filter: blur(18px);
-      background-color: #ffffff;
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(15,23,42,0.5);
     }
 
     .header-inner {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 0.9rem 1.5rem;
+      padding: 0.7rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      font-size: 0.9rem;
     }
 
     .brand {
       font-weight: 600;
-      font-size: 1.05rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.04em;
     }
 
     .nav-links {
       display: flex;
       gap: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
       align-items: center;
+      color: #e5e7eb;
+    }
+
+    .nav-links a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.85;
     }
 
     .nav-links a.active {
-      color: var(--text-main);
+      opacity: 1;
       font-weight: 500;
     }
 
     .btn-outline {
-      padding: 0.4rem 0.95rem;
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
-      font-size: 0.85rem;
-      font-weight: 500;
-      background: #ffffff;
-      cursor: pointer;
-    }
-
-    .btn-outline:hover {
-      background: #f9fafb;
-    }
-
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.25rem;
-    }
-
-    .nav-toggle span {
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #111827;
-      border-radius: 999px;
-      margin: 4px 0;
-      transition: transform 0.18s ease, opacity 0.18s ease;
-    }
-
-    .site-header.nav-open .nav-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .site-header.nav-open .nav-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .site-header.nav-open .nav-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* LAYOUT */
-
-    .main {
-      flex: 1;
-    }
-
-    .section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 1.5rem 4rem;
-    }
-
-    .section-tight {
-      padding-bottom: 3rem;
-    }
-
-    .section-muted {
-      background: rgba(240, 249, 255, 0.9);
-      border-radius: 32px;
-      margin-bottom: 4rem;
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    }
-
-    .section h2 {
-      text-align: center;
-      font-size: 1.6rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .section p.lead {
-      text-align: center;
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 620px;
-      margin: 0 auto 2.2rem;
-    }
-
-    /* HERO */
-
-    .hero {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 4rem;
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .hero-title {
-      font-size: 2.4rem;
-      line-height: 1.1;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 1.6rem;
-    }
-
-    .hero-points {
-      list-style: none;
-      font-size: 0.95rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .hero-points li {
-      padding-left: 1.1rem;
-      position: relative;
-    }
-
-    .hero-points li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #16a34a;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .btn-primary {
-      border-radius: 999px;
-      border: none;
-      padding: 0.9rem 1.4rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      background: #000;
+      border: 1px solid rgba(209,213,219,0.85);
+      background: rgba(15,23,42,0.9);
       color: #f9fafb;
-      cursor: pointer;
-    }
-
-    .btn-secondary-light {
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      padding: 0.75rem 1.2rem;
-      font-size: 0.9rem;
-      background: #f9fafb;
-      cursor: pointer;
-    }
-
-    .hero-note {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      cursor: pointer;
     }
 
-    .hero-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 1.6rem 1.4rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: var(--shadow-card);
-      font-size: 0.9rem;
+    /* Video */
+
+    #bg-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
     }
 
-    .hero-metric {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(34,197,94,0.35), transparent 50%),
+                  radial-gradient(circle at 80% 100%, rgba(15,118,110,0.5), transparent 55%),
+                  rgba(0,0,0,0.65);
+      mix-blend-mode: normal;
+      z-index: -1;
     }
 
-    .hero-metric-label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.9rem;
-    }
+    /* Simple centre text in case video fails / SEO */
 
-    .hero-list {
-      list-style: none;
-      padding-left: 0;
+    .fallback-text {
+      position: absolute;
+      inset: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+      pointer-events: none;
+    }
+
+    .fallback-text h1 {
+      font-size: 2.2rem;
       margin-bottom: 0.6rem;
     }
 
-    .hero-list li {
-      padding-left: 0.9rem;
-      position: relative;
-    }
-
-    .hero-list li::before {
-      content: "–";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #9ca3af;
-    }
-
-    /* 3-COLUMN VALUE BLOCK */
-
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .value-card {
-      background: #ffffff;
-      border-radius: 22px;
-      padding: 1.5rem 1.3rem;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
-      font-size: 0.9rem;
-      text-align: left;
-    }
-
-    .value-tag {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 0.35rem;
-    }
-
-    .value-title {
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-
-    .value-card ul {
-      margin-top: 0.5rem;
-      padding-left: 1rem;
-    }
-
-    .value-card li {
-      margin-bottom: 0.25rem;
-    }
-
-    /* DIFFERENTIATORS */
-
-    .diff-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .diff-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 1.3rem 1.2rem;
-      border: 1px solid #e5e7eb;
-      font-size: 0.9rem;
-    }
-
-    .diff-title {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    /* TIMELINE */
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-      counter-reset: step;
-    }
-
-    .timeline-step {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 1.4rem 1.2rem 1.5rem;
-      border: 1px solid #e5e7eb;
-      font-size: 0.9rem;
-      position: relative;
-    }
-
-    .timeline-step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      top: -14px;
-      left: 1.2rem;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      background: #22c55e;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      box-shadow: 0 8px 18px rgba(34, 197, 94, 0.35);
-    }
-
-    .timeline-title {
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-
-    /* STACK DIAGRAM */
-
-    .stack-wrap {
-      max-width: 720px;
-      margin: 0 auto;
-      display: grid;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .stack-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    .stack-label {
-      width: 120px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-    }
-
-    .stack-items {
-      flex: 1;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .stack-pill {
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: 1px dashed #d4d4d8;
-      background: rgba(255, 255, 255, 0.85);
-    }
-
-    .stack-pill.highlight {
-      border-style: solid;
-      border-color: #22c55e;
-      background: #ecfdf3;
-      font-weight: 500;
-    }
-
-    /* CTA STRIP */
-
-    .cta-strip {
-      max-width: 1120px;
-      margin: 0 auto 4rem;
-      padding: 1.5rem 1.5rem;
-    }
-
-    .cta-inner {
-      background: linear-gradient(
-        90deg,
-        #22c55e 0%,
-        #16a34a 40%,
-        #0f766e 100%
-      );
-      border-radius: 24px;
-      padding: 1.7rem 1.7rem;
-      color: #f9fafb;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .cta-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .cta-text {
-      font-size: 0.9rem;
+    .fallback-text p {
+      font-size: 0.95rem;
+      max-width: 460px;
+      color: #e5e7eb;
       opacity: 0.9;
     }
 
-    .cta-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+    /* CTA button on top of video */
+
+    .cta-wrap {
+      position: fixed;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
     }
 
-    .btn-cta-light {
+    .cta-btn {
+      display: inline-block;
+      padding: 0.9rem 1.9rem;
       border-radius: 999px;
-      border: none;
-      padding: 0.7rem 1.2rem;
-      font-size: 0.9rem;
-      background: #f9fafb;
-      color: #0f172a;
-      cursor: pointer;
-      font-weight: 500;
+      background: #22c55e;
+      color: #022c22;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      box-shadow: 0 14px 30px rgba(34,197,94,0.4);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
     }
 
-    .btn-cta-ghost {
-      border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.7);
-      padding: 0.7rem 1.1rem;
-      font-size: 0.88rem;
-      background: transparent;
-      color: #f9fafb;
-      cursor: pointer;
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 38px rgba(34,197,94,0.55);
+      background: #4ade80;
     }
 
-    /* FOOTER */
-
-    .site-footer {
-      background: #020617;
+    .cta-note {
+      margin-top: 0.45rem;
+      font-size: 0.8rem;
       color: #e5e7eb;
-      margin-top: 2rem;
-      padding: 1.6rem 1.5rem 2rem;
-    }
-
-    .footer-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.8rem;
-      font-size: 0.82rem;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       opacity: 0.85;
     }
 
-    .footer-links a {
-      color: inherit;
-    }
-
-    /* RESPONSIVE */
-
-    @media (max-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .value-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .diff-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .timeline {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .header-inner {
-        padding-inline: 1rem;
-      }
-    }
+    /* Mobile tweaks */
 
     @media (max-width: 768px) {
       .header-inner {
-        flex-wrap: nowrap;
-      }
-
-      .nav-toggle {
-        display: block;
+        padding-inline: 1rem;
+        font-size: 0.85rem;
       }
 
       .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-        padding: 0.75rem 1rem 1rem;
-        flex-direction: column;
-        gap: 0.6rem;
-        z-index: 30;
+        gap: 0.75rem;
       }
 
-      .site-header.nav-open .nav-links {
-        display: flex;
+      .fallback-text h1 {
+        font-size: 1.6rem;
       }
 
-      .hero {
-        padding-top: 2.4rem;
+      .fallback-text p {
+        font-size: 0.85rem;
       }
 
-      .hero-title {
-        font-size: 1.9rem;
-      }
-
-      .value-grid,
-      .diff-grid,
-      .timeline {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .section-muted {
-        border-radius: 0;
-      }
-
-      .cta-inner {
-        padding: 1.4rem 1.3rem;
+      .cta-btn {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.6rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="page-wrap">
-    <!-- HEADER -->
+    <!-- Header -->
     <header class="site-header">
       <div class="header-inner">
         <div class="brand">MeshRFID</div>
-
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
         <nav class="nav-links">
           <a href="why.html" class="active">Why MeshRFID</a>
           <a href="index.html#pricing">Pricing</a>
           <a href="index.html#how-it-works">How it works</a>
           <a href="index.html#case-studies">Case studies</a>
-          <button class="btn-outline" onclick="location.href='index.html#faqs'">
+          <button class="btn-outline" onclick="location.href='mailto:info@meshrfid.com'">
             Contact sales
           </button>
         </nav>
       </div>
     </header>
 
-    <main class="main">
-      <!-- HERO -->
-      <section class="hero">
-        <div>
-          <h1 class="hero-title">RFID built for finance teams, not just warehouses.</h1>
-          <p class="hero-sub">
-            MeshRFID gives you a live, finance-ready view of stock across stores, warehouses and 3PLs – without ripping out your existing systems.
-          </p>
-          <ul class="hero-points">
-            <li>Real-time inventory and valuation by site, channel and client.</li>
-            <li>Cycle counts and shrink reporting that actually tie back to the P&amp;L.</li>
-            <li>Lightweight roll-out – start with one site, scale when you’re ready.</li>
-          </ul>
-          <div class="hero-cta-row">
-            <button class="btn-primary" onclick="location.href='index.html#pricing'">
-              View pricing
-            </button>
-            <button class="btn-secondary-light" onclick="location.href='index.html#case-studies'">
-              See case studies
-            </button>
-            <span class="hero-note">From sole traders to multi-country networks.</span>
-          </div>
-        </div>
+    <!-- Background video (muted, autoplay, loop) -->
+    <video
+      id="bg-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="meshrfid-why.mp4" type="video/mp4" />
+      <!-- Optional: <source src="meshrfid-why.webm" type="video/webm" /> -->
+    </video>
 
-        <aside class="hero-card">
-          <div class="hero-metric">99%+</div>
-          <div class="hero-metric-label">count accuracy in live environments</div>
-          <ul class="hero-list">
-            <li>Instant view of slow, fast and dead stock.</li>
-            <li>Finance and ops working from the same numbers.</li>
-            <li>No more “mystery” shrink or write-offs at year-end.</li>
-          </ul>
-          <p style="font-size:0.82rem;color:#6b7280;">
-            MeshRFID overlays your current stack – WMS, ERP, accounting and BI – and feeds them with cleaner data.
-          </p>
-        </aside>
-      </section>
+    <div class="overlay"></div>
 
-      <!-- VALUE BLOCK -->
-      <section class="section section-muted">
-        <h2>Why teams switch to MeshRFID</h2>
-        <p class="lead">
-          The platform is designed so finance, operations and commercial teams all get what they need from a single source of truth.
-        </p>
+    <!-- Fallback text if video doesn't load -->
+    <div class="fallback-text">
+      <h1>More bang for your RFID buck.</h1>
+      <p>
+        MeshRFID turns low-cost tagging into higher margins – less shrink, cleaner stock,
+        and inventory data finance can trust.
+      </p>
+    </div>
 
-        <div class="value-grid">
-          <article class="value-card">
-            <div class="value-tag">Finance</div>
-            <h3 class="value-title">Stock that matches the balance sheet</h3>
-            <p>
-              MeshRFID is built around finance-grade counts and ageing.
-            </p>
-            <ul>
-              <li>Live stock and valuation by entity, client and location.</li>
-              <li>Ageing reports that highlight risk and dead inventory.</li>
-              <li>Audit-ready exports for banks, auditors and investors.</li>
-            </ul>
-          </article>
-
-          <article class="value-card">
-            <div class="value-tag">Operations</div>
-            <h3 class="value-title">Simple tools for stores and warehouses</h3>
-            <p>
-              Teams on the floor get workflows that make their job easier.
-            </p>
-            <ul>
-              <li>Cycle counts that slot into current routines.</li>
-              <li>Exception alerts instead of endless reports.</li>
-              <li>Fast training – most users are productive in a day.</li>
-            </ul>
-          </article>
-
-          <article class="value-card">
-            <div class="value-tag">Technology</div>
-            <h3 class="value-title">Plays nicely with what you already use</h3>
-            <p>
-              MeshRFID does not try to be your WMS or POS – it feeds them.
-            </p>
-            <ul>
-              <li>APIs and CSV exports into ERP, finance and BI tools.</li>
-              <li>Works with standard handheld readers and tags.</li>
-              <li>Pilot on one site before committing to a wider roll-out.</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <!-- DIFFERENTIATORS -->
-      <section class="section">
-        <h2>What makes MeshRFID different</h2>
-        <p class="lead">
-          There are many ways to put tags on products. MeshRFID focuses on the
-          part that moves the numbers – clean, shared data for stock and value.
-        </p>
-
-        <div class="diff-grid">
-          <article class="diff-card">
-            <h3 class="diff-title">Finance-first design</h3>
-            <p>
-              Every screen and report is built so finance can sign off on it.
-              Stock figures tie back to GL accounts, and ageing logic is clear and transparent.
-            </p>
-          </article>
-
-          <article class="diff-card">
-            <h3 class="diff-title">From projects to day-to-day rhythm</h3>
-            <p>
-              RFID is only valuable once it becomes routine. MeshRFID bakes
-              counts, checks and reconciliations into simple weekly tasks for stores and warehouses.
-            </p>
-          </article>
-
-          <article class="diff-card">
-            <h3 class="diff-title">Works with mixed and messy stock</h3>
-            <p>
-              Ideal for liquidation, outlet and 3PL environments where ranges change constantly
-              and barcodes alone are not enough.
-            </p>
-          </article>
-
-          <article class="diff-card">
-            <h3 class="diff-title">Low total cost of ownership</h3>
-            <p>
-              No multi-year licence lock-ins for basic functionality. Start with a small
-              footprint, prove the ROI, then extend to more sites and partners.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- TIMELINE -->
-      <section class="section section-muted">
-        <h2>From pilot to portfolio-wide control</h2>
-        <p class="lead">
-          Most customers follow a simple path – prove it on one site, extend to the estate,
-          then connect partners and 3PLs.
-        </p>
-
-        <div class="timeline">
-          <article class="timeline-step">
-            <h3 class="timeline-title">Pilot one site</h3>
-            <p>
-              Tag a limited range or site, connect MeshRFID, and run a few
-              cycles. You see shrink, accuracy and productivity shift quickly.
-            </p>
-          </article>
-
-          <article class="timeline-step">
-            <h3 class="timeline-title">Roll out to the estate</h3>
-            <p>
-              Extend to more stores, warehouses and regions. Finance gets a single,
-              consolidated view and can start closing the gap between book and
-              physical stock.
-            </p>
-          </article>
-
-          <article class="timeline-step">
-            <h3 class="timeline-title">Connect partners and 3PLs</h3>
-            <p>
-              Bring external warehouses and partners onto the same data set.
-              Everyone works from the same definition of “what we own and where it is”.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- STACK DIAGRAM -->
-      <section class="section section-tight">
-        <h2>Where MeshRFID sits in your stack</h2>
-        <p class="lead">
-          Think of MeshRFID as the inventory brain feeding live, trusted data into the
-          systems you already run.
-        </p>
-
-        <div class="stack-wrap">
-          <div class="stack-row">
-            <div class="stack-label">Channels</div>
-            <div class="stack-items">
-              <span class="stack-pill">Stores</span>
-              <span class="stack-pill">E-commerce</span>
-              <span class="stack-pill">Marketplaces</span>
-              <span class="stack-pill">Wholesale</span>
-            </div>
-          </div>
-
-          <div class="stack-row">
-            <div class="stack-label">Physical ops</div>
-            <div class="stack-items">
-              <span class="stack-pill">Warehouses</span>
-              <span class="stack-pill">3PLs</span>
-              <span class="stack-pill">Outlet &amp; clearance</span>
-            </div>
-          </div>
-
-          <div class="stack-row">
-            <div class="stack-label">MeshRFID</div>
-            <div class="stack-items">
-              <span class="stack-pill highlight">Tagging &amp; item identity</span>
-              <span class="stack-pill highlight">Counts &amp; movements</span>
-              <span class="stack-pill highlight">Valuation &amp; ageing</span>
-              <span class="stack-pill highlight">Shrink &amp; loss analytics</span>
-            </div>
-          </div>
-
-          <div class="stack-row">
-            <div class="stack-label">Data out</div>
-            <div class="stack-items">
-              <span class="stack-pill">ERP / finance</span>
-              <span class="stack-pill">WMS</span>
-              <span class="stack-pill">BI tools</span>
-              <span class="stack-pill">Brand &amp; client reports</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA STRIP -->
-      <section class="cta-strip">
-        <div class="cta-inner">
-          <div>
-            <div class="cta-title">Ready to see MeshRFID against your numbers?</div>
-            <div class="cta-text">
-              Share one site or client as a test and we’ll show you how quickly
-              the gaps appear – and what they are worth.
-            </div>
-          </div>
-          <div class="cta-buttons">
-            <button class="btn-cta-light" onclick="location.href='index.html#pricing'">
-              Compare plans
-            </button>
-            <button class="btn-cta-ghost" onclick="location.href='mailto:info@meshrfid.com'">
-              Book a walkthrough
-            </button>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <div>© <span id="year"></span> MeshRFID. All rights reserved.</div>
-        <div class="footer-links">
-          <a href="why.html">Why MeshRFID</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="index.html#how-it-works">How it works</a>
-          <a href="index.html#faqs">FAQs</a>
-        </div>
-      </div>
-    </footer>
+    <!-- CTA over video -->
+    <div class="cta-wrap">
+      <a href="index.html#pricing" class="cta-btn">See pricing</a>
+      <div class="cta-note">Low cost, low friction, high return.</div>
+    </div>
   </div>
-
-  <script>
-    // hamburger
-    (function () {
-      const header = document.querySelector(".site-header");
-      const toggle = document.querySelector(".nav-toggle");
-      const links = document.querySelectorAll(".nav-links a");
-
-      toggle.addEventListener("click", () => {
-        header.classList.toggle("nav-open");
-      });
-
-      links.forEach((link) => {
-        link.addEventListener("click", () => {
-          header.classList.remove("nav-open");
-        });
-      });
-    })();
-
-    // footer year
-    document.getElementById("year").textContent =
-      new Date().getFullYear().toString();
-  </script>
 </body>
 </html>
