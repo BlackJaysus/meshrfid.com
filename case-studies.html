@@ -15,10 +15,14 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Make footer stick to bottom */
     body {
       background: #f7f7f7;
       color: #111;
       line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -48,6 +52,10 @@
       opacity: 0.8;
     }
     nav a:hover { opacity: 1; }
+
+    main {
+      flex: 1;
+    }
 
     .container {
       max-width: 1000px;
@@ -84,16 +92,23 @@
       font-size: 0.9rem;
     }
 
+    /* Grey header with simple vector + larger label */
     .placeholder {
       width: 100%;
-      height: 100px;
+      height: 110px;
       background: #e8e8e8;
       border-radius: 12px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      opacity: 0.7;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    .placeholder svg {
+      display: block;
+      margin-bottom: 6px;
     }
 
     .case-title { font-weight: 600; margin-top: 4px; }
@@ -153,52 +168,86 @@
   </nav>
 </header>
 
-<main class="container">
-  <h1>Case studies</h1>
-  <p class="lead">
-    Three typical profiles: a sole trader, a retail chain and a 3PL. All using the same platform,
-    each with finance-led visibility on stock, shrink and value.
-  </p>
+<main>
+  <div class="container">
+    <h1>Case studies</h1>
+    <p class="lead">
+      Three typical profiles: a sole trader, a retail chain and a 3PL. All using the same platform,
+      each with finance-led visibility on stock, shrink and value.
+    </p>
 
-  <section class="case-grid">
+    <section class="case-grid">
 
-    <article class="case">
-      <div class="placeholder">Sole trader</div>
-      <div class="case-title">Sole trader boutique</div>
-      <div class="case-meta">Single store · Fashion · Starter plan</div>
-      <ul>
-        <li>200 tagged items in rotation.</li>
-        <li>Full stock count in under 3 minutes.</li>
-        <li>Reduced “lost” items to near zero.</li>
-      </ul>
-      <button class="btn-cta-secondary" type="button">Mirror This Setup</button>
-    </article>
+      <!-- Sole trader -->
+      <article class="case">
+        <div class="placeholder">
+          <!-- minimal storefront icon -->
+          <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true">
+            <rect x="5" y="10" width="30" height="15" rx="2" ry="2" fill="none" stroke="#555" stroke-width="1.5"/>
+            <rect x="9" y="5" width="22" height="6" rx="1.5" ry="1.5" fill="none" stroke="#555" stroke-width="1.5"/>
+            <line x1="14" y1="15" x2="14" y2="25" stroke="#555" stroke-width="1.5"/>
+            <line x1="24" y1="15" x2="24" y2="25" stroke="#555" stroke-width="1.5"/>
+          </svg>
+          <span>Sole trader</span>
+        </div>
+        <div class="case-title">Sole trader boutique</div>
+        <div class="case-meta">Single store · Fashion · Starter plan</div>
+        <ul>
+          <li>200 tagged items in rotation.</li>
+          <li>Full stock count in under 3 minutes.</li>
+          <li>Reduced “lost” items to near zero.</li>
+        </ul>
+        <button class="btn-cta-secondary" type="button">Mirror This Setup</button>
+      </article>
 
-    <article class="case">
-      <div class="placeholder">Retail chain</div>
-      <div class="case-title">Regional retail chain</div>
-      <div class="case-meta">12 stores · Apparel · Standard plan</div>
-      <ul>
-        <li>Up to 5,000 active items under control.</li>
-        <li>Weekly cycle counts built into routine.</li>
-        <li>Scheduled valuation reports to finance.</li>
-      </ul>
-      <button class="btn-cta-secondary" type="button">View Rollout Playbook</button>
-    </article>
+      <!-- Retail chain -->
+      <article class="case">
+        <div class="placeholder">
+          <!-- racks / warehouse shelves icon -->
+          <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true">
+            <rect x="6" y="6" width="8" height="18" fill="none" stroke="#555" stroke-width="1.5"/>
+            <rect x="16" y="6" width="8" height="18" fill="none" stroke="#555" stroke-width="1.5"/>
+            <rect x="26" y="6" width="8" height="18" fill="none" stroke="#555" stroke-width="1.5"/>
+            <line x1="6" y1="13" x2="34" y2="13" stroke="#555" stroke-width="1.2"/>
+            <line x1="6" y1="19" x2="34" y2="19" stroke="#555" stroke-width="1.2"/>
+          </svg>
+          <span>Retail chain</span>
+        </div>
+        <div class="case-title">Regional retail chain</div>
+        <div class="case-meta">12 stores · Apparel · Standard plan</div>
+        <ul>
+          <li>Up to 5,000 active items under control.</li>
+          <li>Weekly cycle counts built into routine.</li>
+          <li>Scheduled valuation reports to finance.</li>
+        </ul>
+        <button class="btn-cta-secondary" type="button">View Rollout Playbook</button>
+      </article>
 
-    <article class="case">
-      <div class="placeholder">3PL warehouse</div>
-      <div class="case-title">3PL warehouse operator</div>
-      <div class="case-meta">Multi-client · 3PL · Pro plan</div>
-      <ul>
-        <li>20,000+ items across multiple clients.</li>
-        <li>Client-level dashboards in a single view.</li>
-        <li>Audit-ready inbound/outbound history.</li>
-      </ul>
-      <button class="btn-cta-secondary" type="button">Talk 3PL Workflow</button>
-    </article>
+      <!-- 3PL -->
+      <article class="case">
+        <div class="placeholder">
+          <!-- pallets / warehouse icon -->
+          <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden="true">
+            <rect x="7" y="7" width="10" height="9" fill="none" stroke="#555" stroke-width="1.5"/>
+            <rect x="23" y="7" width="10" height="9" fill="none" stroke="#555" stroke-width="1.5"/>
+            <rect x="7" y="17" width="26" height="6" fill="none" stroke="#555" stroke-width="1.5"/>
+            <line x1="11" y1="23" x2="11" y2="27" stroke="#555" stroke-width="1.5"/>
+            <line x1="29" y1="23" x2="29" y2="27" stroke="#555" stroke-width="1.5"/>
+          </svg>
+          <span>3PL warehouse</span>
+        </div>
+        <div class="case-title">3PL warehouse operator</div>
+        <div class="case-meta">Multi-client · 3PL · Pro plan</div>
+        <ul>
+          <li>20,000+ items across multiple clients.</li>
+          <li>Client-level dashboards in a single view.</li>
+          <li>Audit-ready inbound/outbound history.</li>
+        </ul>
+        <button class="btn-cta-secondary" type="button">Talk 3PL Workflow</button>
+      </article>
 
-  </section>
+    </section>
+  </div>
 </main>
 
 <footer>© MeshRFID 2025.</footer>
