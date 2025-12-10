@@ -11,6 +11,7 @@
 
   <style>
     :root {
+      --accent: #142849; /* navy highlight */
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color-scheme: light;
     }
@@ -188,14 +189,21 @@
     }
 
     .plan-card.highlight {
-      border-color: #111;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
     }
 
     .plan-header {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      min-height: 110px;
+      gap: 8px;
+    }
+
+    .plan-header-top {
+      min-height: 90px; /* keeps price line aligned across cards */
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .plan-badge {
@@ -210,7 +218,7 @@
       font-size: 0.75rem;
       padding: 2px 8px;
       border-radius: 999px;
-      background: #111;
+      background: var(--accent);
       color: #fff;
     }
 
@@ -299,11 +307,11 @@
     }
 
     .billing-option.active {
-      background: #111;
+      background: var(--accent);
       color: #fff;
     }
 
-    /* What every plan includes */
+    /* Features grid */
 
     .features-grid {
       display: grid;
@@ -401,6 +409,24 @@
       font-size: 1rem;
     }
 
+    .feature-toggle-btn {
+      margin: 10px 0;
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .feature-toggle-btn:hover {
+      border-color: #999;
+    }
+
+    .extra-row {
+      display: none;
+    }
+
     /* FAQ */
 
     .faq-list {
@@ -447,6 +473,7 @@
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
     <a href="case-studies.html">Case studies</a>
+    <a href="#faq">FAQ</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -505,11 +532,15 @@
     <div class="pricing-grid">
 
       <!-- Starter -->
-      <article class="plan-card" data-plan>
+      <article class="plan-card" data-plan
+               data-monthly-price="19" data-annual-price="182"
+               data-monthly-unit="/month" data-annual-unit="/year">
         <div class="plan-header">
-          <div class="plan-badge">Entry</div>
-          <div class="plan-name">Starter</div>
-          <div class="plan-subtitle">For sole traders and single sites.</div>
+          <div class="plan-header-top">
+            <div class="plan-badge">Entry</div>
+            <div class="plan-name">Starter</div>
+            <div class="plan-subtitle">For sole traders and single sites.</div>
+          </div>
 
           <div class="plan-price">
             <span class="plan-price-main">£19</span>
@@ -517,7 +548,7 @@
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. Cancel or upgrade any time."
-               data-annual-foot="Billed yearly in advance. Equivalent to £19/month with 20% off the year.">
+               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
           </div>
         </div>
 
@@ -543,12 +574,16 @@
       </article>
 
       <!-- Standard -->
-      <article class="plan-card highlight" data-plan>
+      <article class="plan-card highlight" data-plan
+               data-monthly-price="149" data-annual-price="1430"
+               data-monthly-unit="/month" data-annual-unit="/year">
         <div class="plan-header">
-          <div class="plan-badge">Standard</div>
-          <div class="plan-tag">Most popular</div>
-          <div class="plan-name">Standard</div>
-          <div class="plan-subtitle">For small teams and growing networks.</div>
+          <div class="plan-header-top">
+            <div class="plan-badge">Standard</div>
+            <div class="plan-tag">Most popular</div>
+            <div class="plan-name">Standard</div>
+            <div class="plan-subtitle">For small teams and growing networks.</div>
+          </div>
 
           <div class="plan-price">
             <span class="plan-price-main">£149</span>
@@ -556,7 +591,7 @@
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance. Equivalent to £149/month with 20% off the year.">
+               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
           </div>
         </div>
 
@@ -582,11 +617,15 @@
       </article>
 
       <!-- Pro -->
-      <article class="plan-card" data-plan>
+      <article class="plan-card" data-plan
+               data-monthly-price="249" data-annual-price="2390"
+               data-monthly-unit="/month" data-annual-unit="/year">
         <div class="plan-header">
-          <div class="plan-badge">Pro</div>
-          <div class="plan-name">Pro</div>
-          <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
+          <div class="plan-header-top">
+            <div class="plan-badge">Pro</div>
+            <div class="plan-name">Pro</div>
+            <div class="plan-subtitle">For chains, warehouses and 3PLs.</div>
+          </div>
 
           <div class="plan-price">
             <span class="plan-price-main">£249</span>
@@ -594,7 +633,7 @@
           </div>
           <div class="plan-price-foot"
                data-monthly-foot="Billed monthly. VAT added at checkout."
-               data-annual-foot="Billed yearly in advance. Equivalent to £249/month with 20% off the year.">
+               data-annual-foot="Billed yearly in advance. 20% discount on the year.">
           </div>
         </div>
 
@@ -622,9 +661,11 @@
       <!-- Enterprise -->
       <article class="plan-card">
         <div class="plan-header">
-          <div class="plan-badge">Enterprise</div>
-          <div class="plan-name">Enterprise</div>
-          <div class="plan-subtitle">Custom programmes and SLAs.</div>
+          <div class="plan-header-top">
+            <div class="plan-badge">Enterprise</div>
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-subtitle">Custom programmes and SLAs.</div>
+          </div>
 
           <div class="plan-price">
             <span class="plan-price-main">Custom</span>
@@ -725,6 +766,10 @@
       Choose the plan that matches your volumes and finance needs. You can upgrade at any time.
     </p>
 
+    <button type="button" class="feature-toggle-btn" id="featureToggleBtn">
+      Show full feature list
+    </button>
+
     <div class="comparison-wrapper">
       <table class="comparison-table">
         <thead>
@@ -765,39 +810,41 @@
             <td>Consolidated + drill-down</td>
             <td>Custom</td>
           </tr>
-          <tr>
+
+          <!-- Extra rows (collapsible) -->
+          <tr class="extra-row">
             <td>Ageing reports</td>
             <td class="center">–</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
-          <tr>
+          <tr class="extra-row">
             <td>Multi-currency</td>
             <td class="center">–</td>
             <td class="center">–</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
-          <tr>
+          <tr class="extra-row">
             <td>API &amp; ERP integrations</td>
             <td class="center">–</td>
             <td class="center">Add-on</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center">Custom</td>
           </tr>
-          <tr>
+          <tr class="extra-row">
             <td>Audit-ready exports</td>
             <td class="center">Basic</td>
             <td class="center">Standard</td>
             <td class="center"><span class="tick">✓</span></td>
             <td class="center"><span class="tick">✓</span></td>
           </tr>
-          <tr>
+          <tr class="extra-row">
             <td>Extra tag capacity</td>
             <td colspan="4">Tag add-ons available on all plans in 1,000-item blocks.</td>
           </tr>
-          <tr>
+          <tr class="extra-row">
             <td>Support</td>
             <td>Email</td>
             <td>Email + scheduled check-ins</td>
@@ -810,7 +857,7 @@
   </section>
 
   <!-- FAQ -->
-  <section>
+  <section id="faq">
     <h2 class="section-title">FAQ</h2>
     <p class="section-subtitle">
       A few common questions from finance, ops and IT teams. If you need more detail, just reach out.
@@ -881,9 +928,28 @@
     const CTA_LABEL_MONTHLY = 'Start monthly';
     const CTA_LABEL_ANNUAL = 'Start yearly – save 20%';
 
-    function updateUI() {
+    function updateBillingUI() {
       plans.forEach(plan => {
+        const monthlyPrice = plan.dataset.monthlyPrice;
+        const annualPrice = plan.dataset.annualPrice;
+        const monthlyUnit = plan.dataset.monthlyUnit || '/month';
+        const annualUnit = plan.dataset.annualUnit || '/year';
+
+        const priceMain = plan.querySelector('.plan-price-main');
+        const priceUnit = plan.querySelector('.plan-price-unit');
         const foot = plan.querySelector('.plan-price-foot');
+        const cta = plan.querySelector('.plan-cta-button');
+
+        if (priceMain && priceUnit && monthlyPrice && annualPrice) {
+          if (billing === 'monthly') {
+            priceMain.textContent = '£' + monthlyPrice;
+            priceUnit.textContent = monthlyUnit;
+          } else {
+            priceMain.textContent = '£' + annualPrice;
+            priceUnit.textContent = annualUnit;
+          }
+        }
+
         if (foot) {
           const footMonthly = foot.getAttribute('data-monthly-foot');
           const footAnnual = foot.getAttribute('data-annual-foot');
@@ -892,7 +958,6 @@
           }
         }
 
-        const cta = plan.querySelector('.plan-cta-button');
         if (cta && cta.dataset.monthlyUrl && cta.dataset.annualUrl) {
           cta.href = (billing === 'monthly') ? cta.dataset.monthlyUrl : cta.dataset.annualUrl;
           cta.textContent = (billing === 'monthly') ? CTA_LABEL_MONTHLY : CTA_LABEL_ANNUAL;
@@ -907,11 +972,30 @@
     toggleButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         billing = btn.dataset.billing;
-        updateUI();
+        updateBillingUI();
       });
     });
 
-    updateUI();
+    updateBillingUI();
+
+    // Feature table toggle (expand/collapse)
+    const featureBtn = document.getElementById('featureToggleBtn');
+    const extraRows = document.querySelectorAll('.comparison-table .extra-row');
+    let featuresExpanded = false;
+
+    function setFeatureVisibility() {
+      extraRows.forEach(row => {
+        row.style.display = featuresExpanded ? 'table-row' : 'none';
+      });
+      featureBtn.textContent = featuresExpanded ? 'Hide full feature list' : 'Show full feature list';
+    }
+
+    featureBtn.addEventListener('click', () => {
+      featuresExpanded = !featuresExpanded;
+      setFeatureVisibility();
+    });
+
+    setFeatureVisibility();
   });
 </script>
 </body>
