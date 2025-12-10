@@ -190,6 +190,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      position: relative;
     }
 
     .plan-card.highlight {
@@ -197,14 +198,29 @@
       box-shadow: 0 0 0 1px var(--accent);
     }
 
+    .plan-top-banner {
+      margin: -18px -18px 10px;
+      padding: 6px 10px;
+      border-radius: 18px 18px 0 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    .plan-top-banner.green {
+      background: #28f58b;
+      color: #111;
+    }
+    .plan-top-banner.blue {
+      background: #2563eb;
+      color: #fff;
+    }
+
     .plan-header {
-      position: relative;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    /* Normalised header height so prices align */
     .plan-header-top {
       min-height: 72px;
       display: flex;
@@ -224,8 +240,8 @@
 
     .plan-tag {
       position: absolute;
-      top: 4px;
-      right: 0;
+      top: 6px;
+      right: 10px;
       font-size: 0.75rem;
       padding: 2px 8px;
       border-radius: 999px;
@@ -505,7 +521,8 @@
 
       <!-- Starter -->
       <article class="plan-card" data-plan
-               data-monthly-price="19" data-annual-monthly-price="15">
+               data-monthly-price="25" data-annual-monthly-price="20">
+        <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-name">Starter</div>
@@ -513,7 +530,7 @@
           </div>
 
           <div class="plan-price">
-            <span class="plan-price-main">£19</span>
+            <span class="plan-price-main">£25</span>
             <span class="plan-price-unit">/month</span>
           </div>
           <div class="plan-price-foot"
@@ -546,8 +563,9 @@
       <!-- Grow -->
       <article class="plan-card highlight" data-plan
                data-monthly-price="149" data-annual-monthly-price="119">
+        <span class="plan-tag">Most popular</span>
+        <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
-          <span class="plan-tag">Most popular</span>
           <div class="plan-header-top">
             <div class="plan-name">Grow</div>
             <div class="plan-subtitle">For small teams and growing networks.</div>
@@ -587,6 +605,7 @@
       <!-- Pro -->
       <article class="plan-card" data-plan
                data-monthly-price="249" data-annual-monthly-price="199">
+        <div class="plan-top-banner green">£1 for the first month</div>
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-name">Pro</div>
@@ -626,6 +645,7 @@
 
       <!-- Enterprise -->
       <article class="plan-card">
+        <div class="plan-top-banner blue">Available on a 1–3 year term</div>
         <div class="plan-header">
           <div class="plan-header-top">
             <div class="plan-name">Enterprise</div>
