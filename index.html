@@ -28,7 +28,8 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        sans-serif;
       color: var(--text-main);
       background: linear-gradient(
         180deg,
@@ -97,7 +98,8 @@
       font-weight: 500;
       background: #ffffff;
       cursor: pointer;
-      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+      transition: background 0.15s ease, box-shadow 0.15s ease,
+        transform 0.1s ease;
     }
 
     .btn-outline:hover {
@@ -106,11 +108,45 @@
       transform: translateY(-1px);
     }
 
-    /* HERO / PRICING SECTION */
+    /* COMMON SECTIONS */
 
     .main {
       flex: 1;
     }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .section-tight {
+      padding-bottom: 3rem;
+    }
+
+    .section-muted {
+      background: rgba(240, 249, 255, 0.75);
+      border-radius: 32px;
+      margin-bottom: 4rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section p.lead {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    /* PRICING HERO */
 
     .pricing-hero {
       max-width: 1120px;
@@ -192,7 +228,11 @@
     }
 
     .plan-label.green {
-      background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-green-soft) 100%);
+      background: linear-gradient(
+        90deg,
+        var(--accent-green) 0%,
+        var(--accent-green-soft) 100%
+      );
     }
 
     .plan-label.blue {
@@ -238,8 +278,8 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       border-radius: 999px;
-      background: #ecfdf3;
-      border: 1px solid #bbf7d0;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
       padding: 0.18rem 0.5rem;
       font-weight: 600;
       color: #15803d;
@@ -318,7 +358,8 @@
       font-size: 0.9rem;
       font-weight: 500;
       cursor: pointer;
-      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+      transition: background 0.15s ease, box-shadow 0.15s ease,
+        transform 0.1s ease;
     }
 
     .btn-primary {
@@ -352,10 +393,223 @@
       color: var(--text-muted);
     }
 
+    /* WHAT EVERY PLAN GETS YOU */
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .benefit-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.2rem 1.1rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    .benefit-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.92rem;
+    }
+
+    .benefit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #ecfdf3;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* ALTERNATIVE SOLUTIONS */
+
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .alt-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.3rem 1.4rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .alt-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .alt-name {
+      font-weight: 600;
+    }
+
+    .alt-card button {
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* LOGOS */
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.3rem;
+      margin-top: 1.7rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .logo-pill {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px dashed #d4d4d8;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    /* HOW IT WORKS */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.7rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #16a34a;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    /* CASE STUDIES */
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+    }
+
+    .case-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem 1.4rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+    }
+
+    .case-role {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .case-metric {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    /* FAQ */
+
+    .faq-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .faq-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .faq-summary span {
+      font-weight: 500;
+    }
+
+    .faq-summary svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .faq-content {
+      padding: 0 0 0.9rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
     /* MOBILE & TABLET */
 
     @media (max-width: 1024px) {
       .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .benefit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -412,7 +666,7 @@
       /* sticky plan name on mobile */
       .card-header {
         position: sticky;
-        top: 56px; /* sits below sticky header */
+        top: 56px;
         z-index: 10;
         background: #ffffff;
         padding-top: 0.7rem;
@@ -421,6 +675,17 @@
 
       .pricing-card.pro .card-header {
         top: 54px;
+      }
+
+      .benefit-grid,
+      .alt-grid,
+      .steps-grid,
+      .case-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-muted {
+        border-radius: 0;
       }
     }
   </style>
@@ -441,6 +706,7 @@
     </header>
 
     <main class="main">
+      <!-- PRICING -->
       <section id="pricing" class="pricing-hero">
         <h1>Plans for every size of operation</h1>
         <p>Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.</p>
@@ -467,16 +733,26 @@
                 <p class="plan-caption">For solo entrepreneurs. Single site only.</p>
 
                 <div class="price-row">
-                  <span class="price-amount" data-plan-price data-monthly="25" data-yearly="20">£25</span>
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="25"
+                    data-yearly="20"
+                    >£25</span
+                  >
                   <span class="price-unit">/month</span>
                 </div>
-                <p class="billed-note" data-billed-note>Charged monthly. Cancel anytime.</p>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
               </header>
 
               <div class="card-body">
                 <ul class="feature-list">
                   <li>Up to 1,000 active tagged items.</li>
-                  <li>Single location, handheld reader (BYO or purchase separately).</li>
+                  <li>
+                    Single location, handheld reader (BYO or purchase separately).
+                  </li>
                   <li>Basic dashboards for stock accuracy and loss.</li>
                 </ul>
               </div>
@@ -496,21 +772,35 @@
                   <h2 class="plan-name">Grow</h2>
                   <span class="badge-popular">Most popular</span>
                 </div>
-                <p class="plan-caption">For small teams and growing networks.</p>
+                <p class="plan-caption">
+                  For small teams and growing networks.
+                </p>
 
                 <div class="price-row">
-                  <span class="price-amount" data-plan-price data-monthly="149" data-yearly="119">£149</span>
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="149"
+                    data-yearly="119"
+                    >£149</span
+                  >
                   <span class="price-unit">/month</span>
                 </div>
-                <p class="billed-note" data-billed-note>Charged monthly. Cancel anytime.</p>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
               </header>
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>Multi-site visibility with scheduled finance-ready reporting.</li>
+                  <li>
+                    Multi-site visibility with scheduled finance-ready reporting.
+                  </li>
                   <li>Up to 20,000 active tagged items across locations.</li>
                   <li>Cycle counts and shrink reports by store and warehouse.</li>
-                  <li>Operations and finance dashboards with scheduled exports.</li>
+                  <li>
+                    Operations and finance dashboards with scheduled exports.
+                  </li>
                 </ul>
               </div>
 
@@ -531,18 +821,36 @@
                 <p class="plan-caption">For chains, warehouses and 3PLs.</p>
 
                 <div class="price-row">
-                  <span class="price-amount" data-plan-price data-monthly="249" data-yearly="199">£249</span>
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="249"
+                    data-yearly="199"
+                    >£249</span
+                  >
                   <span class="price-unit">/month</span>
                 </div>
-                <p class="billed-note" data-billed-note>Charged monthly. Cancel anytime.</p>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
               </header>
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>Finance-led control with consolidated views and integrations.</li>
-                  <li>Unlimited active tagged items across all sites and clients.</li>
-                  <li>Consolidated dashboards with drill-down and ageing reports.</li>
-                  <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
+                  <li>
+                    Finance-led control with consolidated views and
+                    integrations.
+                  </li>
+                  <li>
+                    Unlimited active tagged items across all sites and clients.
+                  </li>
+                  <li>
+                    Consolidated dashboards with drill-down and ageing reports.
+                  </li>
+                  <li>
+                    Multi-currency, API and ERP integrations, audit-ready
+                    exports.
+                  </li>
                 </ul>
               </div>
 
@@ -566,14 +874,21 @@
                   <span class="price-amount">Custom</span>
                   <span class="price-unit">/month</span>
                 </div>
-                <p class="billed-note">Tailored volumes, hardware bundles and commercial terms.</p>
+                <p class="billed-note">
+                  Tailored volumes, hardware bundles and commercial terms.
+                </p>
               </header>
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>Unlimited sites and tag volumes with bespoke commercials.</li>
+                  <li>
+                    Unlimited sites and tag volumes with bespoke commercials.
+                  </li>
                   <li>Hardware rollout, onboarding and training.</li>
-                  <li>Custom dashboards and reporting packs for finance and operations.</li>
+                  <li>
+                    Custom dashboards and reporting packs for finance and
+                    operations.
+                  </li>
                 </ul>
               </div>
 
@@ -585,16 +900,273 @@
         </div>
       </section>
 
+      <!-- FOOTNOTE -->
       <section class="footnote">
-        *Intro offer applies to new MeshRFID subscriptions only. Hardware, implementation and local taxes are billed
-        separately.
+        *Intro offer applies to new MeshRFID subscriptions only. Hardware,
+        implementation and local taxes are billed separately.
+      </section>
+
+      <!-- WHAT EVERY PLAN GETS YOU -->
+      <section class="section section-muted" aria-label="Shared benefits">
+        <h2>What every plan gets you</h2>
+        <p class="lead">
+          Core MeshRFID features are included on every plan so you can grow
+          without rewiring how you work.
+        </p>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Real-time stock picture</h3>
+            <p>
+              Live visibility of items by site, zone and status so finance and
+              operations are always aligned.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Zero-code setup</h3>
+            <p>
+              Simple onboarding with CSV imports and guided templates. No
+              warehouse rebuilds or new IT projects.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Shrink and loss alerts</h3>
+            <p>
+              Exception reporting highlights gaps and suspicious movements before
+              they hit the P&amp;L.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Finance-ready exports</h3>
+            <p>
+              Schedule stock, ageing and valuation reports straight into your
+              accounting workflow.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ALTERNATIVE SOLUTIONS -->
+      <section class="section" aria-label="Alternative solutions">
+        <h2>Alternative solutions for your business</h2>
+        <p class="lead">
+          Hardware-only and valuation-only options for projects where you do not
+          need a full subscription.
+        </p>
+
+        <div class="alt-grid">
+          <article class="alt-card">
+            <div class="alt-label">Hardware bundle</div>
+            <div class="alt-name">Starter kit</div>
+            <p>
+              Handheld reader, tags and onboarding session so you can pilot RFID
+              on a single site before rolling out.
+            </p>
+            <button type="button">Talk to sales</button>
+          </article>
+
+          <article class="alt-card">
+            <div class="alt-label">Advisory</div>
+            <div class="alt-name">Stock audit &amp; valuation</div>
+            <p>
+              One-off or quarterly counts with finance-grade reporting – ideal
+              for covenant checks, lender packs and disposals.
+            </p>
+            <button type="button">Request a proposal</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- LOGOS -->
+      <section class="section section-tight" aria-label="Customer logos">
+        <h2>Join merchants using MeshRFID</h2>
+        <p class="lead">
+          From independent retailers to regional chains and 3PLs handling
+          millions of units.
+        </p>
+
+        <div class="logo-row">
+          <span class="logo-pill">Gymwear Collective</span>
+          <span class="logo-pill">Urban Outlet Group</span>
+          <span class="logo-pill">Northshore 3PL</span>
+          <span class="logo-pill">Everyday Basics Co.</span>
+          <span class="logo-pill">Global Closeout Partners</span>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works" class="section" aria-label="How MeshRFID works">
+        <h2>How it works</h2>
+        <p class="lead">
+          Roll out RFID with a lightweight stack that connects stores,
+          warehouses and finance in a single view.
+        </p>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-tag">Step 1</div>
+            <h3 class="step-title">Tag and connect your inventory</h3>
+            <p>
+              We help you tag existing and inbound stock, map locations and
+              define the views finance and ops need.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 2</div>
+            <h3 class="step-title">Scan and sync</h3>
+            <p>
+              Teams use handheld readers to capture movements. MeshRFID syncs
+              counts, transfers and shrink in real time.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 3</div>
+            <h3 class="step-title">Report and optimise</h3>
+            <p>
+              Dashboards and exports feed into your existing tools so you can
+              reduce loss, rebalance stock and prove ROI.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES -->
+      <section
+        id="case-studies"
+        class="section section-muted"
+        aria-label="Case studies"
+      >
+        <h2>Case studies</h2>
+        <p class="lead">
+          Different operations, the same outcome – finance and stock finally
+          saying the same thing.
+        </p>
+
+        <div class="case-grid">
+          <article class="case-card">
+            <div class="case-role">Sole trader</div>
+            <div class="case-metric">-35% stockouts in 3 months</div>
+            <p>
+              A single-store retailer moved from spreadsheet counts to weekly
+              RFID cycles, tightening reorders and freeing up cash.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-role">Retail chain</div>
+            <div class="case-metric">+4.2 pts margin uplift</div>
+            <p>
+              Regional fashion group cut shrink, reduced emergency transfers and
+              aligned book stock with finance reporting.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-role">3PL / warehouse</div>
+            <div class="case-metric">99.6% pick accuracy</div>
+            <p>
+              A multiclient 3PL layered MeshRFID on top of their WMS to give
+              brand owners and finance real-time, SKU-level visibility.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQS -->
+      <section id="faqs" class="section section-tight" aria-label="FAQs">
+        <h2>Frequently asked questions</h2>
+        <p class="lead">
+          Answers to the most common questions on pricing, hardware and roll-out.
+        </p>
+
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span>What is included in the monthly price?</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div class="faq-content" hidden>
+              Your subscription covers access to MeshRFID for the number of
+              sites and tagged items in your plan, support, updates and standard
+              reporting. Hardware and any on-site services are quoted
+              separately.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span>Can I change plans as I grow?</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div class="faq-content" hidden>
+              Yes. You can move between Starter, Grow and Pro as your volumes
+              change. We simply adjust your billing from the next invoice date.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span>Do I need to replace my existing WMS or POS?</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div class="faq-content" hidden>
+              No. MeshRFID sits alongside your existing systems and connects via
+              exports or APIs. Most customers start with light-touch
+              integrations.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span>How long does it take to go live?</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  d="M10 4c.41 0 .75.34.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5C9.25 4.34 9.59 4 10 4z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div class="faq-content" hidden>
+              A single-site Starter implementation can be live in days. Larger
+              Grow and Pro roll-outs usually phase over a few weeks so training
+              and reporting land properly.
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   </div>
 
   <script>
+    // billing toggle
     (function () {
-      const toggleButtons = document.querySelectorAll(".billing-toggle .toggle-option");
+      const toggleButtons = document.querySelectorAll(
+        ".billing-toggle .toggle-option"
+      );
       const priceEls = document.querySelectorAll("[data-plan-price]");
       const billedNotes = document.querySelectorAll("[data-billed-note]");
 
@@ -623,6 +1195,18 @@
         btn.addEventListener("click", () => {
           const mode = btn.dataset.billing;
           setBilling(mode);
+        });
+      });
+    })();
+
+    // simple FAQ accordion
+    (function () {
+      const faqButtons = document.querySelectorAll(".faq-summary");
+      faqButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const content = btn.nextElementSibling;
+          const isOpen = !content.hidden;
+          content.hidden = isOpen;
         });
       });
     })();
