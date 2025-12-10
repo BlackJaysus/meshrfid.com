@@ -35,7 +35,6 @@
       z-index: 20;
     }
 
-    /* Old logo style restored */
     .logo {
       font-weight: 700;
       font-size: 0.95rem;
@@ -57,6 +56,7 @@
     }
 
     h1 { font-size: 2rem; margin-bottom: 8px; }
+
     p.lead {
       opacity: 0.85;
       max-width: 640px;
@@ -84,7 +84,6 @@
       font-size: 0.9rem;
     }
 
-    /* Placeholder graphic instead of broken images */
     .placeholder {
       width: 100%;
       height: 100px;
@@ -113,14 +112,25 @@
       background: transparent;
       color: #333;
       font-size: 0.85rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: background 0.15s ease, color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
       margin-top: 8px;
     }
     .btn-cta-secondary:hover {
       background: #555;
       border-color: #555;
       color: #fff;
+    }
+
+    /* Card CTAs – full width, one line */
+    .case .btn-cta-secondary {
+      width: 100%;
+      white-space: nowrap;
+      justify-content: center;
     }
 
     footer {
@@ -135,7 +145,7 @@
 </head>
 <body>
 <header>
-  <div class="logo">MeshRFID</div>
+  <a href="index.html" class="logo">MeshRFID</a>
   <nav>
     <a href="index.html">Home</a>
     <a href="how-it-works.html">How it works</a>
@@ -161,7 +171,7 @@
         <li>Full stock count in under 3 minutes.</li>
         <li>Reduced “lost” items to near zero.</li>
       </ul>
-      <button class="btn-cta-secondary">Mirror this setup</button>
+      <button class="btn-cta-secondary" type="button">Mirror This Setup</button>
     </article>
 
     <article class="case">
@@ -173,7 +183,7 @@
         <li>Weekly cycle counts built into routine.</li>
         <li>Scheduled valuation reports to finance.</li>
       </ul>
-      <button class="btn-cta-secondary">View rollout playbook</button>
+      <button class="btn-cta-secondary" type="button">View Rollout Playbook</button>
     </article>
 
     <article class="case">
@@ -185,7 +195,7 @@
         <li>Client-level dashboards in a single view.</li>
         <li>Audit-ready inbound/outbound history.</li>
       </ul>
-      <button class="btn-cta-secondary">Talk 3PL workflow</button>
+      <button class="btn-cta-secondary" type="button">Talk 3PL Workflow</button>
     </article>
 
   </section>
