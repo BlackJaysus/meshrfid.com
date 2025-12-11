@@ -248,7 +248,7 @@
     .mobile-plan-tab {
       flex: 1 1 0;
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       padding: 0.6rem 0.3rem;
       border-right: 1px solid #e5e7eb;
       background: #ffffff;
@@ -508,8 +508,15 @@
       box-shadow: none;
     }
 
+    /* inner scroll container for table so it isn't cut off on mobile */
+    .features-table-inner {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .features-table {
       width: 100%;
+      min-width: 720px;
       border-collapse: collapse;
       font-size: 0.86rem;
     }
@@ -920,6 +927,11 @@
         margin-top: 0.9rem;
       }
 
+      /* ensure scroll-to plan lines up below sticky header + tabs */
+      .plan-wrapper {
+        scroll-margin-top: 140px;
+      }
+
       .benefit-grid,
       .alt-grid,
       .steps-grid,
@@ -956,6 +968,7 @@
         <div class="brand">MeshRFID</div>
 
         <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
           <span></span>
           <span></span>
           <span></span>
@@ -1167,68 +1180,70 @@
         </div>
 
         <div class="features-table-wrapper collapsed" id="featuresTableWrapper">
-          <table class="features-table" aria-label="Detailed plan features">
-            <thead>
-              <tr>
-                <th class="feature-name">Feature</th>
-                <th>Starter</th>
-                <th>Grow</th>
-                <th>Pro</th>
-                <th>Enterprise</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="feature-name">Active tagged items</td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 1,000</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 20,000</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
-              </tr>
-              <tr>
-                <td class="feature-name">Sites / locations</td>
-                <td>1 site</td>
-                <td>Multi-site</td>
-                <td>Multi-site</td>
-                <td>Unlimited with custom structure</td>
-              </tr>
-              <tr>
-                <td class="feature-name">Item imports &amp; uploads</td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV uploads</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; scheduled</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; API</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Fully tailored</span></td>
-              </tr>
-              <tr>
-                <td class="feature-name">Cycle counts &amp; shrink reports</td>
-                <td>Basic</td>
-                <td>By store / warehouse</td>
-                <td>By site, client and channel</td>
-                <td>Custom views and packs</td>
-              </tr>
-              <tr>
-                <td class="feature-name">Finance-ready exports</td>
-                <td>–</td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Scheduled CSV</span></td>
-                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Multi-currency / API</span></td>
-                <td>Tailored to your stack</td>
-              </tr>
-              <tr>
-                <td class="feature-name">User roles &amp; permissions</td>
-                <td>Standard</td>
-                <td>Standard + store leads</td>
-                <td>Advanced roles</td>
-                <td>Custom roles and SSO</td>
-              </tr>
-              <tr>
-                <td class="feature-name">Support</td>
-                <td>Email</td>
-                <td>Email &amp; in-app</td>
-                <td>Priority</td>
-                <td>Named account team</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="features-table-inner">
+            <table class="features-table" aria-label="Detailed plan features">
+              <thead>
+                <tr>
+                  <th class="feature-name">Feature</th>
+                  <th>Starter</th>
+                  <th>Grow</th>
+                  <th>Pro</th>
+                  <th>Enterprise</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="feature-name">Active tagged items</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 1,000</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 20,000</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Sites / locations</td>
+                  <td>1 site</td>
+                  <td>Multi-site</td>
+                  <td>Multi-site</td>
+                  <td>Unlimited with custom structure</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Item imports &amp; uploads</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV uploads</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; scheduled</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; API</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Fully tailored</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Cycle counts &amp; shrink reports</td>
+                  <td>Basic</td>
+                  <td>By store / warehouse</td>
+                  <td>By site, client and channel</td>
+                  <td>Custom views and packs</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Finance-ready exports</td>
+                  <td>–</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Scheduled CSV</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Multi-currency / API</span></td>
+                  <td>Tailored to your stack</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">User roles &amp; permissions</td>
+                  <td>Standard</td>
+                  <td>Standard + store leads</td>
+                  <td>Advanced roles</td>
+                  <td>Custom roles and SSO</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Support</td>
+                  <td>Email</td>
+                  <td>Email &amp; in-app</td>
+                  <td>Priority</td>
+                  <td>Named account team</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -1589,9 +1604,14 @@
       });
     })();
 
-    // mobile plan tabs scroll behaviour
+    // mobile plan tabs scroll behaviour + scroll spy
     (function () {
       const tabs = document.querySelectorAll(".mobile-plan-tab");
+      const sections = document.querySelectorAll(".plan-wrapper");
+
+      function isMobile() {
+        return window.matchMedia("(max-width: 768px)").matches;
+      }
 
       function setActiveTab(targetId) {
         tabs.forEach((tab) => {
@@ -1604,7 +1624,7 @@
           const targetId = tab.dataset.target;
           const el = document.getElementById(targetId);
           if (el) {
-            const headerOffset = 120;
+            const headerOffset = 140;
             const rect = el.getBoundingClientRect();
             const offset = window.pageYOffset + rect.top - headerOffset;
             window.scrollTo({ top: offset, behavior: "smooth" });
@@ -1612,6 +1632,24 @@
           }
         });
       });
+
+      // scroll spy: highlight tab when plan section is in view (mobile)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!isMobile()) return;
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveTab(entry.target.id);
+            }
+          });
+        },
+        {
+          threshold: 0.55,
+          rootMargin: "-140px 0px -40% 0px",
+        }
+      );
+
+      sections.forEach((section) => observer.observe(section));
     })();
 
     // features table toggle (starts closed)
