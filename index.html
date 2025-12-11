@@ -57,8 +57,16 @@
       top: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
-      background-color: #ffffff; /* solid white */
-      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      background-color: transparent; /* transparent at top */
+      border-bottom: 1px solid transparent;
+      transition: background-color 0.2s ease, border-bottom-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .site-header.scrolled {
+      background-color: #ffffff; /* solid white when scrolled */
+      border-bottom-color: rgba(226, 232, 240, 0.9);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     }
 
     .header-inner {
@@ -439,11 +447,113 @@
 
     .footnote {
       max-width: 1120px;
-      margin: 2rem auto 4rem;
+      margin: 2rem auto 2rem;
       padding: 0 1.5rem;
-      text-align: left;
+      text-align: center;
       font-size: 0.78rem;
       color: var(--text-muted);
+    }
+
+    /* FULL FEATURES TABLE (COLLAPSIBLE) */
+
+    .features-section {
+      max-width: 1120px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .features-toggle {
+      margin-top: 0.5rem;
+    }
+
+    .features-toggle-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.86rem;
+      cursor: pointer;
+    }
+
+    .features-toggle-icon {
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .features-table-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .features-table-wrapper.open {
+      max-height: 1000px;
+    }
+
+    .features-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.1rem;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      font-size: 0.84rem;
+    }
+
+    .features-table th,
+    .features-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    .features-table thead th {
+      background: #f9fafb;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6b7280;
+    }
+
+    .features-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .features-table .feature-name {
+      font-weight: 500;
+      width: 32%;
+    }
+
+    .features-table .tick {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid #16a34a;
+      position: relative;
+    }
+
+    .features-table .tick::after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 0px;
+      width: 5px;
+      height: 8px;
+      border-right: 2px solid #16a34a;
+      border-bottom: 2px solid #16a34a;
+      transform: rotate(40deg);
+    }
+
+    .features-table .dash {
+      color: #d1d5db;
     }
 
     /* WHAT EVERY PLAN GETS YOU */
@@ -826,6 +936,7 @@
         </button>
 
         <nav class="nav-links">
+          <a href="why.html">Why MeshRFID</a>
           <a href="#pricing" class="active">Pricing</a>
           <a href="#how-it-works">How it works</a>
           <a href="#case-studies">Case studies</a>
@@ -1044,6 +1155,81 @@
         implementation and local taxes are billed separately.
       </section>
 
+      <!-- FULL FEATURES TABLE -->
+      <section class="features-section" aria-label="Detailed plan comparison">
+        <div class="features-toggle">
+          <button class="features-toggle-button" id="featuresToggleButton" type="button">
+            <span>Full feature comparison</span>
+            <span class="features-toggle-icon" id="featuresToggleIcon">+</span>
+          </button>
+        </div>
+
+        <div class="features-table-wrapper" id="featuresTableWrapper">
+          <table class="features-table" aria-label="Detailed plan features">
+            <thead>
+              <tr>
+                <th class="feature-name">Feature</th>
+                <th>Starter</th>
+                <th>Grow</th>
+                <th>Pro</th>
+                <th>Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="feature-name">Active tagged items</td>
+                <td>Up to 1,000</td>
+                <td>Up to 20,000</td>
+                <td>Unlimited</td>
+                <td>Unlimited</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Sites / locations</td>
+                <td>1 site</td>
+                <td>Multi-site</td>
+                <td>Multi-site</td>
+                <td>Unlimited with custom structure</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Item imports &amp; uploads</td>
+                <td><span class="tick"></span></td>
+                <td><span class="tick"></span></td>
+                <td><span class="tick"></span></td>
+                <td><span class="tick"></span></td>
+              </tr>
+              <tr>
+                <td class="feature-name">Cycle counts &amp; shrink reports</td>
+                <td>Basic</td>
+                <td>By store / warehouse</td>
+                <td>By site, client and channel</td>
+                <td>Custom views and packs</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Finance-ready exports</td>
+                <td><span class="dash">–</span></td>
+                <td>Scheduled CSV exports</td>
+                <td>Multi-currency, API and ERP</td>
+                <td>Tailored to your stack</td>
+              </tr>
+              <tr>
+                <td class="feature-name">User roles &amp; permissions</td>
+                <td>Standard</td>
+                <td>Standard + store leads</td>
+                <td>Advanced roles</td>
+                <td>Custom roles and SSO</td>
+              </tr>
+              <tr>
+                <td class="feature-name">Support</td>
+                <td>Email</td>
+                <td>Email &amp; in-app</td>
+                <td>Priority support</td>
+                <td>Named account team</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <!-- WHAT EVERY PLAN GETS YOU -->
       <section class="section section-muted" aria-label="Shared benefits">
         <h2>What every plan gets you</h2>
@@ -1091,7 +1277,7 @@
         </div>
       </section>
 
-      <!-- HOW IT WORKS (moved directly after shared benefits) -->
+      <!-- HOW IT WORKS (after shared benefits) -->
       <section id="how-it-works" class="section" aria-label="How MeshRFID works">
         <h2>How it works</h2>
         <p class="lead">
@@ -1325,6 +1511,7 @@
       <div class="footer-inner">
         <div>© <span id="year"></span> MeshRFID. All rights reserved.</div>
         <div class="footer-links">
+          <a href="why.html">Why MeshRFID</a>
           <a href="#pricing">Pricing</a>
           <a href="#how-it-works">How it works</a>
           <a href="#case-studies">Case studies</a>
@@ -1335,11 +1522,19 @@
   </div>
 
   <script>
-    // header hamburger
+    // header hamburger + scroll background
     (function () {
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".nav-toggle");
       const links = document.querySelectorAll(".nav-links a");
+
+      function handleScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
 
       toggle.addEventListener("click", () => {
         header.classList.toggle("nav-open");
@@ -1350,6 +1545,9 @@
           header.classList.remove("nav-open");
         });
       });
+
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
     })();
 
     // billing toggle
@@ -1389,9 +1587,10 @@
       });
     })();
 
-    // mobile plan tabs scroll behaviour
+    // mobile plan tabs scroll behaviour (click + sync with scroll)
     (function () {
       const tabs = document.querySelectorAll(".mobile-plan-tab");
+      const plans = document.querySelectorAll(".plan-wrapper");
 
       function setActiveTab(targetId) {
         tabs.forEach((tab) => {
@@ -1412,6 +1611,29 @@
           }
         });
       });
+
+      // IntersectionObserver to update active tab when scrolling
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                if (id) {
+                  setActiveTab(id);
+                }
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px 0px -60% 0px",
+            threshold: 0,
+          }
+        );
+
+        plans.forEach((plan) => observer.observe(plan));
+      }
     })();
 
     // FAQ accordion
@@ -1424,6 +1646,20 @@
           content.hidden = isOpen;
           btn.classList.toggle("open", !isOpen);
         });
+      });
+    })();
+
+    // features table toggle
+    (function () {
+      const btn = document.getElementById("featuresToggleButton");
+      const icon = document.getElementById("featuresToggleIcon");
+      const wrapper = document.getElementById("featuresTableWrapper");
+
+      if (!btn || !icon || !wrapper) return;
+
+      btn.addEventListener("click", () => {
+        const open = wrapper.classList.toggle("open");
+        icon.textContent = open ? "−" : "+";
       });
     })();
 
