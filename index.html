@@ -239,7 +239,7 @@
       margin-left: 0.4rem;
     }
 
-    /* MOBILE PLAN TABS (sticky on mobile) */
+    /* MOBILE PLAN TABS */
 
     .mobile-plan-tabs {
       display: none;
@@ -449,7 +449,7 @@
       margin: 0.6rem auto 1.8rem;
       padding: 0 1.5rem;
       text-align: center;
-      font-size: 0.65rem;
+      font-size: 0.45rem; /* 30% smaller than before */
       color: var(--text-muted);
       opacity: 0.9;
     }
@@ -471,19 +471,19 @@
     .features-toggle-button {
       border-radius: 999px;
       border: 1px solid #d4d4d8;
-      padding: 0.55rem 1.4rem;
+      padding: 0.6rem 1.7rem;
       background: #ffffff;
-      font-size: 0.86rem;
+      font-size: 1.05rem; /* ~25% larger */
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.55rem;
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     .features-toggle-icon {
       display: inline-block;
-      font-size: 1rem;
+      font-size: 1.15rem;
       transition: transform 0.18s ease;
     }
 
@@ -498,7 +498,8 @@
       border: 1px solid #e5e7eb;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
       max-height: 2000px;
-      transition: max-height 0.25s ease;
+      transition: max-height 0.25s ease, border-width 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .features-table-wrapper.collapsed {
@@ -1161,11 +1162,11 @@
         <div class="features-toggle">
           <button class="features-toggle-button" id="featuresToggleButton" type="button">
             <span>Full feature comparison</span>
-            <span class="features-toggle-icon" id="featuresToggleIcon">−</span>
+            <span class="features-toggle-icon" id="featuresToggleIcon">+</span>
           </button>
         </div>
 
-        <div class="features-table-wrapper" id="featuresTableWrapper">
+        <div class="features-table-wrapper collapsed" id="featuresTableWrapper">
           <table class="features-table" aria-label="Detailed plan features">
             <thead>
               <tr>
@@ -1613,7 +1614,7 @@
       });
     })();
 
-    // features table toggle
+    // features table toggle (starts closed)
     (function () {
       const btn = document.getElementById("featuresToggleButton");
       const icon = document.getElementById("featuresToggleIcon");
@@ -1621,7 +1622,7 @@
 
       if (!btn || !icon || !wrapper) return;
 
-      let open = true;
+      let open = false; // start closed
 
       btn.addEventListener("click", () => {
         open = !open;
