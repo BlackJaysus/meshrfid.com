@@ -12,7 +12,7 @@
       --text-main: #111827;
       --text-muted: #6b7280;
       --border-card: #e5e7eb;
-      --accent-green: #12b981;
+      --accent-green: #16a34a;
       --accent-green-soft: #22c55e;
       --accent-blue: #2563eb;
       --badge-bg: #ecfdf3;
@@ -59,14 +59,15 @@
       backdrop-filter: blur(18px);
       background-color: transparent;
       border-bottom: 1px solid transparent;
-      transition: background-color 0.2s ease, border-bottom-color 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: background-color 0.18s ease, box-shadow 0.18s ease,
+        border-color 0.18s ease;
     }
 
-    .site-header.scrolled {
+    .site-header.scrolled,
+    .site-header.nav-open {
       background-color: #ffffff;
-      border-bottom-color: rgba(226, 232, 240, 0.9);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
 
     .header-inner {
@@ -146,8 +147,6 @@
       transform: translateY(-6px) rotate(-45deg);
     }
 
-    /* COMMON SECTIONS */
-
     .main {
       flex: 1;
     }
@@ -189,7 +188,7 @@
     .pricing-hero {
       max-width: 1120px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 2.6rem;
+      padding: 3rem 1.5rem 3rem;
       text-align: center;
     }
 
@@ -226,7 +225,7 @@
       color: var(--text-muted);
       font-weight: 500;
       white-space: nowrap;
-      transition: color 0.15s ease;
+      transition: color 0.15s ease, background-color 0.15s ease;
     }
 
     .billing-toggle button.active {
@@ -240,7 +239,7 @@
       margin-left: 0.4rem;
     }
 
-    /* MOBILE PLAN TABS */
+    /* MOBILE PLAN TABS (sticky on mobile) */
 
     .mobile-plan-tabs {
       display: none;
@@ -450,105 +449,123 @@
       margin: 0.6rem auto 1.8rem;
       padding: 0 1.5rem;
       text-align: center;
-      font-size: 0.50rem;
+      font-size: 0.65rem;
       color: var(--text-muted);
+      opacity: 0.9;
     }
 
     /* FULL FEATURES TABLE */
 
     .features-section {
       max-width: 1120px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 4rem;
       padding: 0 1.5rem;
-      text-align: center;
     }
 
     .features-toggle {
-      margin-top: 0.3rem;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
     }
 
     .features-toggle-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
       border-radius: 999px;
-      border: 1px solid #d1d5db;
+      border: 1px solid #d4d4d8;
+      padding: 0.55rem 1.4rem;
       background: #ffffff;
-      padding: 0.55rem 1.15rem;
       font-size: 0.86rem;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
 
     .features-toggle-icon {
-      font-weight: 600;
+      display: inline-block;
       font-size: 1rem;
-      line-height: 1;
+      transition: transform 0.18s ease;
     }
 
     .features-table-wrapper {
-      max-height: 0;
+      border-radius: 26px;
       overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        rgba(240, 249, 255, 0.85),
+        #ffffff
+      );
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      max-height: 2000px;
       transition: max-height 0.25s ease;
     }
 
-    .features-table-wrapper.open {
-      max-height: 1000px;
+    .features-table-wrapper.collapsed {
+      max-height: 0;
+      border-width: 0;
+      box-shadow: none;
     }
 
     .features-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1.3rem;
-      background: #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
-      overflow: hidden;
-      font-size: 0.84rem;
+      font-size: 0.86rem;
+    }
+
+    .features-table thead {
+      background: #f9fafb;
     }
 
     .features-table th,
     .features-table td {
-      padding: 0.75rem 0.9rem;
+      padding: 0.9rem 1rem;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
+      vertical-align: middle;
     }
 
-    .features-table thead th {
-      background: #f9fafb;
-      font-weight: 600;
-      font-size: 0.8rem;
+    .features-table th:first-child,
+    .features-table td:first-child {
+      padding-left: 1.4rem;
+    }
+
+    .features-table th:last-child,
+    .features-table td:last-child {
+      padding-right: 1.4rem;
+    }
+
+    .features-table th {
+      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #6b7280;
+      color: var(--text-muted);
     }
 
-    .features-table tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    .features-table .feature-name {
+    .feature-name {
       font-weight: 500;
-      width: 32%;
     }
 
-    .cell-content {
+    .tick {
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
-      white-space: nowrap;
     }
 
-    .features-table .tick {
-      display: inline-block;
-      color: #16a34a;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1;
-      flex-shrink: 0;
+    .tick-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid #16a34a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .features-table .dash {
-      color: #d1d5db;
+    .tick-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: #16a34a;
     }
 
     /* WHAT EVERY PLAN GETS YOU */
@@ -689,6 +706,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.4rem;
+      margin-top: 1.6rem;
     }
 
     .case-card {
@@ -699,7 +717,6 @@
       font-size: 0.9rem;
       text-align: left;
       box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
-      margin-top: 1.6rem;
     }
 
     .case-role {
@@ -754,6 +771,7 @@
       margin-left: auto;
       font-size: 1.3rem;
       line-height: 1;
+      transition: transform 0.16s ease;
     }
 
     .faq-summary.open {
@@ -912,13 +930,20 @@
         border-radius: 0;
       }
 
-      .features-table {
-        font-size: 0.8rem;
-      }
-
       .features-table th,
       .features-table td {
-        padding: 0.65rem 0.6rem;
+        font-size: 0.8rem;
+        padding-inline: 0.7rem;
+      }
+
+      .features-table th:first-child,
+      .features-table td:first-child {
+        padding-left: 0.9rem;
+      }
+
+      .features-table th:last-child,
+      .features-table td:last-child {
+        padding-right: 0.9rem;
       }
     }
   </style>
@@ -952,6 +977,7 @@
         <h1>Plans for every size of operation</h1>
         <p>Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.</p>
 
+        <!-- centred billing toggle -->
         <div class="billing-toggle" aria-label="Billing period toggle">
           <button type="button" class="toggle-option active" data-billing="monthly">
             Pay monthly
@@ -986,8 +1012,7 @@
                     data-plan-price
                     data-monthly="25"
                     data-yearly="20"
-                    >£25</span
-                  >
+                  >£25</span>
                   <span class="price-unit">/month</span>
                 </div>
                 <p class="billed-note" data-billed-note>
@@ -1028,8 +1053,7 @@
                     data-plan-price
                     data-monthly="149"
                     data-yearly="119"
-                    >£149</span
-                  >
+                  >£149</span>
                   <span class="price-unit">/month</span>
                 </div>
                 <p class="billed-note" data-billed-note>
@@ -1068,8 +1092,7 @@
                     data-plan-price
                     data-monthly="249"
                     data-yearly="199"
-                    >£249</span
-                  >
+                  >£249</span>
                   <span class="price-unit">/month</span>
                 </div>
                 <p class="billed-note" data-billed-note>
@@ -1138,7 +1161,7 @@
         <div class="features-toggle">
           <button class="features-toggle-button" id="featuresToggleButton" type="button">
             <span>Full feature comparison</span>
-            <span class="features-toggle-icon" id="featuresToggleIcon">+</span>
+            <span class="features-toggle-icon" id="featuresToggleIcon">−</span>
           </button>
         </div>
 
@@ -1156,52 +1179,52 @@
             <tbody>
               <tr>
                 <td class="feature-name">Active tagged items</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Up to 1,000</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Up to 20,000</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Unlimited</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Unlimited</span></span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 1,000</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 20,000</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
               </tr>
               <tr>
                 <td class="feature-name">Sites / locations</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>1 site</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Multi-site</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Multi-site</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Unlimited / custom</span></span></td>
+                <td>1 site</td>
+                <td>Multi-site</td>
+                <td>Multi-site</td>
+                <td>Unlimited with custom structure</td>
               </tr>
               <tr>
                 <td class="feature-name">Item imports &amp; uploads</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>CSV uploads</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>CSV &amp; scheduled</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>CSV &amp; API</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Fully tailored</span></span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV uploads</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; scheduled</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; API</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Fully tailored</span></td>
               </tr>
               <tr>
                 <td class="feature-name">Cycle counts &amp; shrink reports</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Basic</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>By store / WH</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>By site / client</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Custom packs</span></span></td>
+                <td>Basic</td>
+                <td>By store / warehouse</td>
+                <td>By site, client and channel</td>
+                <td>Custom views and packs</td>
               </tr>
               <tr>
                 <td class="feature-name">Finance-ready exports</td>
-                <td class="dash">—</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Sched. CSV</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Multi-currency / API</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>To your stack</span></span></td>
+                <td>–</td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Scheduled CSV</span></td>
+                <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Multi-currency / API</span></td>
+                <td>Tailored to your stack</td>
               </tr>
               <tr>
                 <td class="feature-name">User roles &amp; permissions</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Standard</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Std. + leads</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Advanced roles</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Custom + SSO</span></span></td>
+                <td>Standard</td>
+                <td>Standard + store leads</td>
+                <td>Advanced roles</td>
+                <td>Custom roles and SSO</td>
               </tr>
               <tr>
                 <td class="feature-name">Support</td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Email</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Email &amp; in-app</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Priority</span></span></td>
-                <td><span class="cell-content"><span class="tick">✓</span><span>Named team</span></span></td>
+                <td>Email</td>
+                <td>Email &amp; in-app</td>
+                <td>Priority</td>
+                <td>Named account team</td>
               </tr>
             </tbody>
           </table>
@@ -1500,15 +1523,18 @@
   </div>
 
   <script>
-    // header behaviour
+    // header hamburger + scroll background
     (function () {
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".nav-toggle");
       const links = document.querySelectorAll(".nav-links a");
 
-      function handleScroll() {
-        if (window.scrollY > 10) header.classList.add("scrolled");
-        else header.classList.remove("scrolled");
+      function onScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
       }
 
       toggle.addEventListener("click", () => {
@@ -1516,11 +1542,13 @@
       });
 
       links.forEach((link) => {
-        link.addEventListener("click", () => header.classList.remove("nav-open"));
+        link.addEventListener("click", () => {
+          header.classList.remove("nav-open");
+        });
       });
 
-      window.addEventListener("scroll", handleScroll);
-      handleScroll();
+      window.addEventListener("scroll", onScroll);
+      onScroll();
     })();
 
     // billing toggle
@@ -1560,10 +1588,9 @@
       });
     })();
 
-    // mobile plan tabs + scroll sync
+    // mobile plan tabs scroll behaviour
     (function () {
       const tabs = document.querySelectorAll(".mobile-plan-tab");
-      const plans = document.querySelectorAll(".plan-wrapper");
 
       function setActiveTab(targetId) {
         tabs.forEach((tab) => {
@@ -1575,30 +1602,32 @@
         tab.addEventListener("click", () => {
           const targetId = tab.dataset.target;
           const el = document.getElementById(targetId);
-          if (!el) return;
-          const headerOffset = 120;
-          const rect = el.getBoundingClientRect();
-          const offset = window.pageYOffset + rect.top - headerOffset;
-          window.scrollTo({ top: offset, behavior: "smooth" });
-          setActiveTab(targetId);
+          if (el) {
+            const headerOffset = 120;
+            const rect = el.getBoundingClientRect();
+            const offset = window.pageYOffset + rect.top - headerOffset;
+            window.scrollTo({ top: offset, behavior: "smooth" });
+            setActiveTab(targetId);
+          }
         });
       });
+    })();
 
-      if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const id = entry.target.id;
-                if (id) setActiveTab(id);
-              }
-            });
-          },
-          { rootMargin: "0px 0px -60% 0px", threshold: 0 }
-        );
+    // features table toggle
+    (function () {
+      const btn = document.getElementById("featuresToggleButton");
+      const icon = document.getElementById("featuresToggleIcon");
+      const wrapper = document.getElementById("featuresTableWrapper");
 
-        plans.forEach((plan) => observer.observe(plan));
-      }
+      if (!btn || !icon || !wrapper) return;
+
+      let open = true;
+
+      btn.addEventListener("click", () => {
+        open = !open;
+        wrapper.classList.toggle("collapsed", !open);
+        icon.textContent = open ? "−" : "+";
+      });
     })();
 
     // FAQ accordion
@@ -1611,19 +1640,6 @@
           content.hidden = isOpen;
           btn.classList.toggle("open", !isOpen);
         });
-      });
-    })();
-
-    // features table toggle
-    (function () {
-      const btn = document.getElementById("featuresToggleButton");
-      const icon = document.getElementById("featuresToggleIcon");
-      const wrapper = document.getElementById("featuresTableWrapper");
-      if (!btn || !icon || !wrapper) return;
-
-      btn.addEventListener("click", () => {
-        const open = wrapper.classList.toggle("open");
-        icon.textContent = open ? "−" : "+";
       });
     })();
 
