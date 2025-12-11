@@ -57,14 +57,14 @@
       top: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
-      background-color: transparent; /* transparent at top */
+      background-color: transparent;
       border-bottom: 1px solid transparent;
       transition: background-color 0.2s ease, border-bottom-color 0.2s ease,
         box-shadow 0.2s ease;
     }
 
     .site-header.scrolled {
-      background-color: #ffffff; /* solid white when scrolled */
+      background-color: #ffffff;
       border-bottom-color: rgba(226, 232, 240, 0.9);
       box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
     }
@@ -240,10 +240,10 @@
       margin-left: 0.4rem;
     }
 
-    /* MOBILE PLAN TABS (sticky on mobile) */
+    /* MOBILE PLAN TABS */
 
     .mobile-plan-tabs {
-      display: none; /* mobile only */
+      display: none;
     }
 
     .mobile-plan-tab {
@@ -454,7 +454,7 @@
       color: var(--text-muted);
     }
 
-    /* FULL FEATURES TABLE (COLLAPSIBLE) */
+    /* FULL FEATURES TABLE */
 
     .features-section {
       max-width: 1120px;
@@ -508,7 +508,7 @@
 
     .features-table th,
     .features-table td {
-      padding: 0.65rem 0.75rem;
+      padding: 0.75rem 0.9rem;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
     }
@@ -531,20 +531,28 @@
       width: 32%;
     }
 
+    .cell-content {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
     .features-table .tick {
       display: inline-block;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       border-radius: 999px;
       border: 2px solid #16a34a;
       position: relative;
+      flex-shrink: 0;
     }
 
     .features-table .tick::after {
       content: "";
       position: absolute;
-      left: 3px;
-      top: 0px;
+      left: 4px;
+      top: 1px;
       width: 5px;
       height: 8px;
       border-right: 2px solid #16a34a;
@@ -694,7 +702,6 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.4rem;
-      margin-top: 1.6rem;
     }
 
     .case-card {
@@ -705,6 +712,7 @@
       font-size: 0.9rem;
       text-align: left;
       box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+      margin-top: 1.6rem;
     }
 
     .case-role {
@@ -767,7 +775,7 @@
     }
 
     .faq-summary.open .faq-plus {
-      transform: rotate(45deg); /* + -> x visually */
+      transform: rotate(45deg);
     }
 
     .faq-content {
@@ -820,7 +828,7 @@
       color: inherit;
     }
 
-    /* MOBILE & TABLET */
+    /* RESPONSIVE */
 
     @media (max-width: 1024px) {
       .pricing-grid {
@@ -893,7 +901,7 @@
       .mobile-plan-tabs {
         display: flex;
         position: sticky;
-        top: 56px; /* just under sticky header */
+        top: 56px;
         z-index: 35;
         background: #ffffff;
         border-top: 2px solid #22c55e;
@@ -906,10 +914,6 @@
         margin-top: 0.9rem;
       }
 
-      .card-header {
-        position: static;
-      }
-
       .benefit-grid,
       .alt-grid,
       .steps-grid,
@@ -919,6 +923,15 @@
 
       .section-muted {
         border-radius: 0;
+      }
+
+      .features-table {
+        font-size: 0.8rem;
+      }
+
+      .features-table th,
+      .features-table td {
+        padding: 0.65rem 0.6rem;
       }
     }
   </style>
@@ -952,7 +965,6 @@
         <h1>Plans for every size of operation</h1>
         <p>Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.</p>
 
-        <!-- centred billing toggle -->
         <div class="billing-toggle" aria-label="Billing period toggle">
           <button type="button" class="toggle-option active" data-billing="monthly">
             Pay monthly
@@ -999,9 +1011,7 @@
               <div class="card-body">
                 <ul class="feature-list">
                   <li>Up to 1,000 active tagged items.</li>
-                  <li>
-                    Single location, handheld reader (BYO or purchase separately).
-                  </li>
+                  <li>Single location, handheld reader (BYO or purchase separately).</li>
                   <li>Basic dashboards for stock accuracy and loss.</li>
                 </ul>
               </div>
@@ -1042,14 +1052,10 @@
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>
-                    Multi-site visibility with scheduled finance-ready reporting.
-                  </li>
+                  <li>Multi-site visibility with scheduled finance-ready reporting.</li>
                   <li>Up to 20,000 active tagged items across locations.</li>
                   <li>Cycle counts and shrink reports by store and warehouse.</li>
-                  <li>
-                    Operations and finance dashboards with scheduled exports.
-                  </li>
+                  <li>Operations and finance dashboards with scheduled exports.</li>
                 </ul>
               </div>
 
@@ -1086,20 +1092,10 @@
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>
-                    Finance-led control with consolidated views and
-                    integrations.
-                  </li>
-                  <li>
-                    Unlimited active tagged items across all sites and clients.
-                  </li>
-                  <li>
-                    Consolidated dashboards with drill-down and ageing reports.
-                  </li>
-                  <li>
-                    Multi-currency, API and ERP integrations, audit-ready
-                    exports.
-                  </li>
+                  <li>Finance-led control with consolidated views and integrations.</li>
+                  <li>Unlimited active tagged items across all sites and clients.</li>
+                  <li>Consolidated dashboards with drill-down and ageing reports.</li>
+                  <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
                 </ul>
               </div>
 
@@ -1130,14 +1126,9 @@
 
               <div class="card-body">
                 <ul class="feature-list">
-                  <li>
-                    Unlimited sites and tag volumes with bespoke commercials.
-                  </li>
+                  <li>Unlimited sites and tag volumes with bespoke commercials.</li>
                   <li>Hardware rollout, onboarding and training.</li>
-                  <li>
-                    Custom dashboards and reporting packs for finance and
-                    operations.
-                  </li>
+                  <li>Custom dashboards and reporting packs for finance and operations.</li>
                 </ul>
               </div>
 
@@ -1178,52 +1169,84 @@
             <tbody>
               <tr>
                 <td class="feature-name">Active tagged items</td>
-                <td>Up to 1,000</td>
-                <td>Up to 20,000</td>
-                <td>Unlimited</td>
-                <td>Unlimited</td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Up to 1,000</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Up to 20,000</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Unlimited</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Unlimited</span>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="feature-name">Sites / locations</td>
-                <td>1 site</td>
-                <td>Multi-site</td>
-                <td>Multi-site</td>
-                <td>Unlimited with custom structure</td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>1 site</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Multi-site</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Multi-site</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="cell-content">
+                    <span class="tick"></span><span>Unlimited / custom</span>
+                  </span>
+                </td>
               </tr>
               <tr>
                 <td class="feature-name">Item imports &amp; uploads</td>
-                <td><span class="tick"></span></td>
-                <td><span class="tick"></span></td>
-                <td><span class="tick"></span></td>
-                <td><span class="tick"></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>CSV uploads</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>CSV &amp; scheduled</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>CSV &amp; API</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Fully tailored</span></span></td>
               </tr>
               <tr>
                 <td class="feature-name">Cycle counts &amp; shrink reports</td>
-                <td>Basic</td>
-                <td>By store / warehouse</td>
-                <td>By site, client and channel</td>
-                <td>Custom views and packs</td>
+                <td><span class="cell-content"><span class="tick"></span><span>Basic</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>By store / WH</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>By site / client</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Custom packs</span></span></td>
               </tr>
               <tr>
                 <td class="feature-name">Finance-ready exports</td>
-                <td><span class="dash">–</span></td>
-                <td>Scheduled CSV exports</td>
-                <td>Multi-currency, API and ERP</td>
-                <td>Tailored to your stack</td>
+                <td class="dash">—</td>
+                <td><span class="cell-content"><span class="tick"></span><span>Sched. CSV</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Multi-currency / API</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>To your stack</span></span></td>
               </tr>
               <tr>
                 <td class="feature-name">User roles &amp; permissions</td>
-                <td>Standard</td>
-                <td>Standard + store leads</td>
-                <td>Advanced roles</td>
-                <td>Custom roles and SSO</td>
+                <td><span class="cell-content"><span class="tick"></span><span>Standard</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Std. + leads</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Advanced roles</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Custom + SSO</span></span></td>
               </tr>
               <tr>
                 <td class="feature-name">Support</td>
-                <td>Email</td>
-                <td>Email &amp; in-app</td>
-                <td>Priority support</td>
-                <td>Named account team</td>
+                <td><span class="cell-content"><span class="tick"></span><span>Email</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Email &amp; in-app</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Priority</span></span></td>
+                <td><span class="cell-content"><span class="tick"></span><span>Named team</span></span></td>
               </tr>
             </tbody>
           </table>
@@ -1277,7 +1300,7 @@
         </div>
       </section>
 
-      <!-- HOW IT WORKS (after shared benefits) -->
+      <!-- HOW IT WORKS -->
       <section id="how-it-works" class="section" aria-label="How MeshRFID works">
         <h2>How it works</h2>
         <p class="lead">
@@ -1522,18 +1545,15 @@
   </div>
 
   <script>
-    // header hamburger + scroll background
+    // header behaviour
     (function () {
       const header = document.querySelector(".site-header");
       const toggle = document.querySelector(".nav-toggle");
       const links = document.querySelectorAll(".nav-links a");
 
       function handleScroll() {
-        if (window.scrollY > 10) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
+        if (window.scrollY > 10) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
       }
 
       toggle.addEventListener("click", () => {
@@ -1541,9 +1561,7 @@
       });
 
       links.forEach((link) => {
-        link.addEventListener("click", () => {
-          header.classList.remove("nav-open");
-        });
+        link.addEventListener("click", () => header.classList.remove("nav-open"));
       });
 
       window.addEventListener("scroll", handleScroll);
@@ -1587,7 +1605,7 @@
       });
     })();
 
-    // mobile plan tabs scroll behaviour (click + sync with scroll)
+    // mobile plan tabs + scroll sync
     (function () {
       const tabs = document.querySelectorAll(".mobile-plan-tab");
       const plans = document.querySelectorAll(".plan-wrapper");
@@ -1602,34 +1620,26 @@
         tab.addEventListener("click", () => {
           const targetId = tab.dataset.target;
           const el = document.getElementById(targetId);
-          if (el) {
-            const headerOffset = 120; // header + tabs height approx
-            const rect = el.getBoundingClientRect();
-            const offset = window.pageYOffset + rect.top - headerOffset;
-            window.scrollTo({ top: offset, behavior: "smooth" });
-            setActiveTab(targetId);
-          }
+          if (!el) return;
+          const headerOffset = 120;
+          const rect = el.getBoundingClientRect();
+          const offset = window.pageYOffset + rect.top - headerOffset;
+          window.scrollTo({ top: offset, behavior: "smooth" });
+          setActiveTab(targetId);
         });
       });
 
-      // IntersectionObserver to update active tab when scrolling
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const id = entry.target.id;
-                if (id) {
-                  setActiveTab(id);
-                }
+                if (id) setActiveTab(id);
               }
             });
           },
-          {
-            root: null,
-            rootMargin: "0px 0px -60% 0px",
-            threshold: 0,
-          }
+          { rootMargin: "0px 0px -60% 0px", threshold: 0 }
         );
 
         plans.forEach((plan) => observer.observe(plan));
@@ -1654,7 +1664,6 @@
       const btn = document.getElementById("featuresToggleButton");
       const icon = document.getElementById("featuresToggleIcon");
       const wrapper = document.getElementById("featuresTableWrapper");
-
       if (!btn || !icon || !wrapper) return;
 
       btn.addEventListener("click", () => {
