@@ -6,19 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg-gradient-start: #e8fbf3;
-      --bg-gradient-mid: #eaf4ff;
+      --bg-gradient-start: #b6f5df;
+      --bg-gradient-mid: #cfe4ff;
       --bg-gradient-end: #ffffff;
-      --text-main: #111827;
-      --text-muted: #6b7280;
-      --border-card: #e5e7eb;
-      --accent-green: #16a34a;
-      --accent-green-soft: #22c55e;
-      --accent-blue: #2563eb;
-      --badge-bg: #ecfdf3;
-      --badge-border: #bbf7d0;
+      --text-main: #0b1220;
+      --text-muted: #475569;
+      --border-card: #cbd5e1;
+      --accent-green: #0f9f4a;
+      --accent-green-soft: #2ee59d;
+      --accent-blue: #1d4ed8;
+      --badge-bg: #d1fae5;
+      --badge-border: #34d399;
       --radius-card: 24px;
-      --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-card: 0 22px 55px rgba(2, 6, 23, 0.18);
     }
 
     * {
@@ -449,7 +449,7 @@
       margin: 0.6rem auto 1.8rem;
       padding: 0 1.5rem;
       text-align: center;
-      font-size: 0.45rem; /* 30% smaller than before */
+      font-size: 0.45rem;
       color: var(--text-muted);
       opacity: 0.9;
     }
@@ -473,7 +473,7 @@
       border: 1px solid #d4d4d8;
       padding: 0.6rem 1.7rem;
       background: #ffffff;
-      font-size: 1.05rem; /* ~25% larger */
+      font-size: 1.05rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -490,11 +490,7 @@
     .features-table-wrapper {
       border-radius: 26px;
       overflow: hidden;
-      background: linear-gradient(
-        180deg,
-        rgba(240, 249, 255, 0.85),
-        #ffffff
-      );
+      background: linear-gradient(180deg, rgba(240, 249, 255, 0.85), #ffffff);
       border: 1px solid #e5e7eb;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
       max-height: 2000px;
@@ -508,7 +504,6 @@
       box-shadow: none;
     }
 
-    /* inner scroll container for table so it isn't cut off on mobile */
     .features-table-inner {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -841,38 +836,175 @@
       color: inherit;
     }
 
-    /* RESPONSIVE */
+    /* COOKIES - SHOPIFY-STYLE PILL */
 
-    @media (max-width: 1024px) {
-      .pricing-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .cookie-fab {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 90;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: none;
+      background: #000;
+      color: #fff;
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.25);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
 
-      .benefit-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .cookie-fab svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
 
-      .steps-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .cookie-banner {
+      position: fixed;
+      left: 22px;
+      bottom: 22px;
+      z-index: 100;
+      max-width: 720px;
+      width: min(720px, calc(100vw - 44px));
+      background: #000;
+      color: #fff;
+      border-radius: 22px;
+      padding: 18px 18px;
+      box-shadow: 0 22px 55px rgba(2, 6, 23, 0.35);
+      display: none;
+    }
 
-      .case-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .cookie-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-      .header-inner {
-        padding-inline: 1rem;
-      }
+    .cookie-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .cookie-logo svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    .cookie-copy {
+      flex: 1 1 auto;
+      font-size: 0.9rem;
+      line-height: 1.35;
+      color: #fff;
+      opacity: 0.95;
+    }
+
+    .cookie-copy a {
+      text-decoration: underline;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .cookie-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .cookie-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: #fff;
+      color: #000;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .cookie-settings {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .cookie-settings svg {
+      width: 20px;
+      height: 20px;
+      stroke: #000;
+      fill: none;
+      stroke-width: 2;
     }
 
     @media (max-width: 768px) {
-      .header-inner {
-        flex-wrap: nowrap;
+      .cookie-banner {
+        width: calc(100vw - 24px);
+        left: 12px;
+        bottom: 12px;
+        max-width: none;
+        padding: 16px 16px;
       }
 
-      .nav-toggle {
-        display: block;
+      .cookie-row {
+        flex-wrap: wrap;
+        gap: 12px;
       }
+
+      .cookie-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .cookie-btn {
+        flex: 1 1 0;
+        text-align: center;
+        padding: 12px 12px;
+        font-size: 0.92rem;
+      }
+
+      .cookie-settings {
+        flex: 0 0 auto;
+      }
+
+      .cookie-fab {
+        left: 12px;
+        bottom: 12px;
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .benefit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .steps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .case-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .header-inner { padding-inline: 1rem; }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-wrap: nowrap; }
+
+      .nav-toggle { display: block; }
 
       .nav-links {
         display: none;
@@ -888,17 +1020,11 @@
         z-index: 30;
       }
 
-      .site-header.nav-open .nav-links {
-        display: flex;
-      }
+      .site-header.nav-open .nav-links { display: flex; }
 
-      .pricing-hero {
-        padding-top: 2.2rem;
-      }
+      .pricing-hero { padding-top: 2.2rem; }
 
-      .pricing-hero h1 {
-        font-size: 1.7rem;
-      }
+      .pricing-hero h1 { font-size: 1.7rem; }
 
       .billing-toggle {
         width: 100%;
@@ -927,21 +1053,14 @@
         margin-top: 0.9rem;
       }
 
-      /* ensure scroll-to plan lines up below sticky header + tabs */
-      .plan-wrapper {
-        scroll-margin-top: 140px;
-      }
+      .plan-wrapper { scroll-margin-top: 140px; }
 
       .benefit-grid,
       .alt-grid,
       .steps-grid,
-      .case-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .case-grid { grid-template-columns: minmax(0, 1fr); }
 
-      .section-muted {
-        border-radius: 0;
-      }
+      .section-muted { border-radius: 0; }
 
       .features-table th,
       .features-table td {
@@ -950,14 +1069,10 @@
       }
 
       .features-table th:first-child,
-      .features-table td:first-child {
-        padding-left: 0.9rem;
-      }
+      .features-table td:first-child { padding-left: 0.9rem; }
 
       .features-table th:last-child,
-      .features-table td:last-child {
-        padding-right: 0.9rem;
-      }
+      .features-table td:last-child { padding-right: 0.9rem; }
     }
   </style>
 </head>
@@ -965,7 +1080,8 @@
   <div class="page-wrap">
     <header class="site-header">
       <div class="header-inner">
-        <div class="brand">MeshRFID</div>
+        <!-- LOGO LINKS TO HOMEPAGE (keeps Why page separate) -->
+        <a class="brand" href="index.html" aria-label="MeshRFID homepage">MeshRFID</a>
 
         <button class="nav-toggle" aria-label="Toggle navigation">
           <span></span>
@@ -1381,11 +1497,7 @@
       </section>
 
       <!-- CASE STUDIES -->
-      <section
-        id="case-studies"
-        class="section section-muted"
-        aria-label="Case studies"
-      >
+      <section id="case-studies" class="section section-muted" aria-label="Case studies">
         <h2>Case studies</h2>
         <p class="lead">
           Different operations, the same outcome – finance and stock finally
@@ -1538,6 +1650,40 @@
     </footer>
   </div>
 
+  <!-- COOKIE FAB (shown after choice is made) -->
+  <button class="cookie-fab" id="cookieFab" type="button" aria-label="Cookie preferences">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2a10 10 0 1 0 10 10c0-.4 0-.8-.1-1.2-1.1.4-2.3.5-3.5.2-2.4-.6-4.2-2.4-4.8-4.8-.3-1.2-.2-2.4.2-3.5C13 2.1 12.5 2 12 2Zm-2.2 7.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Zm6.2 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm-4.2 4.2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm-3.6 2.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm8-1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/>
+    </svg>
+  </button>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie preferences">
+    <div class="cookie-row">
+      <div class="cookie-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2a10 10 0 1 0 10 10c0-.4 0-.8-.1-1.2-1.1.4-2.3.5-3.5.2-2.4-.6-4.2-2.4-4.8-4.8-.3-1.2-.2-2.4.2-3.5C13 2.1 12.5 2 12 2Zm-2.2 7.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4Zm6.2 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm-4.2 4.2a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm-3.6 2.6a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm8-1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/>
+        </svg>
+      </div>
+
+      <div class="cookie-copy">
+        We and our partners use cookies and other technologies to personalise your experience, show you ads, and perform analytics. See our
+        <a href="cookie-policy.html">Cookie Policy</a>.
+      </div>
+
+      <div class="cookie-actions">
+        <button class="cookie-btn" id="cookieReject" type="button">Reject all</button>
+        <button class="cookie-btn" id="cookieAccept" type="button">Accept cookies</button>
+        <button class="cookie-settings" id="cookieSettings" type="button" aria-label="Cookie settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/>
+            <path d="M19.4 13.1a7.8 7.8 0 0 0 .1-2.2l2-1.5-2-3.4-2.4 1a8.2 8.2 0 0 0-1.9-1.1l-.4-2.5H9.2l-.4 2.5c-.7.3-1.3.6-1.9 1.1l-2.4-1-2 3.4 2 1.5a7.8 7.8 0 0 0 .1 2.2l-2 1.5 2 3.4 2.4-1c.6.4 1.2.8 1.9 1.1l.4 2.5h5.6l.4-2.5c.7-.3 1.3-.6 1.9-1.1l2.4 1 2-3.4-2-1.5Z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // header hamburger + scroll background
     (function () {
@@ -1633,7 +1779,6 @@
         });
       });
 
-      // scroll spy: highlight tab when plan section is in view (mobile)
       const observer = new IntersectionObserver(
         (entries) => {
           if (!isMobile()) return;
@@ -1643,10 +1788,7 @@
             }
           });
         },
-        {
-          threshold: 0.55,
-          rootMargin: "-140px 0px -40% 0px",
-        }
+        { threshold: 0.55, rootMargin: "-140px 0px -40% 0px" }
       );
 
       sections.forEach((section) => observer.observe(section));
@@ -1660,7 +1802,7 @@
 
       if (!btn || !icon || !wrapper) return;
 
-      let open = false; // start closed
+      let open = false;
 
       btn.addEventListener("click", () => {
         open = !open;
@@ -1679,6 +1821,51 @@
           content.hidden = isOpen;
           btn.classList.toggle("open", !isOpen);
         });
+      });
+    })();
+
+    // cookies banner (Shopify-style) - localStorage
+    (function () {
+      const banner = document.getElementById("cookieBanner");
+      const fab = document.getElementById("cookieFab");
+      const accept = document.getElementById("cookieAccept");
+      const reject = document.getElementById("cookieReject");
+      const settings = document.getElementById("cookieSettings");
+
+      const KEY = "meshrfid_cookie_consent";
+
+      function showBanner() {
+        if (banner) banner.style.display = "block";
+        if (fab) fab.style.display = "none";
+      }
+
+      function hideBannerShowFab() {
+        if (banner) banner.style.display = "none";
+        if (fab) fab.style.display = "flex";
+      }
+
+      const saved = localStorage.getItem(KEY);
+
+      if (!saved) {
+        showBanner();
+      } else {
+        hideBannerShowFab();
+      }
+
+      function save(value) {
+        localStorage.setItem(KEY, value);
+        hideBannerShowFab();
+      }
+
+      if (accept) accept.addEventListener("click", () => save("accepted"));
+      if (reject) reject.addEventListener("click", () => save("rejected"));
+
+      if (settings) settings.addEventListener("click", () => {
+        window.location.href = "cookie-policy.html";
+      });
+
+      if (fab) fab.addEventListener("click", () => {
+        showBanner();
       });
     })();
 
