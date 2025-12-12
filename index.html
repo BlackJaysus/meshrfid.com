@@ -4,656 +4,1687 @@
   <meta charset="UTF-8" />
   <title>MeshRFID – Pricing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <style>
-    :root{
-      --text-main:#0f172a;
-      --text-muted:#6b7280;
-      --border:#e5e7eb;
-      --green:#16a34a;
-      --blue:#2563eb;
-      --radius:22px;
+    :root {
+      --bg-gradient-start: #e8fbf3;
+      --bg-gradient-mid: #eaf4ff;
+      --bg-gradient-end: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border-card: #e5e7eb;
+      --accent-green: #16a34a;
+      --accent-green-soft: #22c55e;
+      --accent-blue: #2563eb;
+      --badge-bg: #ecfdf3;
+      --badge-border: #bbf7d0;
+      --radius-card: 24px;
+      --shadow-card: 0 18px 45px rgba(15, 23, 42, 0.08);
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--text-main);
-      background:#f8fafc;
-    }
-    a{color:inherit}
-
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-
-    header{
-      padding:40px 0 20px;
-      background:linear-gradient(180deg,#ecfdf5,#f8fafc);
-    }
-    .hero{text-align:center;max-width:900px;margin:0 auto}
-    .hero h1{font-size:42px;letter-spacing:-0.02em;margin:0 0 10px}
-    .hero p{color:var(--text-muted);font-size:16px;margin:0}
-
-    .band{position:relative;padding:80px 0}
-    .band-soft{
-      background:
-        radial-gradient(900px 500px at 10% 10%, rgba(34,197,94,.12), transparent 60%),
-        radial-gradient(900px 500px at 90% 10%, rgba(37,99,235,.12), transparent 60%),
-        #f8fafc;
-    }
-    .band-white{background:#fff}
-
-    .section-head{text-align:center;max-width:800px;margin:0 auto 40px}
-    .section-head h2{font-size:36px;letter-spacing:-0.02em;margin:0 0 10px}
-    .section-head p{color:var(--text-muted);font-size:16px;line-height:1.5;margin:0}
-
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-
-    .tile{
-      background:rgba(255,255,255,.9);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:0 18px 50px rgba(15,23,42,.08);
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    .tile:hover{transform:translateY(-2px);box-shadow:0 24px 70px rgba(15,23,42,.12)}
-    .kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px}
-    .quote{font-size:15px;line-height:1.55;margin:0 0 10px}
-    .pill{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      font-size:13px;
-      background:#f9fafb;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .compare-wrap{
-      overflow-x:auto;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      box-shadow:0 20px 60px rgba(15,23,42,.08);
-      background:#fff;
-    }
-    table{width:100%;border-collapse:collapse;min-width:900px}
-    th,td{padding:14px 16px;border-bottom:1px solid var(--border);text-align:center}
-    th:first-child,td:first-child{
-      text-align:left;font-weight:600;position:sticky;left:0;background:#fff;
-    }
-    thead th{font-weight:800}
-    .tick{
-      display:inline-flex;align-items:center;justify-content:center;
-      width:22px;height:22px;border-radius:50%;
-      background:rgba(34,197,94,.15);color:var(--green);font-weight:900;
-    }
-    .dash{color:var(--text-muted)}
-
-    .logos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
-    .logo{
-      padding:10px 14px;border-radius:999px;border:1px solid var(--border);
-      background:#fff;font-size:13px;color:var(--text-muted);
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        sans-serif;
+      color: var(--text-main);
+      background: linear-gradient(
+        180deg,
+        var(--bg-gradient-start) 0%,
+        var(--bg-gradient-mid) 36%,
+        var(--bg-gradient-end) 72%
+      );
     }
 
-    details{
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:14px 16px;
-      background:#fff;
-      margin-bottom:12px;
-      box-shadow:0 14px 40px rgba(15,23,42,.06);
-    }
-    summary{cursor:pointer;font-weight:700;list-style:none}
-    summary::-webkit-details-marker{display:none}
-    details p{color:var(--text-muted);line-height:1.6;margin:10px 0 0}
-
-    .cta{
-      display:grid;
-      grid-template-columns:1.3fr .7fr;
-      gap:20px;
-      align-items:center;
-      padding:30px;
-      border-radius:28px;
-      background:
-        radial-gradient(800px 400px at 10% 10%, rgba(34,197,94,.18), transparent 60%),
-        radial-gradient(800px 400px at 90% 10%, rgba(37,99,235,.18), transparent 60%),
-        #fff;
-      border:1px solid var(--border);
-      box-shadow:0 24px 70px rgba(15,23,42,.12);
-    }
-    .cta h3{margin:0 0 6px;font-size:22px}
-    .cta p{margin:0;color:var(--text-muted)}
-    .cta-actions{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
-    .btn{
-      padding:12px 18px;border-radius:999px;font-weight:700;
-      border:1px solid var(--border);background:#fff;
-    }
-    .btn-primary{background:#000;color:#fff;border-color:#000}
-
-    /* ---------------- Cookie banner + modal (mobile friendly) ---------------- */
-    .cookie-banner{
-      position:fixed;
-      left:16px; right:16px; bottom:16px;
-      z-index:9999;
-      background:#0b1220;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:18px;
-      box-shadow:0 24px 70px rgba(0,0,0,.35);
-      padding:14px 14px 12px;
-      display:none;
-    }
-    .cookie-row{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .cookie-text{
-      font-size:13px;
-      line-height:1.45;
-      color:rgba(255,255,255,.85);
-    }
-    .cookie-text a{color:#fff;text-decoration:underline;text-underline-offset:2px}
-    .cookie-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-      flex:0 0 auto;
-    }
-    .cookie-btn{
-      border-radius:999px;
-      padding:10px 12px;
-      font-size:13px;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-      color:#fff;
-      cursor:pointer;
-      white-space:nowrap;
-    }
-    .cookie-btn.primary{
-      background:#fff;
-      color:#0b1220;
-      border-color:#fff;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .cookie-modal-backdrop{
-      position:fixed; inset:0;
-      background:rgba(2,6,23,.55);
-      z-index:10000;
-      display:none;
-      padding:18px;
-    }
-    .cookie-modal{
-      max-width:560px;
-      margin:60px auto 0;
-      background:#fff;
-      border-radius:20px;
-      border:1px solid var(--border);
-      box-shadow:0 30px 90px rgba(15,23,42,.25);
-      overflow:hidden;
-    }
-    .cookie-modal-header{
-      padding:16px 18px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .cookie-modal-header h4{margin:0;font-size:16px}
-    .cookie-x{
-      width:36px;height:36px;border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      cursor:pointer;
-      font-weight:900;
-    }
-    .cookie-modal-body{padding:16px 18px}
-    .cookie-modal-body p{margin:0 0 12px;color:var(--text-muted);line-height:1.5;font-size:14px}
-    .cookie-opt{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:12px 12px;
-      margin-bottom:10px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .cookie-opt strong{display:block;font-size:14px;margin-bottom:2px}
-    .cookie-opt span{display:block;color:var(--text-muted);font-size:13px;line-height:1.4}
-
-    .switch{
-      position:relative;
-      width:46px;height:28px;
-      flex:0 0 auto;
-    }
-    .switch input{opacity:0;width:0;height:0}
-    .slider{
-      position:absolute; inset:0;
-      background:#e5e7eb;
-      border-radius:999px;
-      transition:.2s;
-      border:1px solid #d1d5db;
-    }
-    .slider:before{
-      content:"";
-      position:absolute;
-      height:22px;width:22px;
-      left:3px;top:2px;
-      background:#fff;
-      border-radius:50%;
-      transition:.2s;
-      box-shadow:0 6px 16px rgba(15,23,42,.15);
-    }
-    .switch input:checked + .slider{
-      background:rgba(34,197,94,.22);
-      border-color:rgba(34,197,94,.35);
-    }
-    .switch input:checked + .slider:before{transform:translateX(18px)}
-    .switch input:disabled + .slider{opacity:.55;cursor:not-allowed}
-
-    .cookie-modal-footer{
-      padding:14px 18px;
-      border-top:1px solid var(--border);
-      display:flex;
-      gap:10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-      background:#fafafa;
-    }
-    .cookie-footer-btn{
-      border-radius:999px;
-      padding:10px 14px;
-      font-size:13px;
-      font-weight:800;
-      border:1px solid var(--border);
-      background:#fff;
-      cursor:pointer;
-    }
-    .cookie-footer-btn.primary{
-      background:#000;color:#fff;border-color:#000;
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* mobile layout */
-    @media (max-width:900px){
-      .grid-3,.grid-2{grid-template-columns:1fr}
-      .cta{grid-template-columns:1fr}
-      .cta-actions{justify-content:flex-start}
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background-color: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background-color 0.18s ease, box-shadow 0.18s ease,
+        border-color 0.18s ease;
     }
-    @media (max-width:560px){
-      .cookie-row{flex-direction:column}
-      .cookie-actions{justify-content:flex-start}
-      .cookie-modal{margin:24px auto 0}
+
+    .site-header.scrolled,
+    .site-header.nav-open {
+      background-color: #ffffff;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      align-items: center;
+    }
+
+    .nav-links a.active {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .btn-outline {
+      padding: 0.4rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: #ffffff;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease,
+        transform 0.1s ease;
+    }
+
+    .btn-outline:hover {
+      background: #f9fafb;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #111827;
+      border-radius: 999px;
+      margin: 4px 0;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .site-header.nav-open .nav-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .section-tight {
+      padding-bottom: 3rem;
+    }
+
+    .section-muted {
+      background: rgba(240, 249, 255, 0.75);
+      border-radius: 32px;
+      margin-bottom: 4rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section p.lead {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 2rem;
+    }
+
+    /* PRICING HERO */
+
+    .pricing-hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 3rem;
+      text-align: center;
+    }
+
+    .pricing-hero h1 {
+      font-size: 2.1rem;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .pricing-hero p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+    }
+
+    /* BILLING TOGGLE */
+
+    .billing-toggle {
+      display: inline-flex;
+      margin: 2rem auto 1.7rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      padding: 4px;
+      position: relative;
+    }
+
+    .billing-toggle button {
+      border: none;
+      background: transparent;
+      padding: 0.45rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+      transition: color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .billing-toggle button.active {
+      background: #000;
+      color: #f9fafb;
+    }
+
+    .billing-toggle .save-pill {
+      font-size: 0.75rem;
+      color: #16a34a;
+      margin-left: 0.4rem;
+    }
+
+    /* MOBILE PLAN TABS */
+
+    .mobile-plan-tabs {
+      display: none;
+    }
+
+    .mobile-plan-tab {
+      flex: 1 1 0;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 0.6rem 0.3rem;
+      border-right: 1px solid #e5e7eb;
+      background: #ffffff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .mobile-plan-tab:last-child {
+      border-right: none;
+    }
+
+    .mobile-plan-tab.active {
+      border-bottom: 2px solid #22c55e;
+      background: #f0fdf4;
+      font-weight: 600;
+    }
+
+    /* PRICING GRID */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.4rem;
+    }
+
+    .plan-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .plan-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-align: center;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px 999px 0 0;
+      align-self: stretch;
+    }
+
+    .plan-label.green {
+      background: linear-gradient(
+        90deg,
+        var(--accent-green) 0%,
+        var(--accent-green-soft) 100%
+      );
+    }
+
+    .plan-label.blue {
+      background: var(--accent-blue);
+    }
+
+    .pricing-card {
+      background: #ffffff;
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
+      padding: 1.3rem 1.4rem 1.4rem;
+      border: 1px solid var(--border-card);
+      border-top: none;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card-header {
+      text-align: left;
+      margin-bottom: 0.9rem;
+    }
+
+    .plan-name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .plan-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .badge-popular {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 999px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      padding: 0.18rem 0.5rem;
+      font-weight: 600;
+      color: #15803d;
+    }
+
+    .plan-caption {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .price-row {
+      margin-top: 0.85rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.2rem;
+    }
+
+    .price-amount {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    .price-unit {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .billed-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .card-body {
+      margin-top: 1rem;
+      flex: 1;
+    }
+
+    .feature-list {
+      list-style: none;
+      text-align: left;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .feature-list li {
+      position: relative;
+      padding-left: 1.1rem;
+    }
+
+    .feature-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.4rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #10b981;
+    }
+
+    .card-footer {
+      margin-top: 1.4rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 0.7rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease,
+        transform 0.1s ease;
+    }
+
+    .btn-primary {
+      background: #000;
+      color: #f9fafb;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f9fafb;
+      color: #111827;
+      border: 1px solid #d1d5db;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f4f6;
+    }
+
+    /* FOOTNOTE JUST UNDER CARDS */
+
+    .footnote {
+      max-width: 1120px;
+      margin: 0.6rem auto 1.8rem;
+      padding: 0 1.5rem;
+      text-align: center;
+      font-size: 0.45rem; /* 30% smaller than before */
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    /* FULL FEATURES TABLE */
+
+    .features-section {
+      max-width: 1120px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+
+    .features-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .features-toggle-button {
+      border-radius: 999px;
+      border: 1px solid #d4d4d8;
+      padding: 0.6rem 1.7rem;
+      background: #ffffff;
+      font-size: 1.05rem; /* ~25% larger */
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .features-toggle-icon {
+      display: inline-block;
+      font-size: 1.15rem;
+      transition: transform 0.18s ease;
+    }
+
+    .features-table-wrapper {
+      border-radius: 26px;
+      overflow: hidden;
+      background: linear-gradient(
+        180deg,
+        rgba(240, 249, 255, 0.85),
+        #ffffff
+      );
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+      max-height: 2000px;
+      transition: max-height 0.25s ease, border-width 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .features-table-wrapper.collapsed {
+      max-height: 0;
+      border-width: 0;
+      box-shadow: none;
+    }
+
+    /* inner scroll container for table so it isn't cut off on mobile */
+    .features-table-inner {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .features-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    .features-table thead {
+      background: #f9fafb;
+    }
+
+    .features-table th,
+    .features-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .features-table th:first-child,
+    .features-table td:first-child {
+      padding-left: 1.4rem;
+    }
+
+    .features-table th:last-child,
+    .features-table td:last-child {
+      padding-right: 1.4rem;
+    }
+
+    .features-table th {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .feature-name {
+      font-weight: 500;
+    }
+
+    .tick {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .tick-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      border: 1px solid #16a34a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tick-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: #16a34a;
+    }
+
+    /* WHAT EVERY PLAN GETS YOU */
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .benefit-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.2rem 1.1rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    .benefit-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.92rem;
+    }
+
+    .benefit-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: #ecfdf3;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    /* HOW IT WORKS */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.7rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem 1.5rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.04);
+    }
+
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #16a34a;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    /* ALTERNATIVE SOLUTIONS */
+
+    .alt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .alt-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.3rem 1.4rem 1.3rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .alt-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .alt-name {
+      font-weight: 600;
+    }
+
+    .alt-card button {
+      margin-top: 0.5rem;
+      align-self: flex-start;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    /* LOGOS */
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.3rem;
+      margin-top: 1.7rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .logo-pill {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px dashed #d4d4d8;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    /* CASE STUDIES */
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+    }
+
+    .case-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem 1.4rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      text-align: left;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+    }
+
+    .case-role {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .case-metric {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    /* FAQ */
+
+    .faq-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-summary {
+      width: 100%;
+      background: #f3f4f6;
+      border: 1px solid #d4d4d8;
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      cursor: pointer;
+      font-size: 0.96rem;
+      text-align: left;
+    }
+
+    .faq-summary:hover {
+      background: #e5e7eb;
+    }
+
+    .faq-summary .faq-q {
+      font-weight: 500;
+    }
+
+    .faq-summary .faq-plus {
+      margin-left: auto;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.16s ease;
+    }
+
+    .faq-summary.open {
+      background: #e0f2fe;
+      border-color: #bfdbfe;
+    }
+
+    .faq-summary.open .faq-plus {
+      transform: rotate(45deg);
+    }
+
+    .faq-content {
+      padding: 0.7rem 1.1rem 0.9rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-left: 1px solid #e5e7eb;
+      border-right: 1px solid #e5e7eb;
+      border-bottom: 1px solid #e5e7eb;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .faq-content ul {
+      padding-left: 1.1rem;
+      margin-top: 0.35rem;
+    }
+
+    .faq-content li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* FOOTER */
+
+    .site-footer {
+      background: #020617;
+      color: #e5e7eb;
+      margin-top: 2rem;
+      padding: 1.6rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      font-size: 0.82rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0.85;
+    }
+
+    .footer-links a {
+      color: inherit;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1024px) {
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .benefit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .header-inner {
+        padding-inline: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-wrap: nowrap;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.75rem 1rem 1rem;
+        flex-direction: column;
+        gap: 0.6rem;
+        z-index: 30;
+      }
+
+      .site-header.nav-open .nav-links {
+        display: flex;
+      }
+
+      .pricing-hero {
+        padding-top: 2.2rem;
+      }
+
+      .pricing-hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .billing-toggle {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .billing-toggle button {
+        flex: 1 1 0;
+        text-align: center;
+        padding-inline: 0.3rem;
+      }
+
+      .mobile-plan-tabs {
+        display: flex;
+        position: sticky;
+        top: 56px;
+        z-index: 35;
+        background: #ffffff;
+        border-top: 2px solid #22c55e;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.7rem;
+        margin-top: 0.9rem;
+      }
+
+      /* ensure scroll-to plan lines up below sticky header + tabs */
+      .plan-wrapper {
+        scroll-margin-top: 140px;
+      }
+
+      .benefit-grid,
+      .alt-grid,
+      .steps-grid,
+      .case-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-muted {
+        border-radius: 0;
+      }
+
+      .features-table th,
+      .features-table td {
+        font-size: 0.8rem;
+        padding-inline: 0.7rem;
+      }
+
+      .features-table th:first-child,
+      .features-table td:first-child {
+        padding-left: 0.9rem;
+      }
+
+      .features-table th:last-child,
+      .features-table td:last-child {
+        padding-right: 0.9rem;
+      }
     }
   </style>
 </head>
-
 <body>
+  <div class="page-wrap">
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">MeshRFID</div>
 
-<header>
-  <div class="container hero">
-    <h1>Plans for every size of operation</h1>
-    <p>Start small and scale up. Switch plans as volumes grow.</p>
-  </div>
-</header>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-<!-- ================= DYNAMIC LOWER HALF ================= -->
-
-<section class="band band-soft" id="how-it-helps">
-  <div class="container">
-    <div class="section-head">
-      <h2>What every plan includes</h2>
-      <p>Finance-led control, live stock accuracy and reporting you can trust.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="tile">
-        <div class="kicker">Real-time stock</div>
-        <p class="quote">One live view of items by site, zone and value.</p>
-        <span class="pill">Accuracy • Valuation • Ageing</span>
+        <nav class="nav-links">
+          <a href="why.html">Why MeshRFID</a>
+          <a href="#pricing" class="active">Pricing</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#faqs">FAQs</a>
+          <button class="btn-outline">Contact sales</button>
+        </nav>
       </div>
-      <div class="tile">
-        <div class="kicker">Shrink control</div>
-        <p class="quote">Exceptions and alerts before losses hit the P&amp;L.</p>
-        <span class="pill">Alerts • Variances • Audit</span>
-      </div>
-      <div class="tile">
-        <div class="kicker">Finance exports</div>
-        <p class="quote">Scheduled stock, ageing and valuation reports.</p>
-        <span class="pill">CSV • API • ERP</span>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<section class="band band-white" id="compare">
-  <div class="container">
-    <div class="section-head">
-      <h2>Compare plans</h2>
-      <p>Clear feature comparison without noise.</p>
-    </div>
+    <main class="main">
+      <!-- PRICING -->
+      <section id="pricing" class="pricing-hero">
+        <h1>Plans for every size of operation</h1>
+        <p>Start small and scale up. Switch plans as your volumes grow. VAT is added at checkout.</p>
 
-    <div class="compare-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Starter</th>
-            <th>Grow</th>
-            <th>Pro</th>
-            <th>Enterprise</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Multi-site</td>
-            <td class="dash">–</td>
-            <td><span class="tick">✓</span></td>
-            <td><span class="tick">✓</span></td>
-            <td><span class="tick">✓</span></td>
-          </tr>
-          <tr>
-            <td>Finance exports</td>
-            <td class="dash">–</td>
-            <td><span class="tick">✓</span></td>
-            <td><span class="tick">✓</span></td>
-            <td><span class="tick">✓</span></td>
-          </tr>
-          <tr>
-            <td>API / ERP</td>
-            <td class="dash">–</td>
-            <td class="dash">–</td>
-            <td><span class="tick">✓</span></td>
-            <td><span class="tick">✓</span></td>
-          </tr>
-          <tr>
-            <td>Custom dashboards</td>
-            <td class="dash">–</td>
-            <td class="dash">–</td>
-            <td class="dash">–</td>
-            <td><span class="tick">✓</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="band band-soft" id="social-proof">
-  <div class="container">
-    <div class="section-head">
-      <h2>Used by teams accountable to the numbers</h2>
-      <p>Built for finance, ops and compliance - one dataset, one audit trail.</p>
-    </div>
-
-    <div class="logos">
-      <span class="logo">Retail finance</span>
-      <span class="logo">Warehouse ops</span>
-      <span class="logo">3PLs</span>
-      <span class="logo">Multi-site chains</span>
-    </div>
-
-    <div class="grid-2" style="margin-top:24px;">
-      <div class="tile">
-        <div class="kicker">CFO</div>
-        <p class="quote">“One dataset. No debates at month-end.”</p>
-      </div>
-      <div class="tile">
-        <div class="kicker">Head of Ops</div>
-        <p class="quote">“Shrink shows up as signals, not surprises.”</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="band band-white" id="faqs">
-  <div class="container">
-    <div class="section-head">
-      <h2>FAQs</h2>
-      <p>Short answers - no fluff.</p>
-    </div>
-
-    <details>
-      <summary>Do we need RFID specialists?</summary>
-      <p>No. Starter and Grow use guided templates. Enterprise includes rollout support.</p>
-    </details>
-
-    <details>
-      <summary>Can finance get scheduled reports?</summary>
-      <p>Yes. Stock, ageing and valuation can be exported automatically.</p>
-    </details>
-
-    <details>
-      <summary>Is hardware included?</summary>
-      <p>Optional bundles or BYO. Enterprise supports full hardware rollout.</p>
-    </details>
-
-    <div style="margin-top:32px;" class="cta" id="contact">
-      <div>
-        <h3>Want a rollout plan and ROI case?</h3>
-        <p>Share your sites, volumes and reporting needs.</p>
-      </div>
-      <div class="cta-actions">
-        <a class="btn" href="#pricing">View plans</a>
-        <a class="btn btn-primary" href="#contact">Contact sales</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= Cookie banner (Shopify-style behaviour) ================= -->
-<div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie banner">
-  <div class="cookie-row">
-    <div class="cookie-text">
-      We use cookies to improve your experience, measure performance and personalise content.
-      You can manage your preferences at any time. See our
-      <a href="/privacy.html">Privacy policy</a>.
-    </div>
-    <div class="cookie-actions">
-      <button class="cookie-btn" id="cookiePrefsBtn" type="button">Preferences</button>
-      <button class="cookie-btn" id="cookieRejectBtn" type="button">Reject</button>
-      <button class="cookie-btn primary" id="cookieAcceptBtn" type="button">Accept</button>
-    </div>
-  </div>
-</div>
-
-<!-- Preferences modal -->
-<div id="cookieModalBackdrop" class="cookie-modal-backdrop" aria-hidden="true">
-  <div class="cookie-modal" role="dialog" aria-modal="true" aria-label="Cookie preferences">
-    <div class="cookie-modal-header">
-      <h4>Cookie preferences</h4>
-      <button class="cookie-x" id="cookieModalClose" type="button" aria-label="Close">✕</button>
-    </div>
-    <div class="cookie-modal-body">
-      <p>Select which cookies you allow. Necessary cookies are always on.</p>
-
-      <div class="cookie-opt">
-        <div>
-          <strong>Necessary</strong>
-          <span>Required for the site to function (security, basic settings).</span>
+        <!-- centred billing toggle -->
+        <div class="billing-toggle" aria-label="Billing period toggle">
+          <button type="button" class="toggle-option active" data-billing="monthly">
+            Pay monthly
+          </button>
+          <button type="button" class="toggle-option" data-billing="yearly">
+            Pay yearly <span class="save-pill">(save 20%)</span>
+          </button>
         </div>
-        <label class="switch" aria-label="Necessary cookies">
-          <input type="checkbox" checked disabled />
-          <span class="slider"></span>
-        </label>
-      </div>
 
-      <div class="cookie-opt">
-        <div>
-          <strong>Analytics</strong>
-          <span>Helps us understand usage so we can improve performance.</span>
-        </div>
-        <label class="switch" aria-label="Analytics cookies">
-          <input id="cookieAnalyticsToggle" type="checkbox" />
-          <span class="slider"></span>
-        </label>
-      </div>
+        <!-- mobile sticky plan tabs -->
+        <nav class="mobile-plan-tabs" aria-label="Plan navigation (mobile)">
+          <div class="mobile-plan-tab active" data-target="plan-starter">Starter</div>
+          <div class="mobile-plan-tab" data-target="plan-grow">Grow</div>
+          <div class="mobile-plan-tab" data-target="plan-pro">Pro</div>
+          <div class="mobile-plan-tab" data-target="plan-enterprise">Enterprise</div>
+        </nav>
 
-      <div class="cookie-opt">
-        <div>
-          <strong>Marketing</strong>
-          <span>Used to personalise marketing and measure campaigns.</span>
+        <div class="pricing-grid">
+          <!-- Starter -->
+          <div class="plan-wrapper" id="plan-starter">
+            <div class="plan-label green">£1 for the first month</div>
+            <article class="pricing-card">
+              <header class="card-header">
+                <div class="plan-name-row">
+                  <h2 class="plan-name">Starter</h2>
+                </div>
+                <p class="plan-caption">For solo entrepreneurs. Single site only.</p>
+
+                <div class="price-row">
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="25"
+                    data-yearly="20"
+                  >£25</span>
+                  <span class="price-unit">/month</span>
+                </div>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
+              </header>
+
+              <div class="card-body">
+                <ul class="feature-list">
+                  <li>Up to 1,000 active tagged items.</li>
+                  <li>Single location, handheld reader (BYO or purchase separately).</li>
+                  <li>Basic dashboards for stock accuracy and loss.</li>
+                </ul>
+              </div>
+
+              <footer class="card-footer">
+                <button class="btn-primary">Start monthly</button>
+              </footer>
+            </article>
+          </div>
+
+          <!-- Grow -->
+          <div class="plan-wrapper" id="plan-grow">
+            <div class="plan-label green">£1 for the first month</div>
+            <article class="pricing-card">
+              <header class="card-header">
+                <div class="plan-name-row">
+                  <h2 class="plan-name">Grow</h2>
+                  <span class="badge-popular">Most popular</span>
+                </div>
+                <p class="plan-caption">
+                  For small teams and growing networks.
+                </p>
+
+                <div class="price-row">
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="149"
+                    data-yearly="119"
+                  >£149</span>
+                  <span class="price-unit">/month</span>
+                </div>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
+              </header>
+
+              <div class="card-body">
+                <ul class="feature-list">
+                  <li>Multi-site visibility with scheduled finance-ready reporting.</li>
+                  <li>Up to 20,000 active tagged items across locations.</li>
+                  <li>Cycle counts and shrink reports by store and warehouse.</li>
+                  <li>Operations and finance dashboards with scheduled exports.</li>
+                </ul>
+              </div>
+
+              <footer class="card-footer">
+                <button class="btn-primary">Start monthly</button>
+              </footer>
+            </article>
+          </div>
+
+          <!-- Pro -->
+          <div class="plan-wrapper" id="plan-pro">
+            <div class="plan-label green">£1 for the first month</div>
+            <article class="pricing-card">
+              <header class="card-header">
+                <div class="plan-name-row">
+                  <h2 class="plan-name">Pro</h2>
+                </div>
+                <p class="plan-caption">For chains, warehouses and 3PLs.</p>
+
+                <div class="price-row">
+                  <span
+                    class="price-amount"
+                    data-plan-price
+                    data-monthly="249"
+                    data-yearly="199"
+                  >£249</span>
+                  <span class="price-unit">/month</span>
+                </div>
+                <p class="billed-note" data-billed-note>
+                  Charged monthly. Cancel anytime.
+                </p>
+              </header>
+
+              <div class="card-body">
+                <ul class="feature-list">
+                  <li>Finance-led control with consolidated views and integrations.</li>
+                  <li>Unlimited active tagged items across all sites and clients.</li>
+                  <li>Consolidated dashboards with drill-down and ageing reports.</li>
+                  <li>Multi-currency, API and ERP integrations, audit-ready exports.</li>
+                </ul>
+              </div>
+
+              <footer class="card-footer">
+                <button class="btn-primary">Start monthly</button>
+              </footer>
+            </article>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="plan-wrapper" id="plan-enterprise">
+            <div class="plan-label blue">Available on a 1–3 year term</div>
+            <article class="pricing-card">
+              <header class="card-header">
+                <div class="plan-name-row">
+                  <h2 class="plan-name">Enterprise</h2>
+                </div>
+                <p class="plan-caption">Custom programmes and SLAs.</p>
+
+                <div class="price-row">
+                  <span class="price-amount">Custom</span>
+                  <span class="price-unit">/month</span>
+                </div>
+                <p class="billed-note">
+                  Tailored volumes, hardware bundles and commercial terms.
+                </p>
+              </header>
+
+              <div class="card-body">
+                <ul class="feature-list">
+                  <li>Unlimited sites and tag volumes with bespoke commercials.</li>
+                  <li>Hardware rollout, onboarding and training.</li>
+                  <li>Custom dashboards and reporting packs for finance and operations.</li>
+                </ul>
+              </div>
+
+              <footer class="card-footer">
+                <button class="btn-secondary">Contact sales</button>
+              </footer>
+            </article>
+          </div>
         </div>
-        <label class="switch" aria-label="Marketing cookies">
-          <input id="cookieMarketingToggle" type="checkbox" />
-          <span class="slider"></span>
-        </label>
+
+        <!-- note directly under cards -->
+        <p class="footnote">
+          *Intro offer applies to new MeshRFID subscriptions only. Hardware,
+          implementation and local taxes are billed separately.
+        </p>
+      </section>
+
+      <!-- FULL FEATURES TABLE -->
+      <section class="features-section" aria-label="Detailed plan comparison">
+        <div class="features-toggle">
+          <button class="features-toggle-button" id="featuresToggleButton" type="button">
+            <span>Full feature comparison</span>
+            <span class="features-toggle-icon" id="featuresToggleIcon">+</span>
+          </button>
+        </div>
+
+        <div class="features-table-wrapper collapsed" id="featuresTableWrapper">
+          <div class="features-table-inner">
+            <table class="features-table" aria-label="Detailed plan features">
+              <thead>
+                <tr>
+                  <th class="feature-name">Feature</th>
+                  <th>Starter</th>
+                  <th>Grow</th>
+                  <th>Pro</th>
+                  <th>Enterprise</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="feature-name">Active tagged items</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 1,000</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Up to 20,000</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Unlimited</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Sites / locations</td>
+                  <td>1 site</td>
+                  <td>Multi-site</td>
+                  <td>Multi-site</td>
+                  <td>Unlimited with custom structure</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Item imports &amp; uploads</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV uploads</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; scheduled</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>CSV &amp; API</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Fully tailored</span></td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Cycle counts &amp; shrink reports</td>
+                  <td>Basic</td>
+                  <td>By store / warehouse</td>
+                  <td>By site, client and channel</td>
+                  <td>Custom views and packs</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Finance-ready exports</td>
+                  <td>–</td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Scheduled CSV</span></td>
+                  <td><span class="tick"><span class="tick-icon"><svg viewBox="0 0 16 16"><path d="M6.5 10.3 4.2 8l-1 1 3.3 3.3 6-6-1-1z"/></svg></span>Multi-currency / API</span></td>
+                  <td>Tailored to your stack</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">User roles &amp; permissions</td>
+                  <td>Standard</td>
+                  <td>Standard + store leads</td>
+                  <td>Advanced roles</td>
+                  <td>Custom roles and SSO</td>
+                </tr>
+                <tr>
+                  <td class="feature-name">Support</td>
+                  <td>Email</td>
+                  <td>Email &amp; in-app</td>
+                  <td>Priority</td>
+                  <td>Named account team</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT EVERY PLAN GETS YOU -->
+      <section class="section section-muted" aria-label="Shared benefits">
+        <h2>What every plan gets you</h2>
+        <p class="lead">
+          Core MeshRFID features are included on every plan so you can grow
+          without rewiring how you work.
+        </p>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Real-time stock picture</h3>
+            <p>
+              Live visibility of items by site, zone and status so finance and
+              operations are always aligned.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Zero-code setup</h3>
+            <p>
+              Simple onboarding with CSV imports and guided templates. No
+              warehouse rebuilds or new IT projects.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Shrink and loss alerts</h3>
+            <p>
+              Exception reporting highlights gaps and suspicious movements before
+              they hit the P&amp;L.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon">✓</div>
+            <h3 class="benefit-title">Finance-ready exports</h3>
+            <p>
+              Schedule stock, ageing and valuation reports straight into your
+              accounting workflow.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works" class="section" aria-label="How MeshRFID works">
+        <h2>How it works</h2>
+        <p class="lead">
+          Roll out RFID with a lightweight stack that connects stores,
+          warehouses and finance in a single view.
+        </p>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-tag">Step 1</div>
+            <h3 class="step-title">Tag and connect your inventory</h3>
+            <p>
+              We help you tag existing and inbound stock, map locations and
+              define the views finance and ops need.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 2</div>
+            <h3 class="step-title">Scan and sync</h3>
+            <p>
+              Teams use handheld readers to capture movements. MeshRFID syncs
+              counts, transfers and shrink in real time.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-tag">Step 3</div>
+            <h3 class="step-title">Report and optimise</h3>
+            <p>
+              Dashboards and exports feed into your existing tools so you can
+              reduce loss, rebalance stock and prove ROI.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ALTERNATIVE SOLUTIONS -->
+      <section class="section" aria-label="Alternative solutions">
+        <h2>Alternative solutions for your business</h2>
+        <p class="lead">
+          Hardware-only and valuation-only options for projects where you do not
+          need a full subscription.
+        </p>
+
+        <div class="alt-grid">
+          <article class="alt-card">
+            <div class="alt-label">Hardware bundle</div>
+            <div class="alt-name">Starter kit</div>
+            <p>
+              Handheld reader, tags and onboarding session so you can pilot RFID
+              on a single site before rolling out.
+            </p>
+            <button type="button">Talk to sales</button>
+          </article>
+
+          <article class="alt-card">
+            <div class="alt-label">Advisory</div>
+            <div class="alt-name">Stock audit &amp; valuation</div>
+            <p>
+              One-off or quarterly counts with finance-grade reporting – ideal
+              for covenant checks, lender packs and disposals.
+            </p>
+            <button type="button">Request a proposal</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- LOGOS -->
+      <section class="section section-tight" aria-label="Customer logos">
+        <h2>Join merchants using MeshRFID</h2>
+        <p class="lead">
+          From independent retailers to regional chains and 3PLs handling
+          millions of units.
+        </p>
+
+        <div class="logo-row">
+          <span class="logo-pill">Gymwear Collective</span>
+          <span class="logo-pill">Urban Outlet Group</span>
+          <span class="logo-pill">Northshore 3PL</span>
+          <span class="logo-pill">Everyday Basics Co.</span>
+          <span class="logo-pill">Global Closeout Partners</span>
+        </div>
+      </section>
+
+      <!-- CASE STUDIES -->
+      <section
+        id="case-studies"
+        class="section section-muted"
+        aria-label="Case studies"
+      >
+        <h2>Case studies</h2>
+        <p class="lead">
+          Different operations, the same outcome – finance and stock finally
+          saying the same thing.
+        </p>
+
+        <div class="case-grid">
+          <article class="case-card">
+            <div class="case-role">Sole trader</div>
+            <div class="case-metric">-35% stockouts in 3 months</div>
+            <p>
+              A single-store retailer moved from spreadsheet counts to weekly
+              RFID cycles, tightening reorders and freeing up cash.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-role">Retail chain</div>
+            <div class="case-metric">+4.2 pts margin uplift</div>
+            <p>
+              Regional fashion group cut shrink, reduced emergency transfers and
+              aligned book stock with finance reporting.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <div class="case-role">3PL / warehouse</div>
+            <div class="case-metric">99.6% pick accuracy</div>
+            <p>
+              A multiclient 3PL layered MeshRFID on top of their WMS to give
+              brand owners and finance real-time, SKU-level visibility.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQS -->
+      <section id="faqs" class="section section-tight" aria-label="FAQs">
+        <h2>Frequently asked questions</h2>
+        <p class="lead">
+          Answers to the most common questions on pricing, hardware, roll-out and ROI.
+        </p>
+
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">What is included in the monthly price?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              Your subscription covers:
+              <ul>
+                <li>Access to MeshRFID for the sites and tag volumes in your plan.</li>
+                <li>Standard dashboards and scheduled exports.</li>
+                <li>Product updates, hosting and support.</li>
+              </ul>
+              Hardware, on-site services and any custom integrations are quoted separately.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">Can I change plans as I grow?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              Yes. You can move between Starter, Grow and Pro as your volumes change.
+              We review usage with you, adjust the plan and update billing from the
+              next invoice date. Data, dashboards and integrations stay in place.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">Do I need to replace my existing WMS or POS?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              No. MeshRFID typically runs alongside your WMS, ERP and POS. Most
+              customers start with:
+              <ul>
+                <li>Simple CSV exports into finance and BI tools.</li>
+                <li>Lightweight API connections for stock and movements.</li>
+              </ul>
+              If you prefer, we can work with your partners to design a deeper integration later.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">How long does it take to go live?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              Timelines vary by scope:
+              <ul>
+                <li><strong>Starter:</strong> Single-site pilots are usually live in a few days.</li>
+                <li><strong>Grow:</strong> Multi-site roll-outs phase over 2–4 weeks.</li>
+                <li><strong>Pro / Enterprise:</strong> Larger networks may run in waves over a quarter.</li>
+              </ul>
+              We plan the cutover with you so trading is not disrupted.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">What hardware do I need?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              Most customers use a mix of handheld readers, labels and swing tags.
+              We can supply hardware bundles or work with your existing devices if
+              they are compatible. Enterprise projects often add portals or tunnels
+              for high-volume areas.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-summary" type="button">
+              <span class="faq-q">When do customers usually see ROI?</span>
+              <span class="faq-plus">+</span>
+            </button>
+            <div class="faq-content" hidden>
+              It depends on the scale of shrink and stock inaccuracy, but most
+              retailers and 3PLs see measurable impact within the first
+              stock-take cycles – typically:
+              <ul>
+                <li>Lower shrink and write-offs.</li>
+                <li>Fewer emergency transfers and courier spend.</li>
+                <li>Better buy decisions due to accurate stock and ageing data.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- STATIC FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>© <span id="year"></span> MeshRFID. All rights reserved.</div>
+        <div class="footer-links">
+          <a href="why.html">Why MeshRFID</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#faqs">FAQs</a>
+        </div>
       </div>
-    </div>
-    <div class="cookie-modal-footer">
-      <button class="cookie-footer-btn" id="cookieSaveBtn" type="button">Save</button>
-      <button class="cookie-footer-btn primary" id="cookieAcceptAllBtn" type="button">Accept all</button>
-    </div>
+    </footer>
   </div>
-</div>
 
-<script>
-(function () {
-  const KEY = "meshrfid_cookie_consent_v1";
+  <script>
+    // header hamburger + scroll background
+    (function () {
+      const header = document.querySelector(".site-header");
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.querySelectorAll(".nav-links a");
 
-  const banner = document.getElementById("cookieBanner");
-  const acceptBtn = document.getElementById("cookieAcceptBtn");
-  const rejectBtn = document.getElementById("cookieRejectBtn");
-  const prefsBtn  = document.getElementById("cookiePrefsBtn");
+      function onScroll() {
+        if (window.scrollY > 10) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      }
 
-  const backdrop = document.getElementById("cookieModalBackdrop");
-  const closeBtn = document.getElementById("cookieModalClose");
-  const saveBtn  = document.getElementById("cookieSaveBtn");
-  const acceptAllBtn = document.getElementById("cookieAcceptAllBtn");
+      toggle.addEventListener("click", () => {
+        header.classList.toggle("nav-open");
+      });
 
-  const analyticsToggle = document.getElementById("cookieAnalyticsToggle");
-  const marketingToggle = document.getElementById("cookieMarketingToggle");
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          header.classList.remove("nav-open");
+        });
+      });
 
-  function getConsent() {
-    try { return JSON.parse(localStorage.getItem(KEY) || "null"); }
-    catch(e) { return null; }
-  }
+      window.addEventListener("scroll", onScroll);
+      onScroll();
+    })();
 
-  function setConsent(consent) {
-    localStorage.setItem(KEY, JSON.stringify(consent));
-  }
+    // billing toggle
+    (function () {
+      const toggleButtons = document.querySelectorAll(
+        ".billing-toggle .toggle-option"
+      );
+      const priceEls = document.querySelectorAll("[data-plan-price]");
+      const billedNotes = document.querySelectorAll("[data-billed-note]");
 
-  function showBanner() { banner.style.display = "block"; }
-  function hideBanner() { banner.style.display = "none"; }
+      function setBilling(mode) {
+        toggleButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.billing === mode);
+        });
 
-  function openModal() {
-    backdrop.style.display = "block";
-    backdrop.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
+        const yearly = mode === "yearly";
 
-  function closeModal() {
-    backdrop.style.display = "none";
-    backdrop.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
+        priceEls.forEach((el) => {
+          const monthly = Number(el.dataset.monthly);
+          const yearlyValue = Number(el.dataset.yearly);
+          const price = yearly ? yearlyValue : monthly;
+          el.textContent = "£" + price;
+        });
 
-  function applyConsent(consent) {
-    // necessary is always true
-    if (!consent) return;
+        billedNotes.forEach((note) => {
+          note.textContent = yearly
+            ? "Billed annually (equivalent monthly price shown)."
+            : "Charged monthly. Cancel anytime.";
+        });
+      }
 
-    // place your analytics/marketing loads here so they only run after consent
-    if (consent.analytics) {
-      // Example placeholder:
-      // loadScript("https://www.googletagmanager.com/gtag/js?id=G-XXXX");
-      // window.dataLayer = window.dataLayer || [];
-      // function gtag(){dataLayer.push(arguments);}
-      // gtag('js', new Date());
-      // gtag('config', 'G-XXXX');
-    }
+      toggleButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const mode = btn.dataset.billing;
+          setBilling(mode);
+        });
+      });
+    })();
 
-    if (consent.marketing) {
-      // Example placeholder:
-      // loadScript("https://example.com/marketing.js");
-    }
-  }
+    // mobile plan tabs scroll behaviour + scroll spy
+    (function () {
+      const tabs = document.querySelectorAll(".mobile-plan-tab");
+      const sections = document.querySelectorAll(".plan-wrapper");
 
-  function loadScript(src) {
-    const s = document.createElement("script");
-    s.src = src;
-    s.async = true;
-    document.head.appendChild(s);
-  }
+      function isMobile() {
+        return window.matchMedia("(max-width: 768px)").matches;
+      }
 
-  function syncTogglesFromConsent(consent) {
-    analyticsToggle.checked = !!(consent && consent.analytics);
-    marketingToggle.checked = !!(consent && consent.marketing);
-  }
+      function setActiveTab(targetId) {
+        tabs.forEach((tab) => {
+          tab.classList.toggle("active", tab.dataset.target === targetId);
+        });
+      }
 
-  // init
-  const existing = getConsent();
-  if (!existing) {
-    showBanner();
-    syncTogglesFromConsent({ analytics:false, marketing:false });
-  } else {
-    hideBanner();
-    syncTogglesFromConsent(existing);
-    applyConsent(existing);
-  }
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetId = tab.dataset.target;
+          const el = document.getElementById(targetId);
+          if (el) {
+            const headerOffset = 140;
+            const rect = el.getBoundingClientRect();
+            const offset = window.pageYOffset + rect.top - headerOffset;
+            window.scrollTo({ top: offset, behavior: "smooth" });
+            setActiveTab(targetId);
+          }
+        });
+      });
 
-  // banner actions
-  acceptBtn.addEventListener("click", function () {
-    const consent = { necessary:true, analytics:true, marketing:true, ts: Date.now() };
-    setConsent(consent);
-    hideBanner();
-    syncTogglesFromConsent(consent);
-    applyConsent(consent);
-  });
+      // scroll spy: highlight tab when plan section is in view (mobile)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (!isMobile()) return;
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveTab(entry.target.id);
+            }
+          });
+        },
+        {
+          threshold: 0.55,
+          rootMargin: "-140px 0px -40% 0px",
+        }
+      );
 
-  rejectBtn.addEventListener("click", function () {
-    const consent = { necessary:true, analytics:false, marketing:false, ts: Date.now() };
-    setConsent(consent);
-    hideBanner();
-    syncTogglesFromConsent(consent);
-    // no apply (nothing to load)
-  });
+      sections.forEach((section) => observer.observe(section));
+    })();
 
-  prefsBtn.addEventListener("click", function () {
-    const current = getConsent() || { necessary:true, analytics:false, marketing:false };
-    syncTogglesFromConsent(current);
-    openModal();
-  });
+    // features table toggle (starts closed)
+    (function () {
+      const btn = document.getElementById("featuresToggleButton");
+      const icon = document.getElementById("featuresToggleIcon");
+      const wrapper = document.getElementById("featuresTableWrapper");
 
-  // modal actions
-  closeBtn.addEventListener("click", closeModal);
-  backdrop.addEventListener("click", function (e) {
-    if (e.target === backdrop) closeModal();
-  });
+      if (!btn || !icon || !wrapper) return;
 
-  saveBtn.addEventListener("click", function () {
-    const consent = {
-      necessary:true,
-      analytics: !!analyticsToggle.checked,
-      marketing: !!marketingToggle.checked,
-      ts: Date.now()
-    };
-    setConsent(consent);
-    hideBanner();
-    applyConsent(consent);
-    closeModal();
-  });
+      let open = false; // start closed
 
-  acceptAllBtn.addEventListener("click", function () {
-    analyticsToggle.checked = true;
-    marketingToggle.checked = true;
-    const consent = { necessary:true, analytics:true, marketing:true, ts: Date.now() };
-    setConsent(consent);
-    hideBanner();
-    applyConsent(consent);
-    closeModal();
-  });
+      btn.addEventListener("click", () => {
+        open = !open;
+        wrapper.classList.toggle("collapsed", !open);
+        icon.textContent = open ? "−" : "+";
+      });
+    })();
 
-  // escape to close
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && backdrop.style.display === "block") closeModal();
-  });
-})();
-</script>
+    // FAQ accordion
+    (function () {
+      const faqButtons = document.querySelectorAll(".faq-summary");
+      faqButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const content = btn.nextElementSibling;
+          const isOpen = !content.hidden;
+          content.hidden = isOpen;
+          btn.classList.toggle("open", !isOpen);
+        });
+      });
+    })();
 
+    // footer year
+    document.getElementById("year").textContent =
+      new Date().getFullYear().toString();
+  </script>
 </body>
 </html>
